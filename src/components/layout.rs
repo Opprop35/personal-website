@@ -1,77 +1,38 @@
-use crate::components::{ProjectDropdownEntry, TextSizedImage};
 use leptos::prelude::*;
+
+use crate::components::{NavLink, ProjectsMenu, TextSizedImage};
 
 #[component]
 pub fn Layout(children: impl IntoView) -> impl IntoView {
-    let (dropdown_open, set_dropdown_open) = signal(false);
-
     view! {
-        <div class="text-xs md:text-sm lg:text-base 2xl:text-lg bg-neutral-900 text-slate-50">
-            <div class="flex sticky top-0 z-40 flex-row justify-between items-center w-full bg-black border-b-2 h-fit border-neutral-700">
+        // TODO: split out header and footer into components
+        <div class="text-xs md:text-sm lg:text-base 2xl:text-lg bg-surface text-ink">
+            <div class="sticky top-0 z-40 flex h-fit flex-row items-center justify-between border-b-2 border-line bg-nav w-full">
                 <div class="flex flex-row gap-3 items-center py-1 pl-3 justify-left">
-                    <a class="p-2 hover:rounded-full hover:bg-neutral-800" href="/">
+                    <NavLink href="/">
                         <TextSizedImage image="public/images/home.svg" alt="Home" />
-                    </a>
+                    </NavLink>
 
-                    <button
-                        type="button"
-                        class="relative p-2 rounded-lg hover:bg-neutral-800"
-                        on:click=move |_| set_dropdown_open.update(|open| *open = !*open)
-                    >
-                        <span>"Projects"</span>
-                        <div
-                            class="absolute left-0 mt-2 w-max text-left bg-gray-800 rounded-md border-2 border-gray-600 top-max"
-                            class:visible=move || dropdown_open.get()
-                            class:hidden=move || !dropdown_open.get()
-                        >
-                            <ul class="p-1">
-                                <ProjectDropdownEntry text="LEGO Framework" page="LegoFramework" />
-                                <ProjectDropdownEntry
-                                    text="Duck Side of the Moon"
-                                    page="DuckSideOfTheMoon"
-                                />
-                                <ProjectDropdownEntry text="Attic Panic" page="AtticPanic" />
-                                <ProjectDropdownEntry text="Radorian" page="Radorian" />
-                                <ProjectDropdownEntry
-                                    text="Duckside of the Moon (Student)"
-                                    page="DucksideOfTheMoonStudent"
-                                />
-                                <ProjectDropdownEntry
-                                    text="Level Editor Plugin"
-                                    page="LevelEditorPlugin"
-                                />
-                                <ProjectDropdownEntry
-                                    text="Twin-Stick Duckbox"
-                                    page="TwinStickDuckBox"
-                                />
-                                <ProjectDropdownEntry text="Folivora's Fall" page="FolivorasFall" />
-                            </ul>
-                        </div>
-                    </button>
+                    <ProjectsMenu />
 
-                    <a
+                    <NavLink
+                        external=true
                         href="public/Resume_JesseStolk_SoftwareEngineer.pdf"
-                        target="_blank"
-                        class="relative p-2 rounded-lg hover:bg-neutral-800"
                     >
-                        <span>"Resume"</span>
-                    </a>
+                        "Resume"
+                    </NavLink>
                 </div>
 
-                <div class="flex gap-3 items-center items-center py-1 pr-3 justify-right">
-                    <a
-                        class="p-2 hover:rounded-full hover:bg-neutral-800"
-                        href="https://www.linkedin.com/in/jesse-stolk-b2542a1b7/"
-                        target="_blank"
-                    >
+                <div class="flex gap-3 items-center py-1 pr-3 justify-right">
+                    <NavLink external=true href="https://www.linkedin.com/in/jesse-stolk-b2542a1b7/">
                         <TextSizedImage image="public/images/linkedin.svg" alt="Linked In" />
-                    </a>
+                    </NavLink>
                 </div>
             </div>
 
-            <div class="flex-col mb-auto min-h-screen bg-gray-900">{children}</div>
+            <div class="flex-col mb-auto min-h-screen bg-surface">{children}</div>
 
-            <div class="py-3 px-4 bg-black text-neutral-500">
+            <div class="py-3 px-4 bg-nav text-ink-muted">
                 <p class="text-center">"Website made using Leptos & Tailwind"</p>
             </div>
         </div>

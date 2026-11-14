@@ -1,1 +1,26 @@
 @import "tailwindcss";
+
+@theme {
+  --color-ink: #f8fafc;
+  --color-ink-muted: #737373;
+  --color-surface: #171717;
+  --color-nav: #000000;
+  --color-nav-hover: #262626;
+  --color-line: #404040;
+  --color-danger: #ef4444;
+
+  --radius-nav: 8px;
+  --radius-pill: 9999px;
+
+  --ease-nav: cubic-bezier(0, 0, 0.2, 1);
+  --animate-fade-in: fade-in 200ms var(--ease-nav);
+
+  @keyframes fade-in {
+    from {
+      opacity: 0;
+    }
+    to {
+      opacity: 1;
+    }
+  }
+}
