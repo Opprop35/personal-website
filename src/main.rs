@@ -1,3 +1,6 @@
+mod components;
+
+use components::Layout;
 use leptos::{mount::mount_to_body, prelude::*};
 
 fn main() {
@@ -7,13 +10,15 @@ fn main() {
 
 #[component]
 fn App() -> impl IntoView {
-    let (count, set_count) = signal(0);
+    let body = view! {
+        <div class="p-8">
+            <h1 class="mb-2 text-2xl font-semibold">"Portfolio"</h1>
+            <p class="text-neutral-400">
+                "This is the content area. The Home page contents will migrate here in a
+                later increment."
+            </p>
+        </div>
+    };
 
-    view! {
-        <button on:click=move |_| *set_count.write() += 1 class:bg-blue-500=move || count.get() % 2 == 1>
-            "Click me: "
-            {count}
-        </button>
-        <p class="text-red-500">"Double count: " {move || count.get() * 2}</p>
-    }
+    view! { <Layout children=body /> }
 }
