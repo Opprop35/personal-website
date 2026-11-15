@@ -24,7 +24,7 @@ pub fn Toasts() -> impl IntoView {
                 children=move |t| {
                     view! {
                         <div
-                            class="p-3 border shadow-lg pointer-events-auto rounded-nav border-danger bg-surface animate-fade-in"
+                            class="p-3 border shadow-lg pointer-events-auto rounded-nav border-danger bg-background animate-fade-in"
                             role="alert"
                         >
                             <p class="font-semibold text-ink">

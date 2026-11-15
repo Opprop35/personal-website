@@ -3,14 +3,13 @@
 @theme {
   --color-ink: #f8fafc;
   --color-ink-muted: #737373;
-  --color-surface: #171717;
-  --color-nav: #000000;
-  --color-nav-hover: #262626;
-  --color-line: #404040;
+  --color-background-light: #090917;
+  --color-background: #020210;
+  --color-background-hover: #262636;
+  --color-line: #20202d;
   --color-danger: #ef4444;
 
-  --radius-nav: 8px;
-  --radius-pill: 9999px;
+  --radius-nav: 1px;
 
   --ease-nav: cubic-bezier(0, 0, 0.2, 1);
   --animate-fade-in: fade-in 200ms var(--ease-nav);
