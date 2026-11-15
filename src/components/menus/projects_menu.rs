@@ -21,12 +21,10 @@ pub fn ProjectsMenu() -> impl IntoView {
                     let state = if open.get() {
                         "visible opacity-100"
                     } else {
-                        // TODO: The fact that this goes invibible makes it so the fade out doesn't
-                    // show.
                         "invisible opacity-0"
                     };
                     format!(
-                        "absolute left-0 top-full z-50 min-w-56 transition-opacity duration-200 {MENU} {state}",
+                        "absolute left-0 top-full z-50 min-w-56 transition-[opacity,visibility] duration-200 {MENU} {state}",
                     )
                 }
                 role="menu"
