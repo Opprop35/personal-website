@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 const NAV_ITEM: &str =
-    "inline-flex items-center rounded-nav p-2 transition-colors duration-150 hover:bg-background-hover";
+    "inline-flex items-center rounded-nav p-2 transition-colors duration-150 hover:bg-background-hover hover:text-background-hover-ink";
 
 #[component]
 pub fn NavLink(
