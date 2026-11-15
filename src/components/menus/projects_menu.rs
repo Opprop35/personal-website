@@ -21,6 +21,8 @@ pub fn ProjectsMenu() -> impl IntoView {
                     let state = if open.get() {
                         "visible opacity-100"
                     } else {
+                        // TODO: The fact that this goes invibible makes it so the fade out doesn't
+                    // show.
                         "invisible opacity-0"
                     };
                     format!(
