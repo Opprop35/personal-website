@@ -17,7 +17,7 @@ pub fn Toasts() -> impl IntoView {
     let toasts = toasts();
 
     view! {
-        <div class="flex fixed right-4 bottom-4 z-50 flex-col gap-2 w-96 pointer-events-none max-w-[calc(100vw-2rem)]">
+        <div class="print:hidden flex fixed right-4 bottom-4 z-50 flex-col gap-2 w-96 pointer-events-none max-w-[calc(100vw-2rem)]">
             <For
                 each=move || toasts.get()
                 key=|t| t.id

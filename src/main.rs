@@ -1,31 +1,34 @@
 mod components;
+mod pages;
 
 use std::panic::{catch_unwind, set_hook, AssertUnwindSafe, PanicHookInfo};
 
 use leptos::prelude::*;
+use leptos_router::components::*;
+use leptos_router::path;
 
 use crate::components::{toast::create_toast, Layout, Toasts};
+use crate::pages::{home::Home, resume::Resume};
 
 fn main() {
     install_panic_hook();
-    leptos::mount::mount_to_body(App)
+    leptos::mount::mount_to_body(App);
 }
 
 #[component]
 fn App() -> impl IntoView {
-    let body = view! {
-        <div class="p-8">
-            <h1 class="mb-2 text-2xl font-semibold">"Portfolio"</h1>
-            <p class="text-ink-muted">
-                "This is the content area. The Home page contents will migrate here in a
-                later increment."
-            </p>
-        </div>
+    let routes = view! {
+        <Router>
+            <Routes fallback=move || "Page not found.">
+                <Route path=path!("") view=Home />
+                <Route path=path!("/resume") view=Resume />
+            </Routes>
+        </Router>
     };
 
     view! {
         <Toasts />
-        <Layout children=body />
+        <Layout children=routes />
     }
 }
 

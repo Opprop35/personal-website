@@ -24,3 +24,20 @@
     }
   }
 }
+
+@page {
+  size: A4;
+  margin: 0;
+}
+
+@media print {
+  * {
+    -webkit-print-color-adjust: exact;
+    print-color-adjust: exact;
+  }
+  html,
+  body {
+    margin: 0;
+    background: var(--color-background-light);
+  }
+}
