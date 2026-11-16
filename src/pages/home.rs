@@ -416,7 +416,7 @@ pub fn Home() -> impl IntoView {
         <div class="flex flex-col w-full">
             <div class="flex flex-col items-stretch md:flex-row bg-background-light">
                 <iframe
-                    class="w-full md:order-last md:w-7/12 h-[72vh] max-h-[55vw] md:max-h-none"
+                    class="w-full md:order-last md:w-7/12 md:h-auto h-[72vh] max-h-[55vw] md:max-h-none"
                     src="https://www.youtube.com/embed/vqVBLEHiiMU?autoplay=1&loop=1"
                     allow="autoplay"
                     title="About me"
