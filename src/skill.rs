@@ -54,13 +54,13 @@ impl Skill {
             Self::CSharp => "c-sharp.svg",
             Self::LazyVim => "lazyvim.svg",
             Self::Git => "Git-logo.svg",
-            Self::Perforce => "perforce.png",
+            Self::Perforce => "perforce.svg",
             Self::ArchLinux => "arch-linux.svg",
             Self::Bevy => "bevy-logo.svg",
             Self::Unreal => "ue-logo.svg",
             Self::Godot => "Godot-logo.svg",
             Self::Aseprite => "aseprite.svg",
-            Self::Blender => "blender.png",
+            Self::Blender => "blender.svg",
         }
     }
 

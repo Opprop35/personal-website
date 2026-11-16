@@ -7,7 +7,7 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Duck Side of the Moon",
     href: "/DuckSideOfTheMoon",
-    image: "dsotm-cover.png",
+    card_thumbnail: "dsotm-thumbnail.webp",
     contributions: &[
         "Save Game System",
         "Quest System",
@@ -18,7 +18,7 @@ pub const PAGE: Project = Project {
         "UI Programming",
         "Various Gameplay Elements",
     ],
-    background: Some("dsotm-cover.png"),
+    background: Some("dsotm-background.webp"),
     hero_video: Some("jDcsH4LYuCo"),
     badges: &[Link {
         image: "Steam-banner.svg",
@@ -94,7 +94,7 @@ pub const PAGE: Project = Project {
                 ),
             ],
             showcase: Some(Showcase::Image {
-                src: "dsotm-dialogue-tree.png",
+                src: "dsotm-dialogue-tree.webp",
                 alt: "Dialogue Tree",
             }),
         },
@@ -166,7 +166,7 @@ pub const PAGE: Project = Project {
                  same icon used in the in-game UI.",
             )],
             showcase: Some(Showcase::Image {
-                src: "dsotm-item-assets.png",
+                src: "dsotm-item-assets.webp",
                 alt: "Item Assets",
             }),
         },
@@ -179,7 +179,7 @@ pub const PAGE: Project = Project {
                  requires.",
             )],
             showcase: Some(Showcase::Image {
-                src: "dsotm-recipe-asset.png",
+                src: "dsotm-recipe-asset.webp",
                 alt: "Recipe Data Asset",
             }),
         },

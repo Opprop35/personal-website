@@ -7,14 +7,14 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Twin-Stick Duckbox",
     href: "/TwinStickDuckBox",
-    image: "tsj-banner.png",
+    card_thumbnail: "tsj-thumbnail.webp",
     contributions: &[
         "Enemy Spawn Event System",
         "Chomper Enemy",
         "Gauss Weapon",
         "Debug & Cheat Menu",
     ],
-    background: Some("tsj-bg.png"),
+    background: Some("tsj-background.webp"),
     hero_video: Some("OAiE_f08wU0"),
     badges: &[Link {
         image: "available-on-itch-black.svg",

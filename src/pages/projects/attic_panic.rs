@@ -7,14 +7,14 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Attic Panic",
     href: "/AtticPanic",
-    image: "attic-panic-header.jpg",
+    card_thumbnail: "attic-panic-thumbnail.webp",
     contributions: &[
         "Upgrade System",
         "Upgrade Design & Implementation",
         "Upgrade & Gameplay Balancing",
         "Sound Effects & Audio",
     ],
-    background: Some("atticpanic_promo_render.jpg"),
+    background: Some("attic-panic-background.webp"),
     hero_video: Some("NjRhr-QN3SE"),
     badges: &[Link {
         image: "Steam-banner.svg",

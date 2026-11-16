@@ -7,9 +7,9 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Folivora's Fall",
     href: "/FolivorasFall",
-    image: "ff-title.jpg",
+    card_thumbnail: "ff-thumbnail.webp",
     contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
-    background: Some("ff-background.jpg"),
+    background: Some("ff-background.webp"),
     hero_video: Some("0EdXbR93AfQ"),
     badges: &[Link {
         image: "available-on-itch-black.svg",

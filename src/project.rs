@@ -114,7 +114,7 @@ pub struct Project {
     /// The route the detail page is served from.
     pub href: &'static str,
     /// The card thumbnail, a file name within `public/images`.
-    pub image: &'static str,
+    pub card_thumbnail: &'static str,
     /// Short bullet points of contributions shown on the card.
     pub contributions: &'static [&'static str],
 

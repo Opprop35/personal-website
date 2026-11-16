@@ -7,7 +7,7 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Radorian",
     href: "/Radorian",
-    image: "radorian-screenshot.jpg",
+    card_thumbnail: "radorian-thumbnail.webp",
     contributions: &[
         "Third person camera",
         "3D sprite pipeline & tools",

@@ -25,20 +25,14 @@
   }
 }
 
-/* Tappable background surface: rounds the corners and smoothly inverts
-   to the hover background/ink on hover. Shared by nav items, menu items
-   and buttons; compose with layout utilities, e.g.
-   class="inline-flex items-center py-1.5 px-3 bg-button". */
 @utility bg-button {
   @apply rounded-default transition-colors duration-150 hover:bg-background-hover hover:text-background-hover-ink;
 }
 
-/* A single top-nav item: an inline icon or label on an interactive background. */
 @utility nav-button {
   @apply inline-flex items-center p-2 bg-button;
 }
 
-/* A single dropdown-menu item: full-width, left-aligned, on an interactive background. */
 @utility menu-button {
   @apply block w-full px-3 py-2 text-left bg-button;
 }

@@ -7,9 +7,9 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Level Editor Plugin",
     href: "/LevelEditorPlugin",
-    image: "level-editor.jpg",
+    card_thumbnail: "level-editor-thumbnail.webp",
     contributions: &["Tool Programming", "Tool Design"],
-    background: Some("grid-lines.jpg"),
+    background: Some("level-editor-background.webp"),
     hero_video: Some("tEBmK5gDUyk"),
     badges: &[],
     info: Info {

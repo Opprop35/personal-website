@@ -6,8 +6,6 @@ use crate::project::Project;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
-/// The projects shown on the home page, in display order. Each entry is the
-/// same `Project` that drives the project's detail page.
 const PROJECTS: [&Project; 8] = [
     &projects::lego_framework::PAGE,
     &projects::duck_side_of_the_moon::PAGE,
@@ -81,7 +79,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                 class="block lg:w-1/2 link-nav focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
                             >
                                 <img
-                                    src=format!("{IMAGE_DIR}/{}", project.image)
+                                    src=format!("{IMAGE_DIR}/{}", project.card_thumbnail)
                                     alt=format!("{} project image", project.title)
                                     class="object-cover w-full border opacity-90 transition-opacity duration-300 has-[.link-nav:hover]:opacity-100 rounded-default border-line"
                                 />

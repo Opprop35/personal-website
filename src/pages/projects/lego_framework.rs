@@ -7,13 +7,13 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "LEGO® Brick Editor",
     href: "/LegoFramework",
-    image: "lego-brick-editor.png",
+    card_thumbnail: "lego-thumbnail.webp",
     contributions: &[
         "Brick Snapping Logic & Tooling",
         "Connection Point Based Transform Gizmo",
         "Import Pipeline Redesign",
     ],
-    background: Some("lego-fortnite.jpeg"),
+    background: Some("lego-background.webp"),
     hero_video: Some("7J7J0zm5xFc"),
     badges: &[],
     info: Info {

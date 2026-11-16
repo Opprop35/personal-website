@@ -234,7 +234,7 @@ pub fn Resume() -> impl IntoView {
         <div class="flex flex-col flex-1 mx-auto w-full max-w-[210mm] bg-background-light">
             <header class="flex items-center gap-[8mm] bg-background px-[12mm] py-[9mm]">
                 <img
-                    src="public/resume.jpg"
+                    src="public/images/personal-photo.webp"
                     alt="Portrait of Jesse Stolk"
                     class="object-cover h-[38mm] w-[38mm] shrink-0 rounded-[2mm]"
                 />

@@ -7,7 +7,7 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Duckside of the Moon (Student)",
     href: "/DucksideOfTheMoonStudent",
-    image: "dsotm-ingame-ice.jpg",
+    card_thumbnail: "dsotm-student-thumbnail.webp",
     contributions: &[
         "Inventory & Crafting System",
         "Mining & Item Pickups",
@@ -15,16 +15,16 @@ pub const PAGE: Project = Project {
         "Upgrade & Recipe Balancing",
         "Sound Effects",
     ],
-    background: Some("dsotm-ship.jpg"),
+    background: Some("dsotm-student-background.webp"),
     hero_video: Some("FSj0G0oDqdA"),
     badges: &[
         Link {
-            image: "bafta-shortlist-white.png",
+            image: "bafta-shortlist-white.webp",
             alt: "Nominated BAFTA Student Awards",
             url: "https://www.bafta.org/programmes/bafta-student-awards/",
         },
         Link {
-            image: "dga-nominated-student-badge.png",
+            image: "dga-nominated-student-badge.webp",
             alt: "Nominated Student Game Dutch Game Awards",
             url: "https://www.dutchgamesindustry.nl/game/duckside-of-the-moon",
         },
@@ -94,7 +94,7 @@ pub const PAGE: Project = Project {
                  flexible system for defining new items and recipes.",
             )],
             showcase: Some(Showcase::Image {
-                src: "dsotm-items-datatable.png",
+                src: "dsotm-items-datatable.webp",
                 alt: "Datatable Image",
             }),
         },
@@ -107,7 +107,7 @@ pub const PAGE: Project = Project {
                  (observer pattern) to communicate state updates to the UI.",
             )],
             showcase: Some(Showcase::Image {
-                src: "dsotm-itemcontainer.png",
+                src: "dsotm-itemcontainer.webp",
                 alt: "Item Container Blueprint",
             }),
         },
@@ -120,7 +120,7 @@ pub const PAGE: Project = Project {
                  and trigger any necessary upgrade logic when it is emitted.",
             )],
             showcase: Some(Showcase::Image {
-                src: "dsotm-upgraderecipe.png",
+                src: "dsotm-upgraderecipe.webp",
                 alt: "Upgrade Recipe Blueprint",
             }),
         },
@@ -133,7 +133,7 @@ pub const PAGE: Project = Project {
                  UI Designers when testing new features.",
             )],
             showcase: Some(Showcase::Image {
-                src: "dsotm-test-level.jpg",
+                src: "dsotm-test-level.webp",
                 alt: "Test Level",
             }),
         },
@@ -178,7 +178,7 @@ pub const PAGE: Project = Project {
                 ),
             ],
             showcase: Some(Showcase::Image {
-                src: "dsotm-progression-graph.png",
+                src: "dsotm-progression-graph.webp",
                 alt: "Progression Graph",
             }),
         },
@@ -192,7 +192,7 @@ pub const PAGE: Project = Project {
                  gave the artists and designers a concrete goal to work towards.",
             )],
             showcase: Some(Showcase::Image {
-                src: "dsotm-resource-brainstorming.png",
+                src: "dsotm-resource-brainstorming.webp",
                 alt: "Brainstorming Image",
             }),
         },
