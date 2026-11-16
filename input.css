@@ -10,7 +10,7 @@
   --color-line: #21212c;
   --color-danger: #ef4444;
 
-  --radius-nav: 1px;
+  --radius-default: 1px;
 
   --ease-nav: cubic-bezier(0, 0, 0.2, 1);
   --animate-fade-in: fade-in 200ms var(--ease-nav);

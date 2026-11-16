@@ -17,14 +17,14 @@ pub fn Toasts() -> impl IntoView {
     let toasts = toasts();
 
     view! {
-        <div class="print:hidden flex fixed right-4 bottom-4 z-50 flex-col gap-2 w-96 pointer-events-none max-w-[calc(100vw-2rem)]">
+        <div class="flex fixed right-4 bottom-4 z-50 flex-col gap-2 w-96 pointer-events-none print:hidden max-w-[calc(100vw-2rem)]">
             <For
                 each=move || toasts.get()
                 key=|t| t.id
                 children=move |t| {
                     view! {
                         <div
-                            class="p-3 border shadow-lg pointer-events-auto rounded-nav border-danger bg-background animate-fade-in"
+                            class="p-3 border shadow-lg pointer-events-auto rounded-default border-danger bg-background animate-fade-in"
                             role="alert"
                         >
                             <p class="font-semibold text-ink">

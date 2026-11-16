@@ -83,7 +83,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                 <img
                                     src=format!("{IMAGE_DIR}/{}", project.image)
                                     alt=format!("{} project image", project.title)
-                                    class="object-cover w-full border opacity-90 transition-opacity duration-300 has-[.link-nav:hover]:opacity-100 rounded-nav border-line"
+                                    class="object-cover w-full border opacity-90 transition-opacity duration-300 has-[.link-nav:hover]:opacity-100 rounded-default border-line"
                                 />
                             </a>
                             <div class="flex flex-col gap-6 lg:w-1/2">
@@ -133,7 +133,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
     view! {
         <Link
             href=skill.url()
-            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 rounded-nav border-line bg-background hover:border-background-hover-ink/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 rounded-default border-line bg-background hover:border-background-hover-ink/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
             external=true
         >
             <img

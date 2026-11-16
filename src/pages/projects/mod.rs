@@ -72,7 +72,7 @@ fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
             view! {
                 <div class="relative aspect-video">
                     <iframe
-                        class="absolute inset-0 w-full h-full border border-line rounded-nav"
+                        class="absolute inset-0 w-full h-full border border-line rounded-default"
                         src=format!("https://www.youtube.com/embed/{code}")
                         allow="autoplay"
                         title="Project video"
@@ -88,7 +88,7 @@ fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
                 <img
                     src=format!("{IMAGE_DIR}/{src}")
                     alt=alt
-                    class="object-cover w-full border border-line rounded-nav"
+                    class="object-cover w-full border border-line rounded-default"
                 />
             }
             .into_any()
@@ -146,7 +146,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         view! {
             <div class="relative aspect-video">
                 <iframe
-                    class="absolute inset-0 w-full h-full border border-line rounded-nav"
+                    class="absolute inset-0 w-full h-full border border-line rounded-default"
                     src=format!("https://www.youtube.com/embed/{code}")
                     allow="autoplay"
                     title=format!("Trailer for {title}")
