@@ -259,7 +259,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                 <span class="self-center py-2.5 px-4 max-w-full font-semibold tracking-wide text-center border-t border-x border-line bg-background-hover text-ink rounded-t-nav">
                     {title}
                 </span>
-                <div class="flex flex-col gap-8 p-4 bg-gradient-to-b border-b md:p-8 border-x border-line from-background/95 to-background rounded-b-nav">
+                <div class="flex flex-col gap-8 p-4 bg-gradient-to-b border md:p-8 border-line from-background/95 to-background rounded-b-nav">
                     {hero_video}
                     <div class="flex flex-wrap gap-4 justify-center items-center">{badges}</div>
                     <div class="h-px bg-line" />

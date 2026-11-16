@@ -64,13 +64,13 @@ pub const PAGE: Project = Project {
         Fragment::Emph("systems & tools programmer"),
         Fragment::Text(
             " for the project and built its core systems using a combination of C++ and \
-             Blueprints. I was also part of establishing the indie company ",
+             Blueprints. I also helped establish the indie company ",
         ),
         Fragment::Link {
             url: "https://starbrewgames.com/",
             label: "Starbrew Games",
         },
-        Fragment::Text("."),
+        Fragment::Text(" but left the project and company midway through development."),
     ],
     sections: &[
         Section {
