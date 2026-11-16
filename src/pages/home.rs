@@ -98,19 +98,14 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                     </h3>
                                     <p class="leading-relaxed text-ink">{description}</p>
                                 </div>
-                                <a
-                                    href=project.href
-                                    class="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
-                                >
-                                    <div>
-                                        <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
-                                            "Contributions"
-                                        </h3>
-                                        <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
-                                            {contributions}
-                                        </ul>
-                                    </div>
-                                </a>
+                                <div>
+                                    <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                                        "Contributions"
+                                    </h3>
+                                    <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
+                                        {contributions}
+                                    </ul>
+                                </div>
                             </div>
                         </div>
                     </div>
