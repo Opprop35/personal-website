@@ -1,6 +1,8 @@
 use leptos::prelude::*;
 
-use super::{Fragment, Info, Link, ProjectPageData, ProjectPageView, Section, Showcase, Skill};
+use crate::pages::projects::ProjectPageView;
+use crate::project::{Date, Fragment, Info, Link, Month, ProjectPageData, Section, Showcase};
+use crate::skill::Skill;
 
 pub const PAGE: ProjectPageData = ProjectPageData {
     title: "Duckside of the Moon (Student)",
@@ -30,7 +32,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         platforms: "PC",
         team_size: "23",
         duration: "4-5 Months",
-        release_date: "28-June-2022",
+        release_date: Some(Date { day: 28, month: Month::June, year: 2022 }),
         skills: &[Skill::Unreal, Skill::Perforce],
         socials: &[
             Link {

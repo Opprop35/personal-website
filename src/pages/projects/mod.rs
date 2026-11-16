@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::TextSizedImage;
+use crate::project::{Fragment, ProjectPageData, Section, Showcase};
 
 pub mod attic_panic;
 pub mod duck_side_of_the_moon;
@@ -12,194 +13,6 @@ pub mod radorian;
 pub mod twin_stick_duckbox;
 
 const IMG: &str = "public/images";
-
-/// A fragment of project page text. `Emph` renders in the accent color, mirroring the
-/// `Highlight` component of the old Blazor site.
-pub enum Fragment {
-    Text(&'static str),
-    Emph(&'static str),
-    Link {
-        url: &'static str,
-        label: &'static str,
-    },
-    List(&'static [&'static str]),
-}
-
-/// The media in a section: an embedded YouTube video or a screenshot.
-pub enum Showcase {
-    Video(&'static str),
-    Image {
-        src: &'static str,
-        alt: &'static str,
-    },
-}
-
-/// A content section. A `heading` groups sections under a divider, while `title`, `body`
-/// and `showcase` make up a row. A heading with an empty title, body & showcase is
-/// rendered on its own for upcoming work.
-pub struct Section {
-    pub heading: Option<&'static str>,
-    pub title: &'static str,
-    pub body: &'static [Fragment],
-    pub showcase: Option<Showcase>,
-}
-
-/// A software skill. Each variant is the single source of truth for that skill's
-/// display data, used by the home page's software skills section, the home page's
-/// project cards, and the project detail pages.
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-pub enum Skill {
-    Rust,
-    Cpp,
-    CSharp,
-    LazyVim,
-    Git,
-    Perforce,
-    ArchLinux,
-    Bevy,
-    Unreal,
-    Godot,
-    Aseprite,
-    Blender,
-}
-
-impl Skill {
-    /// All skills, in the order they appear on the home page.
-    pub const ALL: [Self; 12] = [
-        Self::Rust,
-        Self::Cpp,
-        Self::CSharp,
-        Self::LazyVim,
-        Self::Git,
-        Self::Perforce,
-        Self::ArchLinux,
-        Self::Bevy,
-        Self::Unreal,
-        Self::Godot,
-        Self::Aseprite,
-        Self::Blender,
-    ];
-
-    /// The display title, e.g. "C++".
-    pub fn title(self) -> &'static str {
-        match self {
-            Self::Rust => "Rust",
-            Self::Cpp => "C++",
-            Self::CSharp => "C#",
-            Self::LazyVim => "LazyVim",
-            Self::Git => "Git",
-            Self::Perforce => "Perforce",
-            Self::ArchLinux => "Arch Linux",
-            Self::Bevy => "Bevy",
-            Self::Unreal => "Unreal",
-            Self::Godot => "Godot",
-            Self::Aseprite => "Aseprite",
-            Self::Blender => "Blender",
-        }
-    }
-
-    /// The logo's file name within `public/images`.
-    pub fn image(self) -> &'static str {
-        match self {
-            Self::Rust => "rust-logo.svg",
-            Self::Cpp => "cpp-logo.svg",
-            Self::CSharp => "c-sharp.svg",
-            Self::LazyVim => "nvim.svg",
-            Self::Git => "Git-logo.svg",
-            Self::Perforce => "perforce.png",
-            Self::ArchLinux => "arch-linux.svg",
-            Self::Bevy => "bevy-logo.svg",
-            Self::Unreal => "ue-logo.svg",
-            Self::Godot => "Godot-logo.svg",
-            Self::Aseprite => "aseprite.svg",
-            Self::Blender => "blender.png",
-        }
-    }
-
-    /// The alt text for the logo's image.
-    pub fn alt(self) -> &'static str {
-        match self {
-            Self::Rust => "Rust logo",
-            Self::Cpp => "C++ logo",
-            Self::CSharp => "C# logo",
-            Self::LazyVim => "LazyVim logo",
-            Self::Git => "Git logo",
-            Self::Perforce => "Perforce logo",
-            Self::ArchLinux => "Arch Linux logo",
-            Self::Bevy => "Bevy logo",
-            Self::Unreal => "Unreal logo",
-            Self::Godot => "Godot logo",
-            Self::Aseprite => "Aseprite logo",
-            Self::Blender => "Blender logo",
-        }
-    }
-
-    /// The official homepage of the language or tool.
-    pub fn url(self) -> &'static str {
-        match self {
-            Self::Rust => "https://www.rust-lang.org",
-            Self::Cpp => "https://isocpp.org",
-            Self::CSharp => "https://dotnet.microsoft.com/en-us/csharp/",
-            Self::LazyVim => "https://www.lazyvim.org",
-            Self::Git => "https://git-scm.com",
-            Self::Perforce => "https://www.perforce.com",
-            Self::ArchLinux => "https://archlinux.org",
-            Self::Bevy => "https://bevyengine.org",
-            Self::Unreal => "https://www.unrealengine.com",
-            Self::Godot => "https://godotengine.org",
-            Self::Aseprite => "https://www.aseprite.org",
-            Self::Blender => "https://www.blender.org",
-        }
-    }
-
-    /// The years of experience shown on the home page.
-    pub fn years(self) -> f32 {
-        match self {
-            Self::Rust => 1.0,
-            Self::Cpp => 4.0,
-            Self::CSharp => 4.0,
-            Self::LazyVim => 1.0,
-            Self::Git => 8.0,
-            Self::Perforce => 5.0,
-            Self::ArchLinux => 1.0,
-            Self::Bevy => 1.0,
-            Self::Unreal => 6.0,
-            Self::Godot => 4.0,
-            Self::Aseprite => 1.0,
-            Self::Blender => 0.5,
-        }
-    }
-}
-
-pub struct Link {
-    pub image: &'static str,
-    pub alt: &'static str,
-    pub url: &'static str,
-}
-
-pub struct Info {
-    pub role: &'static str,
-    pub genres: &'static str,
-    pub project_type: &'static str,
-    pub platforms: &'static str,
-    pub team_size: &'static str,
-    pub duration: &'static str,
-    pub release_date: &'static str,
-    pub skills: &'static [Skill],
-    pub socials: &'static [Link],
-}
-
-/// All data shown on a project page.
-pub struct ProjectPageData {
-    pub title: &'static str,
-    pub background: Option<&'static str>,
-    pub hero_video: Option<&'static str>,
-    pub badges: &'static [Link],
-    pub info: Info,
-    pub description: &'static [Fragment],
-    pub sections: &'static [Section],
-    pub under_construction: bool,
-}
 
 fn heading_view(heading: &'static str) -> impl IntoView {
     view! {
@@ -419,7 +232,7 @@ pub fn ProjectPageView(data: &'static ProjectPageData) -> impl IntoView {
         <InfoRow label="Platforms">{info.platforms}</InfoRow>
         <InfoRow label="Team Size">{info.team_size}</InfoRow>
         <InfoRow label="Duration">{info.duration}</InfoRow>
-        <InfoRow label="Release Date">{info.release_date}</InfoRow>
+        <InfoRow label="Release Date">{info.release_date_label()}</InfoRow>
         {socials_row}
     };
 

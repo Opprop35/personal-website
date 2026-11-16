@@ -1,5 +1,7 @@
 mod components;
 mod pages;
+mod project;
+mod skill;
 
 use std::panic::{catch_unwind, set_hook, AssertUnwindSafe, PanicHookInfo};
 

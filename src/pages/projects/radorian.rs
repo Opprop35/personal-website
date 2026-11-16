@@ -1,6 +1,8 @@
 use leptos::prelude::*;
 
-use super::{Fragment, Info, ProjectPageData, ProjectPageView, Skill};
+use crate::pages::projects::ProjectPageView;
+use crate::project::{Fragment, Info, ProjectPageData};
+use crate::skill::Skill;
 
 pub const PAGE: ProjectPageData = ProjectPageData {
     title: "Radorian",
@@ -14,7 +16,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         platforms: "PC",
         team_size: "Solo",
         duration: "Too Long",
-        release_date: "Not Released",
+        release_date: None,
         skills: &[Skill::Godot, Skill::CSharp, Skill::Aseprite, Skill::Blender, Skill::Git],
         socials: &[],
     },

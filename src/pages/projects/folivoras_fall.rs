@@ -1,6 +1,8 @@
 use leptos::prelude::*;
 
-use super::{Fragment, Info, Link, ProjectPageData, ProjectPageView, Skill};
+use crate::pages::projects::ProjectPageView;
+use crate::project::{Date, Fragment, Info, Link, Month, ProjectPageData};
+use crate::skill::Skill;
 
 pub const PAGE: ProjectPageData = ProjectPageData {
     title: "Folivora's Fall",
@@ -18,7 +20,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         platforms: "PC",
         team_size: "11",
         duration: "8 weeks",
-        release_date: "07-July-2021",
+        release_date: Some(Date { day: 7, month: Month::July, year: 2021 }),
         skills: &[Skill::Unreal, Skill::Perforce],
         socials: &[],
     },

@@ -1,6 +1,8 @@
 use leptos::prelude::*;
 
-use super::{Fragment, Info, Link, ProjectPageData, ProjectPageView, Section, Showcase, Skill};
+use crate::pages::projects::ProjectPageView;
+use crate::project::{Date, Fragment, Info, Link, Month, ProjectPageData, Section, Showcase};
+use crate::skill::Skill;
 
 pub const PAGE: ProjectPageData = ProjectPageData {
     title: "Twin-Stick Duckbox",
@@ -18,7 +20,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         platforms: "PC",
         team_size: "5",
         duration: "7 weeks",
-        release_date: "03-November-2021",
+        release_date: Some(Date { day: 3, month: Month::November, year: 2021 }),
         skills: &[Skill::Godot, Skill::Perforce],
         socials: &[],
     },

@@ -1,6 +1,8 @@
 use leptos::prelude::*;
 
-use super::{Fragment, Info, ProjectPageData, ProjectPageView, Section, Showcase, Skill};
+use crate::pages::projects::ProjectPageView;
+use crate::project::{Date, Fragment, Info, Month, ProjectPageData, Section, Showcase};
+use crate::skill::Skill;
 
 pub const PAGE: ProjectPageData = ProjectPageData {
     title: "Level Editor Plugin",
@@ -14,7 +16,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         platforms: "PC",
         team_size: "Solo",
         duration: "7 weeks",
-        release_date: "21-Oct-2022",
+        release_date: Some(Date { day: 21, month: Month::October, year: 2022 }),
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Perforce],
         socials: &[],
     },

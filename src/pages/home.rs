@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
 use crate::components::TextSizedImage;
-use crate::pages::projects::{self, Skill};
+use crate::pages::projects;
+use crate::skill::Skill;
 
 /// A fragment of a project summary. `Emph` renders in the accent color,
 /// mirroring the orange highlight from the old Blazor site.
