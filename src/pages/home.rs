@@ -113,7 +113,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         <span class="flex flex-wrap gap-2 items-center">{skills}</span>
                         <a
                             href=project.href
-                            class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 link-nav rounded-nav bg-background-hover text-background-hover-ink has-[.link-nav:hover]:text-ink"
+                            class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 link-nav rounded-nav text-ink hover:bg-background-hover hover:text-background-hover-ink"
                         >
                             "Read More"
                         </a>
