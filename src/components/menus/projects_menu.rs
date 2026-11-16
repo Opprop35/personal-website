@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::{
-    menus::{MENU, MENU_ITEM},
+    menus::MENU,
     NavButton,
 };
 
@@ -29,28 +29,28 @@ pub fn ProjectsMenu() -> impl IntoView {
                 }
                 role="menu"
             >
-                <a class=MENU_ITEM role="menuitem" href="/LegoFramework">
+                <a class="menu-button" role="menuitem" href="/LegoFramework">
                     "LEGO Framework"
                 </a>
-                <a class=MENU_ITEM role="menuitem" href="/DuckSideOfTheMoon">
+                <a class="menu-button" role="menuitem" href="/DuckSideOfTheMoon">
                     "Duck Side of the Moon"
                 </a>
-                <a class=MENU_ITEM role="menuitem" href="/AtticPanic">
+                <a class="menu-button" role="menuitem" href="/AtticPanic">
                     "Attic Panic"
                 </a>
-                <a class=MENU_ITEM role="menuitem" href="/Radorian">
+                <a class="menu-button" role="menuitem" href="/Radorian">
                     "Radorian"
                 </a>
-                <a class=MENU_ITEM role="menuitem" href="/DucksideOfTheMoonStudent">
+                <a class="menu-button" role="menuitem" href="/DucksideOfTheMoonStudent">
                     "Duckside of the Moon (Student)"
                 </a>
-                <a class=MENU_ITEM role="menuitem" href="/LevelEditorPlugin">
+                <a class="menu-button" role="menuitem" href="/LevelEditorPlugin">
                     "Level Editor Plugin"
                 </a>
-                <a class=MENU_ITEM role="menuitem" href="/TwinStickDuckBox">
+                <a class="menu-button" role="menuitem" href="/TwinStickDuckBox">
                     "Twin-Stick Duckbox"
                 </a>
-                <a class=MENU_ITEM role="menuitem" href="/FolivorasFall">
+                <a class="menu-button" role="menuitem" href="/FolivorasFall">
                     "Folivora's Fall"
                 </a>
             </div>

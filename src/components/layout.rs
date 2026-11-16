@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, NAV_ITEM, ProjectsMenu};
+use crate::components::{Link, ProjectsMenu};
 
 #[component]
 pub fn Layout(children: impl IntoView) -> impl IntoView {
@@ -9,7 +9,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
         <div class="text-xs md:text-sm lg:text-base 2xl:text-lg bg-background-light text-ink">
             <div class="flex sticky top-0 z-40 flex-row justify-between items-center w-full print:hidden h-fit border-b-1 border-line bg-background/85 backdrop-blur-sm">
                 <div class="flex flex-row gap-3 items-center py-1 pl-3 justify-left">
-                    <Link href="/" class=NAV_ITEM>
+                    <Link href="/" class="nav-button">
                         <svg
                             viewBox="0 0 24 24"
                             fill="currentColor"
@@ -23,7 +23,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
 
                     <ProjectsMenu />
 
-                    <Link href="/resume" class=NAV_ITEM>
+                    <Link href="/resume" class="nav-button">
                         "Resume"
                     </Link>
                 </div>
@@ -31,7 +31,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
                 <div class="flex gap-3 items-center py-1 pr-3 justify-right">
                     <Link
                         href="https://www.linkedin.com/in/jesse-stolk-b2542a1b7/"
-                        class=NAV_ITEM
+                        class="nav-button"
                         external=true
                     >
                         <svg
