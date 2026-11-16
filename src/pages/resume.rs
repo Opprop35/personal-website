@@ -1,5 +1,6 @@
 use leptos::prelude::*;
 
+use crate::components::Link;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
@@ -87,9 +88,9 @@ const SECTION_TITLE: &str = "mb-[6mm] border-b border-line pb-[2.5mm] text-[12px
 fn org_name(name: &'static str, url: Option<&'static str>) -> AnyView {
     if let Some(url) = url {
         return view! {
-            <a href=url target="_blank" rel="noopener noreferrer" class="hover:underline">
+            <Link href=url class="hover:underline" external=true>
                 {name}
-            </a>
+            </Link>
         }
         .into_any();
     }
@@ -108,11 +109,10 @@ fn skill_items(skills: &[Skill]) -> impl IntoView {
             let alt = skill.alt();
             view! {
                 <li>
-                    <a
+                    <Link
                         href=url
-                        target="_blank"
-                        rel="noopener noreferrer"
                         class="inline-flex items-center hover:underline gap-[1.5mm]"
+                        external=true
                     >
                         <img
                             src=image
@@ -120,7 +120,7 @@ fn skill_items(skills: &[Skill]) -> impl IntoView {
                             class="object-contain h-[1.5em] w-[1.5em] shrink-0"
                         />
                         {title}
-                    </a>
+                    </Link>
                 </li>
             }
         })
@@ -194,14 +194,13 @@ pub fn Resume() -> impl IntoView {
 
     let personal_details = view! {
         <li>
-            <a
+            <Link
                 href="https://jessestolk.com"
-                target="_blank"
-                rel="noopener noreferrer"
                 class="hover:underline text-background-hover-ink"
+                external=true
             >
                 "jessestolk.com"
-            </a>
+            </Link>
         </li>
         <li>
             <a href="mailto:jeus.stolk@gmail.com" class="break-all hover:underline">
@@ -280,14 +279,13 @@ pub fn Resume() -> impl IntoView {
                         {experience}
                     </section>
                     <p class="mt-[5mm] text-[13px]">
-                        <a
+                        <Link
                             href="https://jessestolk.com"
-                            target="_blank"
-                            rel="noopener noreferrer"
                             class="hover:underline text-background-hover-ink"
+                            external=true
                         >
                             "See jessestolk.com for more info…"
-                        </a>
+                        </Link>
                     </p>
 
                     <section class="mt-auto pt-[4mm]">

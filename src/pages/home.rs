@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::TextSizedImage;
+use crate::components::{Link, TextSizedImage};
 use crate::pages::projects::{self, fragments_view};
 use crate::project::Project;
 use crate::skill::Skill;
@@ -52,17 +52,16 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         .copied()
         .map(|skill| {
             view! {
-                <a
+                <Link
                     href=skill.url()
-                    target="_blank"
-                    rel="noopener noreferrer"
                     class="transition-transform duration-150 hover:scale-110 ease-nav"
+                    external=true
                 >
                     <TextSizedImage
                         image=format!("{IMAGE_DIR}/{}", skill.image())
                         alt=skill.alt()
                     />
-                </a>
+                </Link>
             }
         })
         .collect_view();
@@ -136,11 +135,10 @@ fn SkillCard(skill: Skill) -> impl IntoView {
     };
 
     view! {
-        <a
+        <Link
             href=skill.url()
-            target="_blank"
-            rel="noopener noreferrer"
             class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 rounded-nav border-line bg-background hover:border-background-hover-ink/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+            external=true
         >
             <img
                 src=format!("{IMAGE_DIR}/{}", skill.image())
@@ -151,7 +149,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
                 <h3 class="font-semibold text-ink">{skill.title()}</h3>
                 <p class="text-ink-muted">{years_text}</p>
             </div>
-        </a>
+        </Link>
     }
 }
 

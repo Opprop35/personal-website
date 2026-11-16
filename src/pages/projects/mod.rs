@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::TextSizedImage;
+use crate::components::{Link, TextSizedImage};
 use crate::project::{Fragment, Project, Section, Showcase};
 use crate::IMAGE_DIR;
 
@@ -42,14 +42,13 @@ pub fn fragments_view(fragments: &'static [Fragment]) -> impl IntoView {
                 let url = *url;
                 let label = *label;
                 view! {
-                    <a
+                    <Link
                         href=url
-                        target="_blank"
-                        rel="noopener noreferrer"
                         class="underline text-background-hover-ink decoration-background-hover-ink/50"
+                        external=true
                     >
                         {label}
-                    </a>
+                    </Link>
                 }
                 .into_any()
             }
@@ -161,18 +160,17 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         .iter()
         .map(|badge| {
             view! {
-                <a
+                <Link
                     href=badge.url
-                    target="_blank"
-                    rel="noopener noreferrer"
                     class="transition-transform duration-150 hover:scale-105 ease-nav"
+                    external=true
                 >
                     <img
                         src=format!("{IMAGE_DIR}/{}", badge.image)
                         alt=badge.alt
                         class="w-auto h-12 md:h-16"
                     />
-                </a>
+                </Link>
             }
         })
         .collect_view();
@@ -183,17 +181,16 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         .iter()
         .map(|skill| {
             view! {
-                <a
+                <Link
                     href=skill.url()
-                    target="_blank"
-                    rel="noopener noreferrer"
                     class="transition-transform duration-150 hover:scale-110 ease-nav"
+                    external=true
                 >
                     <TextSizedImage
                         image=format!("{IMAGE_DIR}/{}", skill.image())
                         alt=skill.alt()
                     />
-                </a>
+                </Link>
             }
         })
         .collect_view();
@@ -202,14 +199,13 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         .iter()
         .map(|social| {
             view! {
-                <a
+                <Link
                     href=social.url
-                    target="_blank"
-                    rel="noopener noreferrer"
                     class="transition-transform duration-150 hover:scale-110 ease-nav"
+                    external=true
                 >
                     <TextSizedImage image=format!("{IMAGE_DIR}/{}", social.image) alt=social.alt />
-                </a>
+                </Link>
             }
         })
         .collect_view();
