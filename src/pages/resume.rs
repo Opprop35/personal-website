@@ -8,6 +8,7 @@ struct Experience {
     role: &'static str,
     period: &'static str,
     points: &'static [&'static str],
+    url: Option<&'static str>,
 }
 
 const EXPERIENCE: [Experience; 3] = [
@@ -20,6 +21,7 @@ const EXPERIENCE: [Experience; 3] = [
             "Import Pipeline Redesign",
             "Connection Point Based Gizmo",
         ],
+        url: Some("https://www.lego.com/en-us/aboutus/lego-group"),
     },
     Experience {
         org: "STARBREW GAMES",
@@ -31,6 +33,7 @@ const EXPERIENCE: [Experience; 3] = [
             "Technical Animation",
             "UI Programming",
         ],
+        url: Some("https://starbrewgames.com/"),
     },
     Experience {
         org: "PERSONAL PROJECTS",
@@ -43,6 +46,7 @@ const EXPERIENCE: [Experience; 3] = [
             "Shader Programming",
             "Third Person Camera",
         ],
+        url: None,
     },
 ];
 
@@ -51,30 +55,47 @@ struct Education {
     study: &'static str,
     period: &'static str,
     note: Option<&'static str>,
+    url: Option<&'static str>,
 }
 
 const EDUCATION: [Education; 3] = [
     Education {
-        school: " BUAS | BREDA UNIVERSITY OF APPLIED SCIENCES",
+        school: "BUAS | BREDA UNIVERSITY OF APPLIED SCIENCES",
         study: "Creative Media and Game Technologies",
         period: "Sep 2020 – Jul 2024",
         note: None,
+        url: Some("https://www.buas.nl/en"),
     },
     Education {
         school: "TU DELFT | DELFT UNIVERSITY OF TECHNOLOGY",
         study: "Technical Informatics",
         period: "Sep 2018 – Nov 2019",
         note: None,
+        url: Some("https://www.tudelft.nl/"),
     },
     Education {
         school: "ISW GASTHUISLAAN",
         study: "Pre-University Education (VWO)",
         period: "Sep 2012 – Jun 2018",
         note: Some("Socrates (Top 10% of students)"),
+        url: Some("https://iswgasthuislaan.nl/"),
     },
 ];
 
 const SECTION_TITLE: &str = "mb-[6mm] border-b border-line pb-[2.5mm] text-[12px] font-semibold tracking-[0.16em] uppercase text-ink-muted";
+
+fn org_name(name: &'static str, url: Option<&'static str>) -> AnyView {
+    if let Some(url) = url {
+        return view! {
+            <a href=url target="_blank" rel="noopener noreferrer" class="hover:underline">
+                {name}
+            </a>
+        }
+        .into_any();
+    }
+    view! { <span>{name}</span> }
+    .into_any()
+}
 
 fn skill_items(skills: &[Skill]) -> impl IntoView {
     skills
@@ -128,7 +149,9 @@ pub fn Resume() -> impl IntoView {
             view! {
                 <article class="last:mb-0 mb-[7mm]">
                     <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
-                        <h3 class="font-semibold tracking-wide text-[15px]">{e.org}</h3>
+                        <h3 class="font-semibold tracking-wide text-[15px]">
+                            {org_name(e.org, e.url)}
+                        </h3>
                         <span class="text-[12px] text-ink-muted">{e.period}</span>
                     </div>
                     <p class="mt-[1mm] text-[13px] text-background-hover-ink">{e.role}</p>
@@ -151,7 +174,9 @@ pub fn Resume() -> impl IntoView {
             view! {
                 <article class="last:mb-0 mb-[5mm]">
                     <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
-                        <h3 class="font-semibold tracking-wide text-[15px]">{d.school}</h3>
+                        <h3 class="font-semibold tracking-wide text-[15px]">
+                            {org_name(d.school, d.url)}
+                        </h3>
                         <span class="text-[12px] text-ink-muted">{d.period}</span>
                     </div>
                     <p class="mt-[1mm] text-[13px] text-ink-muted">{d.study}</p>
