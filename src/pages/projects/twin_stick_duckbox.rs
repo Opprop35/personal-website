@@ -1,0 +1,95 @@
+use leptos::prelude::*;
+
+use super::{Fragment, Info, Link, ProjectPageData, ProjectPageView, Section, Showcase, Skill};
+
+pub const PAGE: ProjectPageData = ProjectPageData {
+    title: "Twin-Stick Duckbox",
+    background: Some("tsj-bg.png"),
+    hero_video: Some("OAiE_f08wU0"),
+    badges: &[Link {
+        image: "available-on-itch-black.svg",
+        alt: "Available On Itch",
+        url: "https://jcrombag.itch.io/twin-stick-duckbox",
+    }],
+    info: Info {
+        role: "Technical Designer",
+        genres: "Action, Arcade, Twin-stick Shooter",
+        project_type: "University Project",
+        platforms: "PC",
+        team_size: "5",
+        duration: "7 weeks",
+        release_date: "03-November-2021",
+        skills: &[
+            Skill {
+                image: "Godot-logo.svg",
+                alt: "Godot Logo",
+            },
+            Skill {
+                image: "perforce.png",
+                alt: "Perforce Logo",
+            },
+        ],
+        socials: &[],
+    },
+    description: &[Fragment::Text(
+        "A simple project in which we were tasked to design, implement, and polish an additional \
+         enemy and weapon. I also spent time developing a spawn event system and various other \
+         tools for my team.",
+    )],
+    sections: &[
+        Section {
+            heading: None,
+            title: "Gauss Gun",
+            body: &[Fragment::Text(
+                "The Gauss Gun shoots a big laser that deals continuous damage at a certain \
+                 interval. It shoots a hidden projectile that uses the same base logic as other \
+                 projectiles (so that it can be affected by the black hole and other base \
+                 gameplay mechanics). Every damage interval the projectile reconstructs a \
+                 collision polygon that deals damage to the enemies.",
+            )],
+            showcase: Some(Showcase::Video("VTDdvvMzu94")),
+        },
+        Section {
+            heading: None,
+            title: "Chomper Enemy",
+            body: &[Fragment::Text(
+                "The Chomper will eat your bullets if you simply attack it from the front. If it \
+                 eats three it will regurgitate them into a powerful laser which uses the same \
+                 logic as the Gauss Gun.",
+            )],
+            showcase: Some(Showcase::Video("dfV3BEkgjfw")),
+        },
+        Section {
+            heading: None,
+            title: "Debug/Cheat Menu",
+            body: &[
+                Fragment::Text(
+                    "A simple cheat menu that allows you to do various things like change your \
+                     weapon, spawn enemies, and toggle godmode.",
+                ),
+            ],
+            showcase: Some(Showcase::Video("andzCulJ4nI")),
+        },
+        Section {
+            heading: None,
+            title: "Spawn Event System",
+            body: &[Fragment::Text(
+                "I developed a system which could create more interesting spawning behaviour for \
+                 enemies and control/limit the amount of enemies on screen. In the video below \
+                 you can see it starts with spawning swarmers in random positions, then it \
+                 spawns a lot of them from the corner, then a black hole, then a chomper etc. \
+                 These behaviours were completely data driven and could be tweaked in various \
+                 ways with preconditions, spawn interval, event weight, etc.",
+            )],
+            showcase: Some(Showcase::Video("OAiE_f08wU0")),
+        },
+    ],
+    under_construction: false,
+};
+
+#[component]
+pub fn Page() -> impl IntoView {
+    let _ = document().set_title("Jesse Stolk - Twin-Stick Duckbox");
+
+    view! { <ProjectPageView data=&PAGE /> }
+}
