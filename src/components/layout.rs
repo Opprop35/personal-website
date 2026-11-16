@@ -7,7 +7,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
     view! {
         // TODO: split out header and footer into components
         <div class="text-xs md:text-sm lg:text-base 2xl:text-lg bg-background-light text-ink">
-            <div class="print:hidden flex sticky top-0 z-40 flex-row justify-between items-center w-full h-fit border-b-1 border-line bg-background">
+            <div class="flex sticky top-0 z-40 flex-row justify-between items-center w-full print:hidden h-fit border-b-1 border-line bg-background/85 backdrop-blur-sm">
                 <div class="flex flex-row gap-3 items-center py-1 pl-3 justify-left">
                     <NavLink href="/">
                         <svg
@@ -23,9 +23,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
 
                     <ProjectsMenu />
 
-                    <NavLink href="/resume">
-                        "Resume"
-                    </NavLink>
+                    <NavLink href="/resume">"Resume"</NavLink>
                 </div>
 
                 <div class="flex gap-3 items-center py-1 pr-3 justify-right">
@@ -48,7 +46,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
 
             <div class="flex flex-col min-h-screen bg-background-light">{children}</div>
 
-            <div class="print:hidden py-3 px-4 bg-background text-ink-muted">
+            <div class="py-3 px-4 print:hidden bg-background text-ink-muted">
                 <p class="text-center">"Website made using Leptos & Tailwind"</p>
             </div>
         </div>
