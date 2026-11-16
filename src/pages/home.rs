@@ -68,27 +68,27 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         .collect_view();
 
     view! {
-        <div class="block group">
-            <div class="flex flex-col items-center transition-transform duration-300 ease-nav group-hover:scale-[1.02]">
+        <div class="block">
+            <div class="flex flex-col items-center transition-transform duration-300 ease-nav has-[.link-nav:hover]:scale-[1.02]">
                 <a
                     href=project.href
-                    class="flex w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+                    class="flex link-nav w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
                 >
                     <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-background-hover text-ink">
                         {project.title}
                     </span>
                 </a>
-                <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-background group-hover:border-background-hover-ink/50">
+                <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-background has-[.link-nav:hover]:border-background-hover-ink/50">
                     <div class="px-4 pt-4 md:px-6 md:pt-6">
                         <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
                             <a
                                 href=project.href
-                                class="block lg:w-1/2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+                                class="block lg:w-1/2 link-nav focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
                             >
                                 <img
                                     src=format!("{IMAGE_DIR}/{}", project.image)
                                     alt=format!("{} project image", project.title)
-                                    class="object-cover w-full border opacity-90 transition-opacity duration-300 group-hover:opacity-100 rounded-nav border-line"
+                                    class="object-cover w-full border opacity-90 transition-opacity duration-300 has-[.link-nav:hover]:opacity-100 rounded-nav border-line"
                                 />
                             </a>
                             <div class="flex flex-col gap-6 lg:w-1/2">
@@ -113,7 +113,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         <span class="flex flex-wrap gap-2 items-center">{skills}</span>
                         <a
                             href=project.href
-                            class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 rounded-nav bg-background-hover text-background-hover-ink group-hover:text-ink"
+                            class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 link-nav rounded-nav bg-background-hover text-background-hover-ink has-[.link-nav:hover]:text-ink"
                         >
                             "Read More"
                         </a>
