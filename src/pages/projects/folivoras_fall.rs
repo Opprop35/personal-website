@@ -1,11 +1,14 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, ProjectPageData};
+use crate::project::{Date, Fragment, Info, Link, Month, Project};
 use crate::skill::Skill;
 
-pub const PAGE: ProjectPageData = ProjectPageData {
+pub const PAGE: Project = Project {
     title: "Folivora's Fall",
+    href: "/FolivorasFall",
+    image: "ff-title.jpg",
+    contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
     background: Some("ff-background.jpg"),
     hero_video: Some("0EdXbR93AfQ"),
     badges: &[Link {

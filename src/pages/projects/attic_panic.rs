@@ -1,11 +1,19 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, ProjectPageData, Section, Showcase};
+use crate::project::{Date, Fragment, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
-pub const PAGE: ProjectPageData = ProjectPageData {
+pub const PAGE: Project = Project {
     title: "Attic Panic",
+    href: "/AtticPanic",
+    image: "attic-panic-header.jpg",
+    contributions: &[
+        "Upgrade System",
+        "Upgrade Design & Implementation",
+        "Upgrade & Gameplay Balancing",
+        "Sound Effects & Audio",
+    ],
     background: Some("atticpanic_promo_render.jpg"),
     hero_video: Some("NjRhr-QN3SE"),
     badges: &[Link {

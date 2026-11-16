@@ -1,11 +1,21 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Fragment, Info, ProjectPageData};
+use crate::project::{Fragment, Info, Project};
 use crate::skill::Skill;
 
-pub const PAGE: ProjectPageData = ProjectPageData {
+pub const PAGE: Project = Project {
     title: "Radorian",
+    href: "/Radorian",
+    image: "radorian-screenshot.jpg",
+    contributions: &[
+        "Third person camera",
+        "3D sprite pipeline & tools",
+        "Custom shaders",
+        "Procedural Geometry",
+        "Dynamic gravity",
+        "And everything else",
+    ],
     background: None,
     hero_video: Some("tbIsz63srjo"),
     badges: &[],

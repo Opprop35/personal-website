@@ -115,10 +115,16 @@ impl Info {
     }
 }
 
-/// All data shown on a project page.
-pub struct ProjectPageData {
-    /// The title shown on the detail page.
+/// A project, shown as a card on the home page and in full detail on its own page.
+pub struct Project {
+    /// The title shown on both the card and the detail page.
     pub title: &'static str,
+    /// The route the detail page is served from.
+    pub href: &'static str,
+    /// The card thumbnail, a file name within `public/images`.
+    pub image: &'static str,
+    /// Short bullet points of contributions shown on the card.
+    pub contributions: &'static [&'static str],
 
     /// The detail page background image, a file name within `public/images`.
     pub background: Option<&'static str>,
@@ -128,7 +134,7 @@ pub struct ProjectPageData {
     pub badges: &'static [Link],
     /// The structured project-info block (role, skills, release date, socials, ...).
     pub info: Info,
-    /// The description paragraph shown above the detail sections.
+    /// The description paragraph, shown on both the card and the detail page.
     pub description: &'static [Fragment],
     /// The detailed content sections shown on the detail page.
     pub sections: &'static [Section],

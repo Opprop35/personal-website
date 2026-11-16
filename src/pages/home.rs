@@ -1,213 +1,23 @@
 use leptos::prelude::*;
 
 use crate::components::TextSizedImage;
-use crate::pages::projects;
+use crate::pages::projects::{self, fragments_view};
+use crate::project::Project;
 use crate::skill::Skill;
-
-/// A fragment of a project summary. `Emph` renders in the accent color,
-/// mirroring the orange highlight from the old Blazor site.
-enum Segment {
-    Text(&'static str),
-    Emph(&'static str),
-    Break,
-}
-
-struct Project {
-    href: &'static str,
-    image: &'static str,
-    title: &'static str,
-    date: &'static str,
-    summary: &'static [Segment],
-    contributions: &'static [&'static str],
-    /// The project page's skills, the single source of truth shared with the
-    /// project detail page.
-    skills: &'static [Skill],
-}
 
 const IMG: &str = "public/images";
 
-const PROJECTS: [Project; 8] = [
-    Project {
-        href: "/LegoFramework",
-        image: "lego-brick-editor.png",
-        title: "LEGO® Brick Editor",
-        date: "17-Jun-2025",
-        summary: &[
-            Segment::Text(
-                "At The LEGO Group I worked on a general purpose LEGO framework for Unreal Engine. \
-                 The LEGO® Brick Editor was a key deliverable. ",
-            ),
-            Segment::Text(
-                "I mainly contributed to the Brick building UX, Bug fixes, Automated Tests, and ",
-            ),
-            Segment::Emph("redesigned"),
-            Segment::Text(
-                " the framework's import pipeline to be more idiomatic, performant and flexible.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &[
-            "Brick Snapping Logic & Tooling",
-            "Connection Point Based Transform Gizmo",
-            "Import Pipeline Redesign",
-        ],
-        skills: projects::lego_framework::PAGE.info.skills,
-    },
-    Project {
-        href: "/DuckSideOfTheMoon",
-        image: "dsotm-cover.jpg",
-        title: "Duck Side of the Moon",
-        date: "07-May-2026",
-        summary: &[
-            Segment::Text(
-                "A remake of the original student project. This time it's a cozy adventure game.",
-            ),
-            Segment::Break,
-            Segment::Text("I was the main "),
-            Segment::Emph("systems & tools programmer"),
-            Segment::Text(
-                " for the project and built its core systems using a combination of C++ and \
-                 Blueprints. I was also part of establishing the indie company Starbrew Games.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &[
-            "Save Game System",
-            "Quest System",
-            "Dialogue System",
-            "Inventory & Crafting System",
-            "Upgrade System",
-            "Technical Animation",
-            "UI Programming",
-            "Various Gameplay Elements",
-        ],
-        skills: projects::duck_side_of_the_moon::PAGE.info.skills,
-    },
-    Project {
-        href: "/AtticPanic",
-        image: "attic-panic-header.jpg",
-        title: "Attic Panic",
-        date: "12-Jun-2023",
-        summary: &[
-            Segment::Text("A year long student project. Attic Panic is an "),
-            Segment::Emph("online multiplayer"),
-            Segment::Text(
-                " top-down shooter with rogue-like elements. I mainly worked on the upgrade system, \
-                 individual upgrades, and replication of upgrades between server & clients.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &[
-            "Upgrade System",
-            "Upgrade Design & Implementation",
-            "Upgrade & Gameplay Balancing",
-            "Sound Effects & Audio",
-        ],
-        skills: projects::attic_panic::PAGE.info.skills,
-    },
-    Project {
-        href: "/Radorian",
-        image: "radorian-screenshot.jpg",
-        title: "Radorian",
-        date: "Not Released",
-        summary: &[
-            Segment::Text("A "),
-            Segment::Emph("personal project"),
-            Segment::Text(
-                " I work on intermittently in my spare time. It's a third person game with an \
-                 experimental art style. I'm making everything myself from code to art to sound to \
-                 game design.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &[
-            "Third person camera",
-            "3D sprite pipeline & tools",
-            "Custom shaders",
-            "Procedural Geometry",
-            "Dynamic gravity",
-            "And everything else",
-        ],
-        skills: projects::radorian::PAGE.info.skills,
-    },
-    Project {
-        href: "/DucksideOfTheMoonStudent",
-        image: "dsotm-ingame-ice.jpg",
-        title: "Duckside of the Moon (Student)",
-        date: "28-Jun-2022",
-        summary: &[
-            Segment::Text("The original student version of Duckside of the Moon. It's a "),
-            Segment::Emph("survival game"),
-            Segment::Text(
-                " set in space where you play as a duck astronaut. I built the crafting system & \
-                 core gameplay loop for this game and balanced them.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &[
-            "Inventory & Crafting System",
-            "Mining & Item Pickups",
-            "Progression Design",
-            "Upgrade & Recipe Balancing",
-            "Sound Effects",
-        ],
-        skills: projects::duckside_of_the_moon_student::PAGE.info.skills,
-    },
-    Project {
-        href: "/LevelEditorPlugin",
-        image: "level-editor.jpg",
-        title: "Level Editor Plugin",
-        date: "21-Oct-2022",
-        summary: &[
-            Segment::Text("An Unreal Engine "),
-            Segment::Emph("editor plugin"),
-            Segment::Text(
-                " I made in order to get more familiar with C++. The plugin allows you to draw on a \
-                 grid and define custom behaviours for this. It was designed with quick iteration \
-                 and flexibility in mind.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &["Tool Programming", "Tool Design"],
-        skills: projects::level_editor_plugin::PAGE.info.skills,
-    },
-    Project {
-        href: "/TwinStickDuckBox",
-        image: "tsj-banner.png",
-        title: "Twin-Stick Duckbox",
-        date: "03-Nov-2021",
-        summary: &[
-            Segment::Text(
-                "A simple project in which we were tasked to design, implement, and polish an \
-                 additional enemy and weapon. I also spent time developing a spawn event system \
-                 and various other tools for my team.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &[
-            "Enemy Spawn Event System",
-            "Chomper Enemy",
-            "Gauss Weapon",
-            "Debug & Cheat Menu",
-        ],
-        skills: projects::twin_stick_duckbox::PAGE.info.skills,
-    },
-    Project {
-        href: "/FolivorasFall",
-        image: "ff-title.jpg",
-        title: "Folivora's Fall",
-        date: "07-Jul-2021",
-        summary: &[
-            Segment::Text(
-                "The first big team project I worked on as a student. Folivora's Fall is a stealth \
-                 platformer set in a haunted mansion where you play as a sloth. During this project \
-                 I mostly focussed on level design and some implementation.",
-            ),
-            Segment::Break,
-        ],
-        contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
-        skills: projects::folivoras_fall::PAGE.info.skills,
-    },
+/// The projects shown on the home page, in display order. Each entry is the
+/// same `Project` that drives the project's detail page.
+const PROJECTS: [&'static Project; 8] = [
+    &projects::lego_framework::PAGE,
+    &projects::duck_side_of_the_moon::PAGE,
+    &projects::attic_panic::PAGE,
+    &projects::radorian::PAGE,
+    &projects::duckside_of_the_moon_student::PAGE,
+    &projects::level_editor_plugin::PAGE,
+    &projects::twin_stick_duckbox::PAGE,
+    &projects::folivoras_fall::PAGE,
 ];
 
 #[component]
@@ -225,24 +35,7 @@ fn SectionHeading(title: &'static str) -> impl IntoView {
 
 #[component]
 fn ProjectCard(project: &'static Project) -> impl IntoView {
-    let summary = project
-        .summary
-        .iter()
-        .map(|segment| match segment {
-            Segment::Text(text) => {
-                let text = *text;
-                view! { <span>{text}</span> }
-                .into_any()
-            }
-            Segment::Emph(text) => {
-                let text = *text;
-                view! { <strong class="font-semibold text-background-hover-ink">{text}</strong> }
-                .into_any()
-            }
-            Segment::Break => view! { <br /> }
-            .into_any(),
-        })
-        .collect_view();
+    let description = fragments_view(project.description);
 
     let contributions = project
         .contributions
@@ -254,6 +47,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         .collect_view();
 
     let skills = project
+        .info
         .skills
         .iter()
         .copied()
@@ -301,7 +95,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                         <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
                                             "Summary"
                                         </h3>
-                                        <p class="leading-relaxed text-ink">{summary}</p>
+                                        <p class="leading-relaxed text-ink">{description}</p>
                                     </div>
                                     <div>
                                         <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
@@ -323,7 +117,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         >
                             "Read More"
                         </a>
-                        <span class="text-ink-muted">{project.date}</span>
+                        <span class="text-ink-muted">{project.info.release_date_label()}</span>
                     </div>
                 </div>
             </div>
@@ -367,6 +161,7 @@ pub fn Home() -> impl IntoView {
 
     let projects = PROJECTS
         .iter()
+        .copied()
         .map(|project| {
             view! { <ProjectCard project=project /> }
         })

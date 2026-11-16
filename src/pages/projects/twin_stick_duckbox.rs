@@ -1,11 +1,19 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, ProjectPageData, Section, Showcase};
+use crate::project::{Date, Fragment, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
-pub const PAGE: ProjectPageData = ProjectPageData {
+pub const PAGE: Project = Project {
     title: "Twin-Stick Duckbox",
+    href: "/TwinStickDuckBox",
+    image: "tsj-banner.png",
+    contributions: &[
+        "Enemy Spawn Event System",
+        "Chomper Enemy",
+        "Gauss Weapon",
+        "Debug & Cheat Menu",
+    ],
     background: Some("tsj-bg.png"),
     hero_video: Some("OAiE_f08wU0"),
     badges: &[Link {

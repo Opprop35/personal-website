@@ -1,11 +1,14 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Month, ProjectPageData, Section, Showcase};
+use crate::project::{Date, Fragment, Info, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
-pub const PAGE: ProjectPageData = ProjectPageData {
+pub const PAGE: Project = Project {
     title: "Level Editor Plugin",
+    href: "/LevelEditorPlugin",
+    image: "level-editor.jpg",
+    contributions: &["Tool Programming", "Tool Design"],
     background: Some("grid-lines.jpg"),
     hero_video: Some("tEBmK5gDUyk"),
     badges: &[],

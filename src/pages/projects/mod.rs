@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::TextSizedImage;
-use crate::project::{Fragment, ProjectPageData, Section, Showcase};
+use crate::project::{Fragment, Project, Section, Showcase};
 
 pub mod attic_panic;
 pub mod duck_side_of_the_moon;
@@ -26,7 +26,7 @@ fn heading_view(heading: &'static str) -> impl IntoView {
     }
 }
 
-fn fragments_view(fragments: &'static [Fragment]) -> impl IntoView {
+pub fn fragments_view(fragments: &'static [Fragment]) -> impl IntoView {
     fragments
         .iter()
         .map(|fragment| match fragment {
@@ -134,7 +134,7 @@ fn InfoRow(label: &'static str, children: Children) -> impl IntoView {
 }
 
 #[component]
-pub fn ProjectPageView(data: &'static ProjectPageData) -> impl IntoView {
+pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
     let title = data.title;
 
     let background_class = if data.background.is_some() {

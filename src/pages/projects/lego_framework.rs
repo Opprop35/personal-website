@@ -1,11 +1,18 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Month, ProjectPageData};
+use crate::project::{Date, Fragment, Info, Month, Project};
 use crate::skill::Skill;
 
-pub const PAGE: ProjectPageData = ProjectPageData {
+pub const PAGE: Project = Project {
     title: "LEGO® Brick Editor",
+    href: "/LegoFramework",
+    image: "lego-brick-editor.png",
+    contributions: &[
+        "Brick Snapping Logic & Tooling",
+        "Connection Point Based Transform Gizmo",
+        "Import Pipeline Redesign",
+    ],
     background: Some("lego-fortnite.jpeg"),
     hero_video: Some("7J7J0zm5xFc"),
     badges: &[],

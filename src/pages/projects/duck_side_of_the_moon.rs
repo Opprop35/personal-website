@@ -1,11 +1,23 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, ProjectPageData, Section, Showcase};
+use crate::project::{Date, Fragment, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
-pub const PAGE: ProjectPageData = ProjectPageData {
+pub const PAGE: Project = Project {
     title: "Duck Side of the Moon",
+    href: "/DuckSideOfTheMoon",
+    image: "dsotm-cover.jpg",
+    contributions: &[
+        "Save Game System",
+        "Quest System",
+        "Dialogue System",
+        "Inventory & Crafting System",
+        "Upgrade System",
+        "Technical Animation",
+        "UI Programming",
+        "Various Gameplay Elements",
+    ],
     background: Some("dsotm-cover.jpg"),
     hero_video: Some("V7ev8CYk1ts"),
     badges: &[Link {
