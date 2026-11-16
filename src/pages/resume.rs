@@ -76,29 +76,36 @@ const SECTION_TITLE: &str = "mb-[6mm] border-b border-line pb-[2.5mm] text-[12px
 #[component]
 fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView {
     view! {
-        <section class="mb-[7mm] last:mb-0">
-            <h2 class="mb-[3mm] text-[11px] font-semibold tracking-[0.16em] uppercase text-background-hover-ink">
+        <section class="last:mb-0 mb-[7mm]">
+            <h2 class="font-semibold uppercase mb-[3mm] text-[11px] tracking-[0.16em] text-background-hover-ink">
                 {title}
             </h2>
-            <ul class="space-y-[2.5mm] text-[13px] leading-snug text-ink">{children}</ul>
+            <ul class="leading-snug space-y-[2.5mm] text-[13px] text-ink">{children}</ul>
         </section>
     }
 }
 
 #[component]
 pub fn Resume() -> impl IntoView {
+    let _ = document().set_title("Jesse Stolk - Resume");
+
     let experience = EXPERIENCE
         .iter()
         .map(|e| {
             view! {
-                <article class="mb-[7mm] last:mb-0">
-                    <div class="flex flex-wrap items-baseline justify-between gap-x-3">
-                        <h3 class="text-[15px] font-semibold tracking-wide">{e.org}</h3>
+                <article class="last:mb-0 mb-[7mm]">
+                    <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
+                        <h3 class="font-semibold tracking-wide text-[15px]">{e.org}</h3>
                         <span class="text-[12px] text-ink-muted">{e.period}</span>
                     </div>
                     <p class="mt-[1mm] text-[13px] text-background-hover-ink">{e.role}</p>
-                    <ul class="mt-[3mm] list-disc space-y-[1.5mm] pl-[5mm] text-[13px] marker:text-ink-muted">
-                        {e.points.iter().copied().map(|point| view! { <li>{point}</li> }).collect_view()}
+                    <ul class="list-disc mt-[3mm] space-y-[1.5mm] pl-[5mm] text-[13px] marker:text-ink-muted">
+                        {e
+                            .points
+                            .iter()
+                            .copied()
+                            .map(|point| view! { <li>{point}</li> })
+                            .collect_view()}
                     </ul>
                 </article>
             }
@@ -109,15 +116,19 @@ pub fn Resume() -> impl IntoView {
         .iter()
         .map(|d| {
             view! {
-                <article class="mb-[5mm] last:mb-0">
-                    <div class="flex flex-wrap items-baseline justify-between gap-x-3">
-                        <h3 class="text-[15px] font-semibold tracking-wide">{d.school}</h3>
+                <article class="last:mb-0 mb-[5mm]">
+                    <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
+                        <h3 class="font-semibold tracking-wide text-[15px]">{d.school}</h3>
                         <span class="text-[12px] text-ink-muted">{d.period}</span>
                     </div>
                     <p class="mt-[1mm] text-[13px] text-ink-muted">{d.study}</p>
-                    {d.note.map(|note| view! {
-                        <p class="mt-[1mm] text-[12px] italic text-ink-muted">{note}</p>
-                    })}
+                    {d
+                        .note
+                        .map(|note| {
+                            view! {
+                                <p class="italic mt-[1mm] text-[12px] text-ink-muted">{note}</p>
+                            }
+                        })}
                 </article>
             }
         })
@@ -129,16 +140,13 @@ pub fn Resume() -> impl IntoView {
                 href="https://jessestolk.com"
                 target="_blank"
                 rel="noopener noreferrer"
-                class="text-background-hover-ink hover:underline"
+                class="hover:underline text-background-hover-ink"
             >
                 "jessestolk.com"
             </a>
         </li>
         <li>
-            <a
-                href="mailto:jeus.stolk@gmail.com"
-                class="break-all hover:underline"
-            >
+            <a href="mailto:jeus.stolk@gmail.com" class="break-all hover:underline">
                 "jeus.stolk@gmail.com"
             </a>
         </li>
@@ -177,24 +185,35 @@ pub fn Resume() -> impl IntoView {
     };
 
     view! {
-        <div class="mx-auto flex w-full max-w-[210mm] flex-1 flex-col bg-background-light">
+        <div class="flex flex-col flex-1 mx-auto w-full max-w-[210mm] bg-background-light">
             <header class="flex items-center gap-[8mm] bg-background px-[12mm] py-[9mm]">
                 <img
                     src="public/resume.jpg"
                     alt="Portrait of Jesse Stolk"
-                    class="h-[38mm] w-[38mm] shrink-0 rounded-[2mm] object-cover"
+                    class="object-cover h-[38mm] w-[38mm] shrink-0 rounded-[2mm]"
                 />
-                <div class="min-w-0 flex-1">
-                    <h1 class="text-[26px] font-bold tracking-[0.06em]">"JESSE STOLK"</h1>
+                <div class="flex-1 min-w-0">
+                    <h1 class="font-bold text-[26px] tracking-[0.06em]">"JESSE STOLK"</h1>
                     <p class="mt-[1.5mm] text-[14px] text-background-hover-ink">
                         "Software Engineer"
                     </p>
                 </div>
-                    <button class="print:hidden inline-flex items-center gap-2 rounded-nav px-3 py-2 text-[12px] transition-colors duration-150 hover:bg-background-hover hover:text-background-hover-ink" on:click=|_| { window().print().ok(); }>
-                        <svg viewBox="0 0 24 24" fill="currentColor" class="h-[1.1rem] w-[1.1rem]" role="img" aria-hidden="true">
-                            <path d="M12 16 6 10h4V4h4v6h4l-6 6zm-7 4v-2h14v2H5z" />
-                        </svg>
-                        "Download PDF"
+                <button
+                    class="inline-flex gap-2 items-center py-2 px-3 transition-colors duration-150 print:hidden rounded-nav text-[12px] hover:bg-background-hover hover:text-background-hover-ink"
+                    on:click=|_| {
+                        window().print().ok();
+                    }
+                >
+                    <svg
+                        viewBox="0 0 24 24"
+                        fill="currentColor"
+                        class="h-[1.1rem] w-[1.1rem]"
+                        role="img"
+                        aria-hidden="true"
+                    >
+                        <path d="M12 16 6 10h4V4h4v6h4l-6 6zm-7 4v-2h14v2H5z" />
+                    </svg>
+                    "Download PDF"
                 </button>
             </header>
 
@@ -208,7 +227,7 @@ pub fn Resume() -> impl IntoView {
                     <SidebarSection title="Hobbies" children=hobbies />
                 </aside>
 
-                <main class="flex min-w-0 flex-1 flex-col px-[9mm] py-[8mm]">
+                <main class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
                     <section>
                         <h2 class=SECTION_TITLE>"Experience"</h2>
                         {experience}
@@ -218,7 +237,7 @@ pub fn Resume() -> impl IntoView {
                             href="https://jessestolk.com"
                             target="_blank"
                             rel="noopener noreferrer"
-                            class="text-background-hover-ink hover:underline"
+                            class="hover:underline text-background-hover-ink"
                         >
                             "See jessestolk.com for more info…"
                         </a>
