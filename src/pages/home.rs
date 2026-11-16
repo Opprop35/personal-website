@@ -79,26 +79,29 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                     </span>
                 </a>
                 <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-background group-hover:border-background-hover-ink/50">
-                    <a
-                        href=project.href
-                        class="w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
-                    >
-                        <div class="px-4 pt-4 md:px-6 md:pt-6">
-                            <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
-                                <div class="lg:w-1/2">
-                                    <img
-                                        src=format!("{IMAGE_DIR}/{}", project.image)
-                                        alt=format!("{} project image", project.title)
-                                        class="object-cover w-full border opacity-90 transition-opacity duration-300 group-hover:opacity-100 rounded-nav border-line"
-                                    />
+                    <div class="px-4 pt-4 md:px-6 md:pt-6">
+                        <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
+                            <a
+                                href=project.href
+                                class="block lg:w-1/2 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+                            >
+                                <img
+                                    src=format!("{IMAGE_DIR}/{}", project.image)
+                                    alt=format!("{} project image", project.title)
+                                    class="object-cover w-full border opacity-90 transition-opacity duration-300 group-hover:opacity-100 rounded-nav border-line"
+                                />
+                            </a>
+                            <div class="flex flex-col gap-6 lg:w-1/2">
+                                <div>
+                                    <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                                        "Summary"
+                                    </h3>
+                                    <p class="leading-relaxed text-ink">{description}</p>
                                 </div>
-                                <div class="flex flex-col gap-6 lg:w-1/2">
-                                    <div>
-                                        <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
-                                            "Summary"
-                                        </h3>
-                                        <p class="leading-relaxed text-ink">{description}</p>
-                                    </div>
+                                <a
+                                    href=project.href
+                                    class="block focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+                                >
                                     <div>
                                         <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
                                             "Contributions"
@@ -107,10 +110,10 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                             {contributions}
                                         </ul>
                                     </div>
-                                </div>
+                                </a>
                             </div>
                         </div>
-                    </a>
+                    </div>
                     <div class="flex flex-wrap gap-3 items-center px-4 pt-4 pb-4 mt-5 w-full border-t md:px-6 md:pb-6 border-line">
                         <span class="flex flex-wrap gap-2 items-center">{skills}</span>
                         <a
