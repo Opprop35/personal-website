@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, TextSizedImage};
+use crate::components::{Link, TextSizedImage, IMAGE_LINK};
 use crate::project::{Fragment, Project, Section, Showcase};
 use crate::IMAGE_DIR;
 
@@ -160,11 +160,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         .iter()
         .map(|badge| {
             view! {
-                <Link
-                    href=badge.url
-                    class="transition-transform duration-150 hover:scale-105 ease-nav"
-                    external=true
-                >
+                <Link href=badge.url class=IMAGE_LINK external=true>
                     <img
                         src=format!("{IMAGE_DIR}/{}", badge.image)
                         alt=badge.alt
@@ -181,11 +177,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         .iter()
         .map(|skill| {
             view! {
-                <Link
-                    href=skill.url()
-                    class="transition-transform duration-150 hover:scale-110 ease-nav"
-                    external=true
-                >
+                <Link href=skill.url() class=IMAGE_LINK external=true>
                     <TextSizedImage
                         image=format!("{IMAGE_DIR}/{}", skill.image())
                         alt=skill.alt()
@@ -199,11 +191,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         .iter()
         .map(|social| {
             view! {
-                <Link
-                    href=social.url
-                    class="transition-transform duration-150 hover:scale-110 ease-nav"
-                    external=true
-                >
+                <Link href=social.url class=IMAGE_LINK external=true>
                     <TextSizedImage image=format!("{IMAGE_DIR}/{}", social.image) alt=social.alt />
                 </Link>
             }
