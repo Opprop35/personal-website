@@ -19,7 +19,11 @@ pub const PAGE: Project = Project {
         platforms: "PC",
         team_size: "Solo",
         duration: "7 weeks",
-        release_date: Some(Date { day: 21, month: Month::October, year: 2022 }),
+        release_date: Some(Date {
+            day: 21,
+            month: Month::October,
+            year: 2022,
+        }),
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Perforce],
         socials: &[],
     },
@@ -48,7 +52,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Level Editor Plugin");
-
+    document().set_title("Jesse Stolk - Level Editor Plugin");
     view! { <ProjectPageView data=&PAGE /> }
 }

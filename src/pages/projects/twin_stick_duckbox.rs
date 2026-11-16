@@ -28,7 +28,11 @@ pub const PAGE: Project = Project {
         platforms: "PC",
         team_size: "5",
         duration: "7 weeks",
-        release_date: Some(Date { day: 3, month: Month::November, year: 2021 }),
+        release_date: Some(Date {
+            day: 3,
+            month: Month::November,
+            year: 2021,
+        }),
         skills: &[Skill::Godot, Skill::Perforce],
         socials: &[],
     },
@@ -63,12 +67,10 @@ pub const PAGE: Project = Project {
         Section {
             heading: None,
             title: "Debug/Cheat Menu",
-            body: &[
-                Fragment::Text(
-                    "A simple cheat menu that allows you to do various things like change your \
+            body: &[Fragment::Text(
+                "A simple cheat menu that allows you to do various things like change your \
                      weapon, spawn enemies, and toggle godmode.",
-                ),
-            ],
+            )],
             showcase: Some(Showcase::Video("andzCulJ4nI")),
         },
         Section {
@@ -90,7 +92,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Twin-Stick Duckbox");
-
+    document().set_title("Jesse Stolk - Twin-Stick Duckbox");
     view! { <ProjectPageView data=&PAGE /> }
 }

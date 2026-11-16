@@ -4,12 +4,11 @@ use crate::components::TextSizedImage;
 use crate::pages::projects::{self, fragments_view};
 use crate::project::Project;
 use crate::skill::Skill;
-
-const IMG: &str = "public/images";
+use crate::IMAGE_DIR;
 
 /// The projects shown on the home page, in display order. Each entry is the
 /// same `Project` that drives the project's detail page.
-const PROJECTS: [&'static Project; 8] = [
+const PROJECTS: [&Project; 8] = [
     &projects::lego_framework::PAGE,
     &projects::duck_side_of_the_moon::PAGE,
     &projects::attic_panic::PAGE,
@@ -59,7 +58,10 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                     rel="noopener noreferrer"
                     class="transition-transform duration-150 hover:scale-110 ease-nav"
                 >
-                    <TextSizedImage image=format!("{IMG}/{}", skill.image()) alt=skill.alt() />
+                    <TextSizedImage
+                        image=format!("{IMAGE_DIR}/{}", skill.image())
+                        alt=skill.alt()
+                    />
                 </a>
             }
         })
@@ -85,7 +87,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                             <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
                                 <div class="lg:w-1/2">
                                     <img
-                                        src=format!("{IMG}/{}", project.image)
+                                        src=format!("{IMAGE_DIR}/{}", project.image)
                                         alt=format!("{} project image", project.title)
                                         class="object-cover w-full border opacity-90 transition-opacity duration-300 group-hover:opacity-100 rounded-nav border-line"
                                     />
@@ -143,7 +145,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
             class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 rounded-nav border-line bg-background hover:border-background-hover-ink/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
         >
             <img
-                src=format!("{IMG}/{}", skill.image())
+                src=format!("{IMAGE_DIR}/{}", skill.image())
                 alt=skill.alt()
                 class="object-contain w-10 h-10 shrink-0"
             />
@@ -157,7 +159,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
 
 #[component]
 pub fn Home() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Software Engineer");
+    document().set_title("Jesse Stolk - Software Engineer");
 
     let projects = PROJECTS
         .iter()

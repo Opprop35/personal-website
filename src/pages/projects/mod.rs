@@ -2,6 +2,7 @@ use leptos::prelude::*;
 
 use crate::components::TextSizedImage;
 use crate::project::{Fragment, Project, Section, Showcase};
+use crate::IMAGE_DIR;
 
 pub mod attic_panic;
 pub mod duck_side_of_the_moon;
@@ -11,8 +12,6 @@ pub mod lego_framework;
 pub mod level_editor_plugin;
 pub mod radorian;
 pub mod twin_stick_duckbox;
-
-const IMG: &str = "public/images";
 
 fn heading_view(heading: &'static str) -> impl IntoView {
     view! {
@@ -88,7 +87,7 @@ fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
             let alt = *alt;
             view! {
                 <img
-                    src=format!("{IMG}/{src}")
+                    src=format!("{IMAGE_DIR}/{src}")
                     alt=alt
                     class="object-cover w-full border border-line rounded-nav"
                 />
@@ -99,16 +98,13 @@ fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
 }
 
 fn section_view(section: &'static Section) -> impl IntoView {
-    let heading = section.heading.map(|heading| heading_view(heading));
+    let heading = section.heading.map(heading_view);
 
     let details = if section.title.is_empty() && section.body.is_empty() {
         None
     } else {
         let body = fragments_view(section.body);
-        let showcase = section
-            .showcase
-            .as_ref()
-            .map(|showcase| showcase_view(showcase));
+        let showcase = section.showcase.as_ref().map(showcase_view);
         Some(view! {
             <div class="flex flex-col gap-6 min-w-0 md:flex-row md:gap-8 md:items-start">
                 <div class="w-full md:w-5/12">
@@ -144,7 +140,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
     };
     let background_style = data
         .background
-        .map(|src| format!("background-image:url({IMG}/{src})"))
+        .map(|src| format!("background-image:url({IMAGE_DIR}/{src})"))
         .unwrap_or_default();
 
     let hero_video = data.hero_video.map(|code| {
@@ -172,7 +168,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     class="transition-transform duration-150 hover:scale-105 ease-nav"
                 >
                     <img
-                        src=format!("{IMG}/{}", badge.image)
+                        src=format!("{IMAGE_DIR}/{}", badge.image)
                         alt=badge.alt
                         class="w-auto h-12 md:h-16"
                     />
@@ -193,7 +189,10 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     rel="noopener noreferrer"
                     class="transition-transform duration-150 hover:scale-110 ease-nav"
                 >
-                    <TextSizedImage image=format!("{IMG}/{}", skill.image()) alt=skill.alt() />
+                    <TextSizedImage
+                        image=format!("{IMAGE_DIR}/{}", skill.image())
+                        alt=skill.alt()
+                    />
                 </a>
             }
         })
@@ -209,7 +208,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     rel="noopener noreferrer"
                     class="transition-transform duration-150 hover:scale-110 ease-nav"
                 >
-                    <TextSizedImage image=format!("{IMG}/{}", social.image) alt=social.alt />
+                    <TextSizedImage image=format!("{IMAGE_DIR}/{}", social.image) alt=social.alt />
                 </a>
             }
         })
@@ -238,11 +237,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
 
     let description = fragments_view(data.description);
 
-    let sections = data
-        .sections
-        .iter()
-        .map(|section| section_view(section))
-        .collect_view();
+    let sections = data.sections.iter().map(section_view).collect_view();
 
     let under_construction = data.under_construction.then(|| {
         view! {

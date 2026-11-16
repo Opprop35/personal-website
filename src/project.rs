@@ -1,7 +1,5 @@
 use crate::skill::Skill;
 
-/// A calendar month. Not every variant is in use today; `#[allow(dead_code)]`
-/// keeps the enum complete so new projects can use any month.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 #[allow(dead_code)]
 pub enum Month {
@@ -20,7 +18,6 @@ pub enum Month {
 }
 
 impl Month {
-    /// The three-letter abbreviation, e.g. "Jun".
     pub fn code(self) -> &'static str {
         match self {
             Self::January => "Jan",
@@ -48,14 +45,16 @@ pub struct Date {
 }
 
 impl Date {
-    /// Format the date as `DD-Mon-YYYY`, e.g. "28-Jun-2022".
     pub fn format(self) -> String {
-        format!("{day:02}-{month}-{year}", day = self.day, month = self.month.code(), year = self.year)
+        format!(
+            "{day:02}-{month}-{year}",
+            day = self.day,
+            month = self.month.code(),
+            year = self.year
+        )
     }
 }
 
-/// A fragment of project page text. `Emph` renders in the accent color, mirroring the
-/// `Highlight` component of the old Blazor site.
 pub enum Fragment {
     Text(&'static str),
     Emph(&'static str),
@@ -66,7 +65,6 @@ pub enum Fragment {
     List(&'static [&'static str]),
 }
 
-/// The media in a section: an embedded YouTube video or a screenshot.
 pub enum Showcase {
     Video(&'static str),
     Image {
@@ -75,9 +73,6 @@ pub enum Showcase {
     },
 }
 
-/// A content section. A `heading` groups sections under a divider, while `title`, `body`
-/// and `showcase` make up a row. A heading with an empty title, body & showcase is
-/// rendered on its own for upcoming work.
 pub struct Section {
     pub heading: Option<&'static str>,
     pub title: &'static str,
@@ -85,14 +80,12 @@ pub struct Section {
     pub showcase: Option<Showcase>,
 }
 
-/// An external resource, such as a store badge or social profile, shown with a logo.
 pub struct Link {
     pub image: &'static str,
     pub alt: &'static str,
     pub url: &'static str,
 }
 
-/// The structured "project info" block shown on the detail page.
 pub struct Info {
     pub role: &'static str,
     pub genres: &'static str,
@@ -107,7 +100,6 @@ pub struct Info {
 }
 
 impl Info {
-    /// The release date as `DD-Mon-YYYY`, or "Not Released" when there is no date.
     pub fn release_date_label(&self) -> String {
         self.release_date
             .map(|date| date.format())

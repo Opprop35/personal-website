@@ -19,7 +19,7 @@ pub const PAGE: Project = Project {
         "Various Gameplay Elements",
     ],
     background: Some("dsotm-cover.jpg"),
-    hero_video: Some("V7ev8CYk1ts"),
+    hero_video: Some("jDcsH4LYuCo"),
     badges: &[Link {
         image: "Steam-banner.svg",
         alt: "Available On Steam",
@@ -32,7 +32,11 @@ pub const PAGE: Project = Project {
         platforms: "PC",
         team_size: "~9",
         duration: "1 Year",
-        release_date: Some(Date { day: 7, month: Month::May, year: 2026 }),
+        release_date: Some(Date {
+            day: 7,
+            month: Month::May,
+            year: 2026,
+        }),
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Perforce],
         socials: &[
             Link {
@@ -210,7 +214,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Duck Side Of The Moon");
-
+    document().set_title("Jesse Stolk - Duck Side Of The Moon");
     view! { <ProjectPageView data=&PAGE /> }
 }

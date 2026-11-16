@@ -12,6 +12,8 @@ use leptos_router::path;
 use crate::components::{toast::create_toast, Layout, Toasts};
 use crate::pages::{home::Home, projects, resume::Resume};
 
+const IMAGE_DIR: &str = "public/images";
+
 fn main() {
     install_panic_hook();
     leptos::mount::mount_to_body(App);

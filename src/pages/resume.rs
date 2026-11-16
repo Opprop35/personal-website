@@ -87,7 +87,7 @@ fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView
 
 #[component]
 pub fn Resume() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Resume");
+    document().set_title("Jesse Stolk - Resume");
 
     let experience = EXPERIENCE
         .iter()

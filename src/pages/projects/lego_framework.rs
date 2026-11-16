@@ -23,7 +23,11 @@ pub const PAGE: Project = Project {
         platforms: "PC",
         team_size: "~5",
         duration: "2 Years",
-        release_date: Some(Date { day: 17, month: Month::June, year: 2025 }),
+        release_date: Some(Date {
+            day: 17,
+            month: Month::June,
+            year: 2025,
+        }),
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Git, Skill::Perforce],
         socials: &[],
     },
@@ -44,7 +48,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - LegoFramework");
-
+    document().set_title("Jesse Stolk - LegoFramework");
     view! { <ProjectPageView data=&PAGE /> }
 }

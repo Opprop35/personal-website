@@ -21,12 +21,12 @@ pub const PAGE: Project = Project {
         Link {
             image: "bafta-shortlist-white.png",
             alt: "Nominated BAFTA Student Awards",
-            url: "https://www.bafta.org/supporting-talent/the-2023-yugo-bafta-student-awards-shortlist",
+            url: "https://www.bafta.org/programmes/bafta-student-awards/",
         },
         Link {
             image: "dga-nominated-student-badge.png",
             alt: "Nominated Student Game Dutch Game Awards",
-            url: "https://www.dutchgameawards.nl/nominees/",
+            url: "https://www.dutchgamesindustry.nl/game/duckside-of-the-moon",
         },
         Link {
             image: "available-on-itch-black.svg",
@@ -41,7 +41,11 @@ pub const PAGE: Project = Project {
         platforms: "PC",
         team_size: "23",
         duration: "4-5 Months",
-        release_date: Some(Date { day: 28, month: Month::June, year: 2022 }),
+        release_date: Some(Date {
+            day: 28,
+            month: Month::June,
+            year: 2022,
+        }),
         skills: &[Skill::Unreal, Skill::Perforce],
         socials: &[
             Link {
@@ -62,9 +66,7 @@ pub const PAGE: Project = Project {
         ],
     },
     description: &[
-        Fragment::Text(
-            "The original student version of Duckside of the Moon. It's a ",
-        ),
+        Fragment::Text("The original student version of Duckside of the Moon. It's a "),
         Fragment::Emph("survival game"),
         Fragment::Text(
             " set in space where you play as a duck astronaut. I built the crafting system & core \
@@ -243,13 +245,11 @@ pub const PAGE: Project = Project {
         Section {
             heading: None,
             title: "Sound Effects",
-            body: &[
-                Fragment::Text(
-                    "As we didn't have a dedicated sound designer on the team I picked up many of \
+            body: &[Fragment::Text(
+                "As we didn't have a dedicated sound designer on the team I picked up many of \
                      the sound design tasks. A small selection of these are: Walking, Boosting, \
                      Shooting, Crafting, Open/Close Menu, and Eating.",
-                ),
-            ],
+            )],
             showcase: Some(Showcase::Video("93oUEzG0bKg")),
         },
     ],
@@ -258,7 +258,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Duckside Of The Moon (Student)");
-
+    document().set_title("Jesse Stolk - Duckside Of The Moon (Student)");
     view! { <ProjectPageView data=&PAGE /> }
 }

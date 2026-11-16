@@ -23,7 +23,11 @@ pub const PAGE: Project = Project {
         platforms: "PC",
         team_size: "11",
         duration: "8 weeks",
-        release_date: Some(Date { day: 7, month: Month::July, year: 2021 }),
+        release_date: Some(Date {
+            day: 7,
+            month: Month::July,
+            year: 2021,
+        }),
         skills: &[Skill::Unreal, Skill::Perforce],
         socials: &[],
     },
@@ -38,7 +42,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Folivora's Fall");
-
+    document().set_title("Jesse Stolk - Folivora's Fall");
     view! { <ProjectPageView data=&PAGE /> }
 }

@@ -27,15 +27,21 @@ pub const PAGE: Project = Project {
         team_size: "Solo",
         duration: "Too Long",
         release_date: None,
-        skills: &[Skill::Godot, Skill::CSharp, Skill::Aseprite, Skill::Blender, Skill::Git],
+        skills: &[
+            Skill::Godot,
+            Skill::CSharp,
+            Skill::Aseprite,
+            Skill::Blender,
+            Skill::Git,
+        ],
         socials: &[],
     },
     description: &[
         Fragment::Text("A "),
         Fragment::Emph("personal project"),
         Fragment::Text(
-            " I work on intermittently in my spare time. It's a third person game with an \
-             experimental art style. I'm making everything myself from code to art to sound to \
+            " I used to work on in my spare time at university. It's a third person game with an \
+             experimental art style. I made everything myself from code to art to sound to \
              game design.",
         ),
     ],
@@ -45,7 +51,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Radorian");
-
+    document().set_title("Jesse Stolk - Radorian");
     view! { <ProjectPageView data=&PAGE /> }
 }

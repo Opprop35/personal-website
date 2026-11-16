@@ -1,6 +1,3 @@
-/// A software skill. Each variant is the single source of truth for that skill's
-/// display data, used by the home page's software skills section, the home page's
-/// project cards, and the project detail pages.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Skill {
     Rust,
@@ -18,7 +15,6 @@ pub enum Skill {
 }
 
 impl Skill {
-    /// All skills, in the order they appear on the home page.
     pub const ALL: [Self; 12] = [
         Self::Rust,
         Self::Cpp,
@@ -34,7 +30,6 @@ impl Skill {
         Self::Blender,
     ];
 
-    /// The display title, e.g. "C++".
     pub fn title(self) -> &'static str {
         match self {
             Self::Rust => "Rust",
@@ -52,13 +47,12 @@ impl Skill {
         }
     }
 
-    /// The logo's file name within `public/images`.
     pub fn image(self) -> &'static str {
         match self {
             Self::Rust => "rust-logo.svg",
             Self::Cpp => "cpp-logo.svg",
             Self::CSharp => "c-sharp.svg",
-            Self::LazyVim => "nvim.svg",
+            Self::LazyVim => "lazyvim.svg",
             Self::Git => "Git-logo.svg",
             Self::Perforce => "perforce.png",
             Self::ArchLinux => "arch-linux.svg",
@@ -70,7 +64,6 @@ impl Skill {
         }
     }
 
-    /// The alt text for the logo's image.
     pub fn alt(self) -> &'static str {
         match self {
             Self::Rust => "Rust logo",
@@ -88,7 +81,6 @@ impl Skill {
         }
     }
 
-    /// The official homepage of the language or tool.
     pub fn url(self) -> &'static str {
         match self {
             Self::Rust => "https://www.rust-lang.org",
@@ -106,7 +98,6 @@ impl Skill {
         }
     }
 
-    /// The years of experience shown on the home page.
     pub fn years(self) -> f32 {
         match self {
             Self::Rust => 1.0,

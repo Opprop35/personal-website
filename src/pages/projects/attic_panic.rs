@@ -28,7 +28,11 @@ pub const PAGE: Project = Project {
         platforms: "PC",
         team_size: "~24",
         duration: "8 Months",
-        release_date: Some(Date { day: 12, month: Month::June, year: 2023 }),
+        release_date: Some(Date {
+            day: 12,
+            month: Month::June,
+            year: 2023,
+        }),
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Perforce],
         socials: &[
             Link {
@@ -73,12 +77,10 @@ pub const PAGE: Project = Project {
         Section {
             heading: None,
             title: "Upgrade Functionality & Replication",
-            body: &[
-                Fragment::Text(
-                    "I worked on a lot of upgrades for the game and made sure those upgrades \
+            body: &[Fragment::Text(
+                "I worked on a lot of upgrades for the game and made sure those upgrades \
                      would replicate properly between the different players.",
-                ),
-            ],
+            )],
             showcase: Some(Showcase::Video("UryKkAPVYIQ")),
         },
         Section {
@@ -103,7 +105,6 @@ pub const PAGE: Project = Project {
 
 #[component]
 pub fn Page() -> impl IntoView {
-    let _ = document().set_title("Jesse Stolk - Attic Panic");
-
+    document().set_title("Jesse Stolk - Attic Panic");
     view! { <ProjectPageView data=&PAGE /> }
 }
