@@ -105,12 +105,12 @@ fn section_view(section: &'static Section) -> impl IntoView {
         let body = fragments_view(section.body);
         let showcase = section.showcase.as_ref().map(showcase_view);
         Some(view! {
-            <div class="flex flex-col gap-6 min-w-0 md:flex-row md:gap-8 md:items-start">
-                <div class="w-full md:w-5/12">
+            <div class="flex flex-col gap-6 md:flex-row md:gap-8 md:items-start">
+                <div class="w-full min-w-0 md:w-5/12">
                     <h4 class="pb-1 font-semibold text-ink">{section.title}</h4>
                     <div class="leading-relaxed text-ink">{body}</div>
                 </div>
-                {showcase}
+                <div class="w-full min-w-0 md:w-7/12">{showcase}</div>
             </div>
         })
     };

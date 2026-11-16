@@ -8,7 +8,7 @@ pub const PAGE: Project = Project {
     title: "Attic Panic",
     href: "/AtticPanic",
     card_thumbnail: "attic-panic-thumbnail.webp",
-    contributions: &[
+    main_contributions: &[
         "Upgrade System",
         "Upgrade Design & Implementation",
         "Upgrade & Gameplay Balancing",

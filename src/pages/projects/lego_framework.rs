@@ -8,7 +8,7 @@ pub const PAGE: Project = Project {
     title: "LEGO® Brick Editor",
     href: "/LegoFramework",
     card_thumbnail: "lego-thumbnail.webp",
-    contributions: &[
+    main_contributions: &[
         "Brick Snapping Logic & Tooling",
         "Connection Point Based Transform Gizmo",
         "Import Pipeline Redesign",

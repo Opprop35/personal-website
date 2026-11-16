@@ -8,15 +8,12 @@ pub const PAGE: Project = Project {
     title: "Duck Side of the Moon",
     href: "/DuckSideOfTheMoon",
     card_thumbnail: "dsotm-thumbnail.webp",
-    contributions: &[
+    main_contributions: &[
+        "Dialogue System",
         "Save Game System",
         "Quest System",
-        "Dialogue System",
         "Inventory & Crafting System",
         "Upgrade System",
-        "Technical Animation",
-        "UI Programming",
-        "Various Gameplay Elements",
     ],
     background: Some("dsotm-background.webp"),
     hero_video: Some("jDcsH4LYuCo"),

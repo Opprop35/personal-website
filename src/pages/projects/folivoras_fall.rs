@@ -8,7 +8,7 @@ pub const PAGE: Project = Project {
     title: "Folivora's Fall",
     href: "/FolivorasFall",
     card_thumbnail: "ff-thumbnail.webp",
-    contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
+    main_contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
     background: Some("ff-background.webp"),
     hero_video: Some("0EdXbR93AfQ"),
     badges: &[Link {

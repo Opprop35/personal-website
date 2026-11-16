@@ -8,13 +8,12 @@ pub const PAGE: Project = Project {
     title: "Radorian",
     href: "/Radorian",
     card_thumbnail: "radorian-thumbnail.webp",
-    contributions: &[
+    main_contributions: &[
         "Third person camera",
         "3D sprite pipeline & tools",
         "Custom shaders",
         "Procedural Geometry",
         "Dynamic gravity",
-        "And everything else",
     ],
     background: None,
     hero_video: Some("tbIsz63srjo"),

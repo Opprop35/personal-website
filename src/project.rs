@@ -116,7 +116,7 @@ pub struct Project {
     /// The card thumbnail, a file name within `public/images`.
     pub card_thumbnail: &'static str,
     /// Short bullet points of contributions shown on the card.
-    pub contributions: &'static [&'static str],
+    pub main_contributions: &'static [&'static str],
 
     /// The detail page background image, a file name within `public/images`.
     pub background: Option<&'static str>,

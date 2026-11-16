@@ -8,7 +8,7 @@ pub const PAGE: Project = Project {
     title: "Twin-Stick Duckbox",
     href: "/TwinStickDuckBox",
     card_thumbnail: "tsj-thumbnail.webp",
-    contributions: &[
+    main_contributions: &[
         "Enemy Spawn Event System",
         "Chomper Enemy",
         "Gauss Weapon",

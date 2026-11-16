@@ -8,7 +8,7 @@ pub const PAGE: Project = Project {
     title: "Level Editor Plugin",
     href: "/LevelEditorPlugin",
     card_thumbnail: "level-editor-thumbnail.webp",
-    contributions: &["Tool Programming", "Tool Design"],
+    main_contributions: &["Tool Programming", "Tool Design"],
     background: Some("level-editor-background.webp"),
     hero_video: Some("tEBmK5gDUyk"),
     badges: &[],

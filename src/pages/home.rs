@@ -35,7 +35,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
     let description = fragments_view(project.description);
 
     let contributions = project
-        .contributions
+        .main_contributions
         .iter()
         .copied()
         .map(|item| {
@@ -93,7 +93,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                 </div>
                                 <div>
                                     <h3 class="mb-2 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
-                                        "Contributions"
+                                        "Main Contributions"
                                     </h3>
                                     <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
                                         {contributions}

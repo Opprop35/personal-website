@@ -8,7 +8,7 @@ pub const PAGE: Project = Project {
     title: "Duckside of the Moon (Student)",
     href: "/DucksideOfTheMoonStudent",
     card_thumbnail: "dsotm-student-thumbnail.webp",
-    contributions: &[
+    main_contributions: &[
         "Inventory & Crafting System",
         "Mining & Item Pickups",
         "Progression Design",
