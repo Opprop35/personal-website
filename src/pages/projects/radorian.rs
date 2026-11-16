@@ -15,28 +15,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         team_size: "Solo",
         duration: "Too Long",
         release_date: "Not Released",
-        skills: &[
-            Skill {
-                image: "Godot-logo.svg",
-                alt: "Godot Logo",
-            },
-            Skill {
-                image: "c-sharp.svg",
-                alt: "C Sharp Logo",
-            },
-            Skill {
-                image: "aseprite.svg",
-                alt: "Aseprite Logo",
-            },
-            Skill {
-                image: "blender.png",
-                alt: "Blender Logo",
-            },
-            Skill {
-                image: "Git-logo.svg",
-                alt: "Git Logo",
-            },
-        ],
+        skills: &[Skill::Godot, Skill::CSharp, Skill::Aseprite, Skill::Blender, Skill::Git],
         socials: &[],
     },
     description: &[

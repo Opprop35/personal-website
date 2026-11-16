@@ -1,8 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::TextSizedImage;
-use crate::pages::projects;
-use crate::pages::projects::Skill as Icon;
+use crate::pages::projects::{self, Skill};
 
 /// A fragment of a project summary. `Emph` renders in the accent color,
 /// mirroring the orange highlight from the old Blazor site.
@@ -21,13 +20,7 @@ struct Project {
     contributions: &'static [&'static str],
     /// The project page's skills, the single source of truth shared with the
     /// project detail page.
-    icons: &'static [Icon],
-}
-
-struct Skill {
-    image: &'static str,
-    title: &'static str,
-    years: u8,
+    skills: &'static [Skill],
 }
 
 const IMG: &str = "public/images";
@@ -57,7 +50,7 @@ const PROJECTS: [Project; 8] = [
             "Connection Point Based Transform Gizmo",
             "Import Pipeline Redesign",
         ],
-        icons: projects::lego_framework::PAGE.info.skills,
+        skills: projects::lego_framework::PAGE.info.skills,
     },
     Project {
         href: "/DuckSideOfTheMoon",
@@ -87,7 +80,7 @@ const PROJECTS: [Project; 8] = [
             "UI Programming",
             "Various Gameplay Elements",
         ],
-        icons: projects::duck_side_of_the_moon::PAGE.info.skills,
+        skills: projects::duck_side_of_the_moon::PAGE.info.skills,
     },
     Project {
         href: "/AtticPanic",
@@ -109,7 +102,7 @@ const PROJECTS: [Project; 8] = [
             "Upgrade & Gameplay Balancing",
             "Sound Effects & Audio",
         ],
-        icons: projects::attic_panic::PAGE.info.skills,
+        skills: projects::attic_panic::PAGE.info.skills,
     },
     Project {
         href: "/Radorian",
@@ -134,7 +127,7 @@ const PROJECTS: [Project; 8] = [
             "Dynamic gravity",
             "And everything else",
         ],
-        icons: projects::radorian::PAGE.info.skills,
+        skills: projects::radorian::PAGE.info.skills,
     },
     Project {
         href: "/DucksideOfTheMoonStudent",
@@ -157,7 +150,7 @@ const PROJECTS: [Project; 8] = [
             "Upgrade & Recipe Balancing",
             "Sound Effects",
         ],
-        icons: projects::duckside_of_the_moon_student::PAGE.info.skills,
+        skills: projects::duckside_of_the_moon_student::PAGE.info.skills,
     },
     Project {
         href: "/LevelEditorPlugin",
@@ -175,7 +168,7 @@ const PROJECTS: [Project; 8] = [
             Segment::Break,
         ],
         contributions: &["Tool Programming", "Tool Design"],
-        icons: projects::level_editor_plugin::PAGE.info.skills,
+        skills: projects::level_editor_plugin::PAGE.info.skills,
     },
     Project {
         href: "/TwinStickDuckBox",
@@ -196,7 +189,7 @@ const PROJECTS: [Project; 8] = [
             "Gauss Weapon",
             "Debug & Cheat Menu",
         ],
-        icons: projects::twin_stick_duckbox::PAGE.info.skills,
+        skills: projects::twin_stick_duckbox::PAGE.info.skills,
     },
     Project {
         href: "/FolivorasFall",
@@ -212,60 +205,7 @@ const PROJECTS: [Project; 8] = [
             Segment::Break,
         ],
         contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
-        icons: projects::folivoras_fall::PAGE.info.skills,
-    },
-];
-
-const SKILLS: [Skill; 10] = [
-    Skill {
-        image: "rust-logo.svg",
-        title: "Rust",
-        years: 1,
-    },
-    Skill {
-        image: "cpp-logo.svg",
-        title: "C++",
-        years: 4,
-    },
-    Skill {
-        image: "c-sharp.svg",
-        title: "C#",
-        years: 4,
-    },
-    Skill {
-        image: "nvim.svg",
-        title: "LazyVim",
-        years: 1,
-    },
-    Skill {
-        image: "Git-logo.svg",
-        title: "Git",
-        years: 8,
-    },
-    Skill {
-        image: "perforce.png",
-        title: "Perforce",
-        years: 5,
-    },
-    Skill {
-        image: "arch-linux.svg",
-        title: "Arch Linux",
-        years: 1,
-    },
-    Skill {
-        image: "bevy-logo.svg",
-        title: "Bevy",
-        years: 1,
-    },
-    Skill {
-        image: "ue-logo.svg",
-        title: "Unreal",
-        years: 6,
-    },
-    Skill {
-        image: "Godot-logo.svg",
-        title: "Godot",
-        years: 4,
+        skills: projects::folivoras_fall::PAGE.info.skills,
     },
 ];
 
@@ -312,11 +252,12 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         })
         .collect_view();
 
-    let icons = project
-        .icons
+    let skills = project
+        .skills
         .iter()
-        .map(|icon| {
-            view! { <TextSizedImage image=format!("{IMG}/{}", icon.image) alt=icon.alt /> }
+        .copied()
+        .map(|skill| {
+            view! { <TextSizedImage image=format!("{IMG}/{}", skill.image()) alt=skill.alt() /> }
         })
         .collect_view();
 
@@ -358,7 +299,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         </div>
 
                         <div class="flex flex-wrap gap-3 items-center pt-4 mt-5 border-t border-line">
-                            <span class="flex flex-wrap gap-2 items-center">{icons}</span>
+                            <span class="flex flex-wrap gap-2 items-center">{skills}</span>
                             <span class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 rounded-nav bg-background-hover text-background-hover-ink group-hover:text-ink">
                                 "Read More"
                             </span>
@@ -372,23 +313,25 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
 }
 
 #[component]
-fn SkillCard(skill: &'static Skill) -> impl IntoView {
+fn SkillCard(skill: Skill) -> impl IntoView {
+    let years_text = if skill.years() < 1.0 {
+        "Less than a Year of experience".to_string()
+    } else if skill.years() == 1.0 {
+        "1 Year of experience".to_string()
+    } else {
+        format!("{} Years of experience", skill.years())
+    };
+
     view! {
         <div class="flex gap-3 items-center p-4 border transition-colors duration-150 rounded-nav border-line bg-background hover:border-background-hover-ink/50">
             <img
-                src=format!("{IMG}/{}", skill.image)
-                alt="{skill.title} logo"
+                src=format!("{IMG}/{}", skill.image())
+                alt=skill.alt()
                 class="object-contain w-10 h-10 shrink-0"
             />
             <div class="min-w-0">
-                <h3 class="font-semibold text-ink">{skill.title}</h3>
-                <p class="text-ink-muted">
-                    {if skill.years == 1 {
-                        "1 Year of experience".to_string()
-                    } else {
-                        format!("{} Years of experience", skill.years)
-                    }}
-                </p>
+                <h3 class="font-semibold text-ink">{skill.title()}</h3>
+                <p class="text-ink-muted">{years_text}</p>
             </div>
         </div>
     }
@@ -405,8 +348,9 @@ pub fn Home() -> impl IntoView {
         })
         .collect_view();
 
-    let skills = SKILLS
+    let skills = Skill::ALL
         .iter()
+        .copied()
         .map(|skill| {
             view! { <SkillCard skill=skill /> }
         })

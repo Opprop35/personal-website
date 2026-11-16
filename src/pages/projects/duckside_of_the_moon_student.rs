@@ -31,20 +31,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         team_size: "23",
         duration: "4-5 Months",
         release_date: "28-June-2022",
-        skills: &[
-            Skill {
-                image: "ue-logo.svg",
-                alt: "Unreal Engine Logo",
-            },
-            Skill {
-                image: "perforce.png",
-                alt: "Perforce Logo",
-            },
-            Skill {
-                image: "jira-logo.svg",
-                alt: "Jira Logo",
-            },
-        ],
+        skills: &[Skill::Unreal, Skill::Perforce],
         socials: &[
             Link {
                 image: "twitter.svg",

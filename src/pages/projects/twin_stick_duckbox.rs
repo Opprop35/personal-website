@@ -19,16 +19,7 @@ pub const PAGE: ProjectPageData = ProjectPageData {
         team_size: "5",
         duration: "7 weeks",
         release_date: "03-November-2021",
-        skills: &[
-            Skill {
-                image: "Godot-logo.svg",
-                alt: "Godot Logo",
-            },
-            Skill {
-                image: "perforce.png",
-                alt: "Perforce Logo",
-            },
-        ],
+        skills: &[Skill::Godot, Skill::Perforce],
         socials: &[],
     },
     description: &[Fragment::Text(
