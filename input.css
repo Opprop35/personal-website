@@ -25,6 +25,14 @@
   }
 }
 
+/* Tappable background surface: rounds the corners and smoothly inverts
+   to the hover background/ink on hover. Shared by nav items, menu items
+   and buttons; compose with layout utilities, e.g.
+   class="inline-flex items-center p-2 bg-button". */
+@utility bg-button {
+  @apply rounded-default transition-colors duration-150 hover:bg-background-hover hover:text-background-hover-ink;
+}
+
 @page {
   size: A4;
   margin: 0;

@@ -1,10 +1,6 @@
 use leptos::prelude::*;
 
-use const_format::formatcp;
-
-use crate::components::BACKGROUND_BUTTON;
-
-pub const NAV_ITEM: &str = formatcp!("inline-flex items-center p-2 {}", BACKGROUND_BUTTON);
+pub const NAV_ITEM: &str = "inline-flex items-center p-2 bg-button";
 
 #[component]
 pub fn NavButton(children: Children) -> impl IntoView {
