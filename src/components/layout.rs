@@ -47,7 +47,25 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
             <div class="flex flex-col min-h-screen bg-background-light">{children}</div>
 
             <div class="py-3 px-4 print:hidden bg-background text-ink-muted">
-                <p class="text-center">"Website made using Leptos & Tailwind"</p>
+                <p class="text-center">
+                    "Website made using "
+                    <a
+                        href="https://leptos.dev/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hover:underline text-background-hover-ink"
+                    >
+                        "Leptos"
+                    </a> " & "
+                    <a
+                        href="https://tailwindcss.com/"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="hover:underline text-background-hover-ink"
+                    >
+                        "Tailwind"
+                    </a>
+                </p>
             </div>
         </div>
     }
