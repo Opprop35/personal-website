@@ -7,7 +7,7 @@ use crate::skill::Skill;
 pub const PAGE: Project = Project {
     title: "Duck Side of the Moon",
     href: "/DuckSideOfTheMoon",
-    image: "dsotm-cover.jpg",
+    image: "dsotm-cover.png",
     contributions: &[
         "Save Game System",
         "Quest System",
@@ -18,7 +18,7 @@ pub const PAGE: Project = Project {
         "UI Programming",
         "Various Gameplay Elements",
     ],
-    background: Some("dsotm-cover.jpg"),
+    background: Some("dsotm-cover.png"),
     hero_video: Some("jDcsH4LYuCo"),
     badges: &[Link {
         image: "Steam-banner.svg",
