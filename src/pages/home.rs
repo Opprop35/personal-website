@@ -257,58 +257,76 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         .iter()
         .copied()
         .map(|skill| {
-            view! { <TextSizedImage image=format!("{IMG}/{}", skill.image()) alt=skill.alt() /> }
+            view! {
+                <a
+                    href=skill.url()
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="transition-transform duration-150 hover:scale-110 ease-nav"
+                >
+                    <TextSizedImage image=format!("{IMG}/{}", skill.image()) alt=skill.alt() />
+                </a>
+            }
         })
         .collect_view();
 
     view! {
-        <a
-            href=project.href
-            class="block group focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
-        >
+        <div class="block group">
             <div class="flex flex-col items-center transition-transform duration-300 ease-nav group-hover:scale-[1.02]">
-                <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-background-hover text-ink">
-                    {project.title}
-                </span>
+                <a
+                    href=project.href
+                    class="flex w-fit focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+                >
+                    <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-background-hover text-ink">
+                        {project.title}
+                    </span>
+                </a>
                 <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-background group-hover:border-background-hover-ink/50">
-                    <div class="p-4 md:p-6">
-                        <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
-                            <div class="lg:w-1/2">
-                                <img
-                                    src=format!("{IMG}/{}", project.image)
-                                    alt="{project.title} project image"
-                                    class="object-cover w-full border opacity-90 transition-opacity duration-300 group-hover:opacity-100 rounded-nav border-line"
-                                />
-                            </div>
-                            <div class="flex flex-col gap-6 lg:w-1/2">
-                                <div>
-                                    <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
-                                        "Summary"
-                                    </h3>
-                                    <p class="leading-relaxed text-ink">{summary}</p>
+                    <a
+                        href=project.href
+                        class="w-full focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+                    >
+                        <div class="px-4 pt-4 md:px-6 md:pt-6">
+                            <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
+                                <div class="lg:w-1/2">
+                                    <img
+                                        src=format!("{IMG}/{}", project.image)
+                                        alt="{project.title} project image"
+                                        class="object-cover w-full border opacity-90 transition-opacity duration-300 group-hover:opacity-100 rounded-nav border-line"
+                                    />
                                 </div>
-                                <div>
-                                    <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
-                                        "Contributions"
-                                    </h3>
-                                    <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
-                                        {contributions}
-                                    </ul>
+                                <div class="flex flex-col gap-6 lg:w-1/2">
+                                    <div>
+                                        <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                                            "Summary"
+                                        </h3>
+                                        <p class="leading-relaxed text-ink">{summary}</p>
+                                    </div>
+                                    <div>
+                                        <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                                            "Contributions"
+                                        </h3>
+                                        <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
+                                            {contributions}
+                                        </ul>
+                                    </div>
                                 </div>
                             </div>
                         </div>
-
-                        <div class="flex flex-wrap gap-3 items-center pt-4 mt-5 border-t border-line">
-                            <span class="flex flex-wrap gap-2 items-center">{skills}</span>
-                            <span class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 rounded-nav bg-background-hover text-background-hover-ink group-hover:text-ink">
-                                "Read More"
-                            </span>
-                            <span class="text-ink-muted">{project.date}</span>
-                        </div>
+                    </a>
+                    <div class="flex flex-wrap gap-3 items-center px-4 pt-4 pb-4 mt-5 w-full border-t md:px-6 md:pb-6 border-line">
+                        <span class="flex flex-wrap gap-2 items-center">{skills}</span>
+                        <a
+                            href=project.href
+                            class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 rounded-nav bg-background-hover text-background-hover-ink group-hover:text-ink"
+                        >
+                            "Read More"
+                        </a>
+                        <span class="text-ink-muted">{project.date}</span>
                     </div>
                 </div>
             </div>
-        </a>
+        </div>
     }
 }
 
@@ -323,7 +341,12 @@ fn SkillCard(skill: Skill) -> impl IntoView {
     };
 
     view! {
-        <div class="flex gap-3 items-center p-4 border transition-colors duration-150 rounded-nav border-line bg-background hover:border-background-hover-ink/50">
+        <a
+            href=skill.url()
+            target="_blank"
+            rel="noopener noreferrer"
+            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 rounded-nav border-line bg-background hover:border-background-hover-ink/50 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink"
+        >
             <img
                 src=format!("{IMG}/{}", skill.image())
                 alt=skill.alt()
@@ -333,7 +356,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
                 <h3 class="font-semibold text-ink">{skill.title()}</h3>
                 <p class="text-ink-muted">{years_text}</p>
             </div>
-        </div>
+        </a>
     }
 }
 

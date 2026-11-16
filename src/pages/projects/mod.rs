@@ -134,6 +134,24 @@ impl Skill {
         }
     }
 
+    /// The official homepage of the language or tool.
+    pub fn url(self) -> &'static str {
+        match self {
+            Self::Rust => "https://www.rust-lang.org",
+            Self::Cpp => "https://isocpp.org",
+            Self::CSharp => "https://dotnet.microsoft.com/en-us/csharp/",
+            Self::LazyVim => "https://www.lazyvim.org",
+            Self::Git => "https://git-scm.com",
+            Self::Perforce => "https://www.perforce.com",
+            Self::ArchLinux => "https://archlinux.org",
+            Self::Bevy => "https://bevyengine.org",
+            Self::Unreal => "https://www.unrealengine.com",
+            Self::Godot => "https://godotengine.org",
+            Self::Aseprite => "https://www.aseprite.org",
+            Self::Blender => "https://www.blender.org",
+        }
+    }
+
     /// The years of experience shown on the home page.
     pub fn years(self) -> f32 {
         match self {
@@ -355,7 +373,16 @@ pub fn ProjectPageView(data: &'static ProjectPageData) -> impl IntoView {
         .skills
         .iter()
         .map(|skill| {
-            view! { <TextSizedImage image=format!("{IMG}/{}", skill.image()) alt=skill.alt() /> }
+            view! {
+                <a
+                    href=skill.url()
+                    target="_blank"
+                    rel="noopener noreferrer"
+                    class="transition-transform duration-150 hover:scale-110 ease-nav"
+                >
+                    <TextSizedImage image=format!("{IMG}/{}", skill.image()) alt=skill.alt() />
+                </a>
+            }
         })
         .collect_view();
     let socials = info
