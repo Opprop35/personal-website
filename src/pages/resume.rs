@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::Link;
+use crate::components::{Link, BACKGROUND_BUTTON};
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
@@ -245,7 +245,9 @@ pub fn Resume() -> impl IntoView {
                     </p>
                 </div>
                 <button
-                    class="inline-flex gap-2 items-center py-2 px-3 transition-colors duration-150 print:hidden rounded-nav text-[12px] hover:bg-background-hover hover:text-background-hover-ink"
+                    class=format!(
+                        "inline-flex gap-2 items-center py-2 px-3 print:hidden text-[12px] {BACKGROUND_BUTTON}",
+                    )
                     on:click=|_| {
                         window().print().ok();
                     }

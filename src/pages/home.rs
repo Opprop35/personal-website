@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, TextSizedImage, IMAGE_LINK};
+use crate::components::{Link, TextSizedImage, BACKGROUND_BUTTON, IMAGE_LINK};
 use crate::pages::projects::{self, fragments_view};
 use crate::project::Project;
 use crate::skill::Skill;
@@ -108,7 +108,9 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         <span class="flex flex-wrap gap-2 items-center">{skills}</span>
                         <a
                             href=project.href
-                            class="inline-flex items-center py-1.5 px-3 ml-auto font-semibold tracking-wide uppercase transition-colors duration-150 link-nav rounded-nav text-[0.875em] text-ink hover:bg-background-hover hover:text-background-hover-ink"
+                            class=format!(
+                                "inline-flex items-center py-1.5 px-3 ml-auto font-semibold tracking-wide uppercase link-nav text-[0.875em] text-ink {BACKGROUND_BUTTON}",
+                            )
                         >
                             "Read More"
                         </a>
