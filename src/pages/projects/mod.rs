@@ -17,7 +17,7 @@ fn heading_view(heading: &'static str) -> impl IntoView {
     view! {
         <div class="flex gap-4 items-center">
             <span class="flex-1 min-w-0 h-px bg-line" />
-            <h3 class="text-base font-bold text-center uppercase whitespace-nowrap md:text-xl tracking-[0.2em] text-ink-muted">
+            <h3 class="font-bold text-center uppercase whitespace-nowrap text-[1.25em] tracking-[0.2em] text-ink-muted">
                 {heading}
             </h3>
             <span class="flex-1 min-w-0 h-px bg-line" />
@@ -265,13 +265,13 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     <div class="h-px bg-line" />
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <div class="w-full min-w-0 lg:w-5/12">
-                            <h3 class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                            <h3 class="mb-3 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
                                 "Project Info"
                             </h3>
                             <div class="grid gap-y-2 text-ink">{info_rows}</div>
                         </div>
                         <div class="w-full min-w-0 lg:w-7/12">
-                            <h3 class="mb-3 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                            <h3 class="mb-3 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
                                 "Description"
                             </h3>
                             {description}

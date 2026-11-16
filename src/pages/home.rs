@@ -24,7 +24,7 @@ fn SectionHeading(title: &'static str) -> impl IntoView {
     view! {
         <div class="flex gap-4 items-center py-6 px-4 md:px-8 lg:py-8">
             <span class="flex-1 min-w-0 h-px bg-line" />
-            <h2 class="text-base font-bold text-center uppercase whitespace-nowrap md:text-xl tracking-[0.2em] text-ink-muted">
+            <h2 class="font-bold text-center uppercase whitespace-nowrap text-[1.25em] tracking-[0.2em] text-ink-muted">
                 {title}
             </h2>
             <span class="flex-1 min-w-0 h-px bg-line" />
@@ -93,13 +93,13 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                             </a>
                             <div class="flex flex-col gap-6 lg:w-1/2">
                                 <div>
-                                    <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                                    <h3 class="mb-2 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
                                         "Summary"
                                     </h3>
                                     <p class="leading-relaxed text-ink">{description}</p>
                                 </div>
                                 <div>
-                                    <h3 class="mb-2 text-xs font-semibold uppercase tracking-[0.16em] text-ink-muted">
+                                    <h3 class="mb-2 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
                                         "Contributions"
                                     </h3>
                                     <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
@@ -113,7 +113,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         <span class="flex flex-wrap gap-2 items-center">{skills}</span>
                         <a
                             href=project.href
-                            class="inline-flex items-center py-1.5 px-3 ml-auto text-xs font-semibold tracking-wide uppercase transition-colors duration-150 link-nav rounded-nav text-ink hover:bg-background-hover hover:text-background-hover-ink"
+                            class="inline-flex items-center py-1.5 px-3 ml-auto font-semibold tracking-wide uppercase transition-colors duration-150 link-nav rounded-nav text-[0.875em] text-ink hover:bg-background-hover hover:text-background-hover-ink"
                         >
                             "Read More"
                         </a>
@@ -185,10 +185,8 @@ pub fn Home() -> impl IntoView {
                     title="About me"
                 ></iframe>
                 <div class="py-8 px-6 w-full bg-gradient-to-b md:w-6/12 from-background-light to-background">
-                    <h1 class="text-3xl font-bold tracking-tight md:text-4xl text-ink">
-                        "Jesse Stolk"
-                    </h1>
-                    <p class="mt-1 text-lg font-semibold md:text-xl text-background-hover-ink">
+                    <h1 class="font-bold tracking-tight text-[2.25em] text-ink">"Jesse Stolk"</h1>
+                    <p class="mt-1 font-semibold text-[1.25em] text-background-hover-ink">
                         "Software Engineer"
                     </p>
                     <div class="my-6 w-full h-px bg-line" />
