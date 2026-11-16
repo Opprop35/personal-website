@@ -1,5 +1,8 @@
 use leptos::prelude::*;
 
+use crate::skill::Skill;
+use crate::IMAGE_DIR;
+
 struct Experience {
     org: &'static str,
     role: &'static str,
@@ -72,6 +75,36 @@ const EDUCATION: [Education; 3] = [
 ];
 
 const SECTION_TITLE: &str = "mb-[6mm] border-b border-line pb-[2.5mm] text-[12px] font-semibold tracking-[0.16em] uppercase text-ink-muted";
+
+fn skill_items(skills: &[Skill]) -> impl IntoView {
+    skills
+        .iter()
+        .copied()
+        .map(|skill| {
+            let title = skill.title();
+            let url = skill.url();
+            let image = format!("{IMAGE_DIR}/{}", skill.image());
+            let alt = skill.alt();
+            view! {
+                <li>
+                    <a
+                        href=url
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        class="inline-flex items-center hover:underline gap-[1.5mm]"
+                    >
+                        <img
+                            src=image
+                            alt=alt
+                            class="object-contain h-[1.5em] w-[1.5em] shrink-0"
+                        />
+                        {title}
+                    </a>
+                </li>
+            }
+        })
+        .collect_view()
+}
 
 #[component]
 fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView {
@@ -154,22 +187,11 @@ pub fn Resume() -> impl IntoView {
         <li>"Netherlands, Delft"</li>
     };
 
-    let programming = view! {
-        <li>"Rust"</li>
-        <li>"C++"</li>
-        <li>"C#"</li>
-    };
+    let programming = skill_items(&[Skill::Rust, Skill::Cpp, Skill::CSharp]);
 
-    let game_engines = view! {
-        <li>"Bevy Engine"</li>
-        <li>"Unreal Engine"</li>
-        <li>"Godot Engine"</li>
-    };
+    let game_engines = skill_items(&[Skill::Bevy, Skill::Unreal, Skill::Godot]);
 
-    let version_control = view! {
-        <li>"Git"</li>
-        <li>"Perforce"</li>
-    };
+    let version_control = skill_items(&[Skill::Git, Skill::Perforce]);
 
     let languages = view! {
         <li>"English: Fluent"</li>
