@@ -292,7 +292,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                 <div class="lg:w-1/2">
                                     <img
                                         src=format!("{IMG}/{}", project.image)
-                                        alt="{project.title} project image"
+                                        alt=format!("{} project image", project.title)
                                         class="object-cover w-full border opacity-90 transition-opacity duration-300 group-hover:opacity-100 rounded-nav border-line"
                                     />
                                 </div>
