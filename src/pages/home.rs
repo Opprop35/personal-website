@@ -53,7 +53,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                 <a
                     tabindex="-1"
                     href=project.href
-                    class="flex link-nav w-fit rounded-t-nav focus-ring"
+                    class="flex link-nav w-fit rounded-default focus-ring"
                 >
                     <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-background-hover text-ink">
                         {project.title}
