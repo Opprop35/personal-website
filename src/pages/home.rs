@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, SectionHeading, TextSizedImage, IMAGE_LINK};
+use crate::components::{Link, SectionHeading, TextSizedImage};
 use crate::pages::projects::{self, fragments_view};
 use crate::project::Project;
 use crate::skill::Skill;
@@ -37,7 +37,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         .copied()
         .map(|skill| {
             view! {
-                <Link href=skill.url() class=IMAGE_LINK external=true>
+                <Link href=skill.url() class="image-link" external=true>
                     <TextSizedImage
                         image=format!("{IMAGE_DIR}/{}", skill.image())
                         alt=skill.alt()

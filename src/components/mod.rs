@@ -7,7 +7,7 @@ pub mod text_sized_image;
 pub mod toast;
 
 pub use layout::Layout;
-pub use links::{Link, IMAGE_LINK};
+pub use links::Link;
 pub use menus::projects_menu::ProjectsMenu;
 pub use nav::NavButton;
 pub use section_heading::SectionHeading;

@@ -53,6 +53,10 @@
   @apply text-background-hover-ink hover:underline focus-ring;
 }
 
+@utility image-link {
+  @apply transition-transform duration-150 hover:scale-110 ease-nav focus-ring;
+}
+
 @page {
   size: A4;
   margin: 0;
