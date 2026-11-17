@@ -45,6 +45,10 @@
   @apply font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted;
 }
 
+@utility link-muted {
+  @apply text-background-hover-ink hover:underline;
+}
+
 @page {
   size: A4;
   margin: 0;

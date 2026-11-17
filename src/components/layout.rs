@@ -54,14 +54,14 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
                     "Website made using "
                     <Link
                         href="https://leptos.dev/"
-                        class="hover:underline text-background-hover-ink"
+                        class="link-muted"
                         external=true
                     >
                         "Leptos"
                     </Link> " & "
                     <Link
                         href="https://tailwindcss.com/"
-                        class="hover:underline text-background-hover-ink"
+                        class="link-muted"
                         external=true
                     >
                         "Tailwind"

@@ -196,7 +196,7 @@ pub fn Resume() -> impl IntoView {
         <li>
             <Link
                 href="https://jessestolk.com"
-                class="hover:underline text-background-hover-ink"
+                class="link-muted"
                 external=true
             >
                 "jessestolk.com"
@@ -281,7 +281,7 @@ pub fn Resume() -> impl IntoView {
                     <p class="mt-[5mm] text-[13px]">
                         <Link
                             href="https://jessestolk.com"
-                            class="hover:underline text-background-hover-ink"
+                            class="link-muted"
                             external=true
                         >
                             "See jessestolk.com for more info…"
