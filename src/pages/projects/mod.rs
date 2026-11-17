@@ -16,11 +16,11 @@ pub mod twin_stick_duckbox;
 fn heading_view(heading: &'static str) -> impl IntoView {
     view! {
         <div class="flex gap-4 items-center">
-            <span class="flex-1 min-w-0 h-px bg-line" />
+            <span class="flex-1 min-w-0 divider" />
             <h3 class="font-bold text-center uppercase whitespace-nowrap text-[1.25em] tracking-[0.2em] text-ink-muted">
                 {heading}
             </h3>
-            <span class="flex-1 min-w-0 h-px bg-line" />
+            <span class="flex-1 min-w-0 divider" />
         </div>
     }
 }
@@ -246,7 +246,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                 <div class="flex flex-col gap-8 p-4 bg-gradient-to-b border md:p-8 border-line from-background/95 to-background rounded-b-nav">
                     {hero_video}
                     <div class="flex flex-wrap gap-4 justify-center items-center">{badges}</div>
-                    <div class="h-px bg-line" />
+                    <div class="divider" />
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <div class="w-full min-w-0 lg:w-5/12">
                             <h3 class="mb-3 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
@@ -260,7 +260,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                             </h3>
                             {description}
                         </div>
-                    </div> {has_more_content.then(|| view! { <div class="h-px bg-line" /> })}
+                    </div> {has_more_content.then(|| view! { <div class="divider" /> })}
                     <div class="flex flex-col gap-10">{sections}{under_construction}</div>
                 </div>
             </div>

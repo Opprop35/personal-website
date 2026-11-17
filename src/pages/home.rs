@@ -21,11 +21,11 @@ const PROJECTS: [&Project; 8] = [
 fn SectionHeading(title: &'static str) -> impl IntoView {
     view! {
         <div class="flex gap-4 items-center py-6 px-4 md:px-8 lg:py-8">
-            <span class="flex-1 min-w-0 h-px bg-line" />
+            <span class="flex-1 min-w-0 divider" />
             <h2 class="font-bold text-center uppercase whitespace-nowrap text-[1.25em] tracking-[0.2em] text-ink-muted">
                 {title}
             </h2>
-            <span class="flex-1 min-w-0 h-px bg-line" />
+            <span class="flex-1 min-w-0 divider" />
         </div>
     }
 }
@@ -181,7 +181,7 @@ pub fn Home() -> impl IntoView {
                     <p class="mt-1 font-semibold text-[1.25em] text-background-hover-ink">
                         "Software Engineer"
                     </p>
-                    <div class="my-6 w-full h-px bg-line" />
+                    <div class="my-6 divider" />
                     <p class="leading-relaxed text-ink">
                         "My name is Jesse. I'm a software developer and I enjoy designing systems for simulating and modelling complex interactions. I've been programming for approximately nine years."
                         <br /> <br />

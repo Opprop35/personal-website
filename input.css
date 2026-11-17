@@ -37,6 +37,10 @@
   @apply block w-full px-3 py-2 text-left bg-button;
 }
 
+@utility divider {
+  @apply h-px w-full bg-line;
+}
+
 @page {
   size: A4;
   margin: 0;
