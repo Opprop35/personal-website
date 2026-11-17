@@ -273,7 +273,8 @@ pub fn Resume() -> impl IntoView {
 
                 <main class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
                     <section>
-                        <h2 class="mb-[6mm] border-b border-line pb-[2.5mm] label-uppercase">"Experience"</h2>
+                        <h2 class="label-uppercase">"Experience"</h2>
+                        <div class="mt-[2.5mm] mb-[6mm] divider" />
                         {experience}
                     </section>
                     <p class="mt-[5mm] text-[13px]">
@@ -287,7 +288,8 @@ pub fn Resume() -> impl IntoView {
                     </p>
 
                     <section class="mt-auto pt-[4mm]">
-                        <h2 class="mb-[6mm] border-b border-line pb-[2.5mm] label-uppercase">"Education"</h2>
+                        <h2 class="label-uppercase">"Education"</h2>
+                        <div class="mt-[2.5mm] mb-[6mm] divider" />
                         {education}
                     </section>
                 </main>
