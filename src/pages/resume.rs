@@ -83,8 +83,6 @@ const EDUCATION: [Education; 3] = [
     },
 ];
 
-const SECTION_TITLE: &str = "mb-[6mm] border-b border-line pb-[2.5mm] text-[12px] font-semibold tracking-[0.16em] uppercase text-ink-muted";
-
 fn org_name(name: &'static str, url: Option<&'static str>) -> AnyView {
     if let Some(url) = url {
         return view! {
@@ -275,7 +273,7 @@ pub fn Resume() -> impl IntoView {
 
                 <main class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
                     <section>
-                        <h2 class=SECTION_TITLE>"Experience"</h2>
+                        <h2 class="mb-[6mm] border-b border-line pb-[2.5mm] label-uppercase">"Experience"</h2>
                         {experience}
                     </section>
                     <p class="mt-[5mm] text-[13px]">
@@ -289,7 +287,7 @@ pub fn Resume() -> impl IntoView {
                     </p>
 
                     <section class="mt-auto pt-[4mm]">
-                        <h2 class=SECTION_TITLE>"Education"</h2>
+                        <h2 class="mb-[6mm] border-b border-line pb-[2.5mm] label-uppercase">"Education"</h2>
                         {education}
                     </section>
                 </main>
