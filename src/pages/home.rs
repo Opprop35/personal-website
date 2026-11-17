@@ -50,11 +50,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
     view! {
         <div class="block">
             <div class="flex flex-col items-center transition-transform duration-300 ease-nav has-[.link-nav:hover]:scale-[1.02]">
-                <a
-                    tabindex="-1"
-                    href=project.href
-                    class="flex link-nav w-fit focus-ring"
-                >
+                <a tabindex="-1" href=project.href class="flex focus-ring link-nav w-fit">
                     <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-background-hover text-ink">
                         {project.title}
                     </span>
@@ -62,10 +58,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                 <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-background has-[.link-nav:hover]:border-background-hover-ink/50">
                     <div class="px-4 pt-4 md:px-6 md:pt-6">
                         <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
-                            <a
-                                href=project.href
-                                class="block lg:w-1/2 link-nav focus-ring"
-                            >
+                            <a href=project.href class="block lg:w-1/2 focus-ring link-nav">
                                 <img
                                     src=format!("{IMAGE_DIR}/{}", project.card_thumbnail)
                                     alt=format!("{} project image", project.title)
@@ -74,15 +67,11 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                             </a>
                             <div class="flex flex-col gap-6 lg:w-1/2">
                                 <div>
-                                    <h3 class="mb-2 label-uppercase">
-                                        "Summary"
-                                    </h3>
+                                    <h3 class="mb-2 label-uppercase">"Summary"</h3>
                                     <p class="leading-relaxed text-ink">{description}</p>
                                 </div>
                                 <div>
-                                    <h3 class="mb-2 label-uppercase">
-                                        "Main Contributions"
-                                    </h3>
+                                    <h3 class="mb-2 label-uppercase">"Main Contributions"</h3>
                                     <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
                                         {contributions}
                                     </ul>
@@ -119,7 +108,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
     view! {
         <Link
             href=skill.url()
-            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 border-line bg-background hover:border-background-hover-ink/50 focus-ring"
+            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 focus-ring border-line bg-background hover:border-background-hover-ink/50"
             external=true
         >
             <img
@@ -171,9 +160,9 @@ pub fn Home() -> impl IntoView {
                     </p>
                     <div class="my-6 divider" />
                     <p class="leading-relaxed text-ink">
-                        "My name is Jesse. I'm a software developer and I enjoy designing systems for simulating and modelling complex interactions. I've been programming for approximately nine years."
+                        "My name is Jesse, I'm a software engineer who has been seriously programming for roughly nine years."
                         <br /> <br />
-                        "I spent most of my career on games, game tooling, and learning game engine architecture. Having said that, recently I'm interested in software for research and scientific purposes. I've always enjoyed various sciences and feel like contributing to scientific research fits my values better than contributing to the commercial world."
+                        "I spent most of my career on games, game tooling, and learning game engine architecture. Having said that, recently I'm interested in exploring other areas of software engineering such as research software engineering and cyber security."
                         <br /> <br />
                         "My favourite tools at the moment are Rust, Bevy Engine, Linux, and LazyVim, but I'm experienced in various other Languages, Game Engines and IDEs as well."
                     </p>

@@ -2,11 +2,8 @@ use leptos::prelude::*;
 
 use crate::components::NavButton;
 
-/// Panel styling shared by every menu body.
 const MENU: &str = "rounded-default border border-line bg-background p-1 shadow-lg";
 
-/// A nav dropdown menu: a button trigger plus a panel of items that fades in on
-/// hover or keyboard focus, and fades out again once they leave.
 #[component]
 pub fn Menu(label: &'static str, children: Children) -> impl IntoView {
     let open = RwSignal::new(false);
