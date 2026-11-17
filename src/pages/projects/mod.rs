@@ -24,17 +24,13 @@ pub fn fragments_view(fragments: &'static [Fragment]) -> impl IntoView {
             Fragment::Emph(text) => {
                 let text = *text;
                 view! { <strong class="font-semibold text-background-hover-ink">{text}</strong> }
-                .into_any()
+                    .into_any()
             }
             Fragment::Link { url, label } => {
                 let url = *url;
                 let label = *label;
                 view! {
-                    <Link
-                        href=url
-                        class="rounded-default underline text-background-hover-ink decoration-background-hover-ink/50 focus-ring"
-                        external=true
-                    >
+                    <Link href=url class="link-muted" external=true>
                         {label}
                     </Link>
                 }
@@ -86,9 +82,7 @@ fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
 
 fn section_view(section: &'static Section) -> impl IntoView {
     let heading = section.heading.map(|heading| {
-        view! {
-            <SectionHeading title=heading />
-        }
+        view! { <SectionHeading title=heading /> }
     });
 
     let details = if section.title.is_empty() && section.body.is_empty() {
@@ -241,15 +235,11 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     <div class="divider" />
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <div class="w-full min-w-0 lg:w-5/12">
-                            <h3 class="mb-3 label-uppercase">
-                                "Project Info"
-                            </h3>
+                            <h3 class="mb-3 label-uppercase">"Project Info"</h3>
                             <div class="grid gap-y-2 text-ink">{info_rows}</div>
                         </div>
                         <div class="w-full min-w-0 lg:w-7/12">
-                            <h3 class="mb-3 label-uppercase">
-                                "Description"
-                            </h3>
+                            <h3 class="mb-3 label-uppercase">"Description"</h3>
                             {description}
                         </div>
                     </div> {has_more_content.then(|| view! { <div class="divider" /> })}
