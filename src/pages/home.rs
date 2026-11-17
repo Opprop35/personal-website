@@ -53,7 +53,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                 <a
                     tabindex="-1"
                     href=project.href
-                    class="flex link-nav w-fit rounded-default focus-ring"
+                    class="flex link-nav w-fit focus-ring"
                 >
                     <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-background-hover text-ink">
                         {project.title}
@@ -64,7 +64,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
                             <a
                                 href=project.href
-                                class="block lg:w-1/2 link-nav rounded-default focus-ring"
+                                class="block lg:w-1/2 link-nav focus-ring"
                             >
                                 <img
                                     src=format!("{IMAGE_DIR}/{}", project.card_thumbnail)
@@ -119,7 +119,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
     view! {
         <Link
             href=skill.url()
-            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 rounded-default border-line bg-background hover:border-background-hover-ink/50 focus-ring"
+            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 border-line bg-background hover:border-background-hover-ink/50 focus-ring"
             external=true
         >
             <img

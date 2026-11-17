@@ -88,7 +88,7 @@ const SECTION_TITLE: &str = "mb-[6mm] border-b border-line pb-[2.5mm] text-[12px
 fn org_name(name: &'static str, url: Option<&'static str>) -> AnyView {
     if let Some(url) = url {
         return view! {
-            <Link href=url class="rounded-default hover:underline focus-ring" external=true>
+            <Link href=url class="hover:underline focus-ring" external=true>
                 {name}
             </Link>
         }
@@ -111,7 +111,7 @@ fn skill_items(skills: &[Skill]) -> impl IntoView {
                 <li>
                     <Link
                         href=url
-                        class="rounded-default inline-flex items-center hover:underline gap-[1.5mm] focus-ring"
+                        class="inline-flex items-center hover:underline gap-[1.5mm] focus-ring"
                         external=true
                     >
                         <img
@@ -203,7 +203,7 @@ pub fn Resume() -> impl IntoView {
             </Link>
         </li>
         <li>
-            <a href="mailto:jeus.stolk@gmail.com" class="rounded-default break-all hover:underline focus-ring">
+            <a href="mailto:jeus.stolk@gmail.com" class="break-all hover:underline focus-ring">
                 "jeus.stolk@gmail.com"
             </a>
         </li>
