@@ -249,13 +249,13 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     <div class="divider" />
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <div class="w-full min-w-0 lg:w-5/12">
-                            <h3 class="mb-3 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
+                            <h3 class="mb-3 label-uppercase">
                                 "Project Info"
                             </h3>
                             <div class="grid gap-y-2 text-ink">{info_rows}</div>
                         </div>
                         <div class="w-full min-w-0 lg:w-7/12">
-                            <h3 class="mb-3 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
+                            <h3 class="mb-3 label-uppercase">
                                 "Description"
                             </h3>
                             {description}

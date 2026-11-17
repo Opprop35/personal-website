@@ -41,6 +41,10 @@
   @apply h-px w-full bg-line;
 }
 
+@utility label-uppercase {
+  @apply font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted;
+}
+
 @page {
   size: A4;
   margin: 0;

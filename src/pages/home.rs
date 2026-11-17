@@ -86,13 +86,13 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                             </a>
                             <div class="flex flex-col gap-6 lg:w-1/2">
                                 <div>
-                                    <h3 class="mb-2 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
+                                    <h3 class="mb-2 label-uppercase">
                                         "Summary"
                                     </h3>
                                     <p class="leading-relaxed text-ink">{description}</p>
                                 </div>
                                 <div>
-                                    <h3 class="mb-2 font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted">
+                                    <h3 class="mb-2 label-uppercase">
                                         "Main Contributions"
                                     </h3>
                                     <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
