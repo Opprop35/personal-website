@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, TextSizedImage, IMAGE_LINK};
+use crate::components::{Link, SectionHeading, TextSizedImage, IMAGE_LINK};
 use crate::project::{Fragment, Project, Section, Showcase};
 use crate::IMAGE_DIR;
 
@@ -12,18 +12,6 @@ pub mod lego_framework;
 pub mod level_editor_plugin;
 pub mod radorian;
 pub mod twin_stick_duckbox;
-
-fn heading_view(heading: &'static str) -> impl IntoView {
-    view! {
-        <div class="flex gap-4 items-center">
-            <span class="flex-1 min-w-0 divider" />
-            <h3 class="font-bold text-center uppercase whitespace-nowrap text-[1.25em] tracking-[0.2em] text-ink-muted">
-                {heading}
-            </h3>
-            <span class="flex-1 min-w-0 divider" />
-        </div>
-    }
-}
 
 pub fn fragments_view(fragments: &'static [Fragment]) -> impl IntoView {
     fragments
@@ -97,7 +85,11 @@ fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
 }
 
 fn section_view(section: &'static Section) -> impl IntoView {
-    let heading = section.heading.map(heading_view);
+    let heading = section.heading.map(|heading| {
+        view! {
+            <SectionHeading title=heading />
+        }
+    });
 
     let details = if section.title.is_empty() && section.body.is_empty() {
         None

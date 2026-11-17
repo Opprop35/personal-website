@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, TextSizedImage, IMAGE_LINK};
+use crate::components::{Link, SectionHeading, TextSizedImage, IMAGE_LINK};
 use crate::pages::projects::{self, fragments_view};
 use crate::project::Project;
 use crate::skill::Skill;
@@ -16,19 +16,6 @@ const PROJECTS: [&Project; 8] = [
     &projects::twin_stick_duckbox::PAGE,
     &projects::folivoras_fall::PAGE,
 ];
-
-#[component]
-fn SectionHeading(title: &'static str) -> impl IntoView {
-    view! {
-        <div class="flex gap-4 items-center py-6 px-4 md:px-8 lg:py-8">
-            <span class="flex-1 min-w-0 divider" />
-            <h2 class="font-bold text-center uppercase whitespace-nowrap text-[1.25em] tracking-[0.2em] text-ink-muted">
-                {title}
-            </h2>
-            <span class="flex-1 min-w-0 divider" />
-        </div>
-    }
-}
 
 #[component]
 fn ProjectCard(project: &'static Project) -> impl IntoView {
@@ -193,14 +180,14 @@ pub fn Home() -> impl IntoView {
             </div>
 
             <div class="flex flex-col">
-                <SectionHeading title="Projects" />
+                <SectionHeading title="Projects" class="py-6 px-4 md:px-8 lg:py-8" />
                 <div class="flex flex-col gap-10 px-4 pt-4 pb-8 mx-auto w-full max-w-6xl md:px-8 lg:px-0">
                     {projects}
                 </div>
             </div>
 
             <div class="flex flex-col">
-                <SectionHeading title="Software Skills" />
+                <SectionHeading title="Software Skills" class="py-6 px-4 md:px-8 lg:py-8" />
                 <div class="grid grid-cols-1 gap-4 px-4 pb-14 mx-auto w-full max-w-6xl sm:grid-cols-2 lg:grid-cols-5 lg:px-0">
                     {skills}
                 </div>
