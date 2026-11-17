@@ -100,7 +100,7 @@ impl Skill {
 
     pub fn years(self) -> f32 {
         match self {
-            Self::Rust => 1.0,
+            Self::Rust => 1.5,
             Self::Cpp => 4.0,
             Self::CSharp => 4.0,
             Self::LazyVim => 1.0,
