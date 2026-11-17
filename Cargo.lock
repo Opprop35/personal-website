@@ -949,6 +949,8 @@ dependencies = [
  "console_error_panic_hook",
  "leptos",
  "leptos_router",
+ "wasm-bindgen",
+ "web-sys",
 ]
 
 [[package]]
