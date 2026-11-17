@@ -1,5 +1,4 @@
 use leptos::prelude::*;
-use wasm_bindgen::JsCast;
 
 use crate::components::{menus::MENU, NavButton};
 
@@ -15,23 +14,9 @@ pub fn ProjectsMenu() -> impl IntoView {
             on:mouseenter=move |_| open.set(true)
             on:mouseleave=move |_| open.set(false)
             on:focusin=move |_| open.set(true)
-            on:focusout=move |ev: web_sys::FocusEvent| {
-                let el = wrapper.get();
-                let focus_inside = ev
-                    .related_target()
-                    .as_ref()
-                    .and_then(|related| related.dyn_ref::<web_sys::Node>())
-                    .and_then(|node| {
-                        el.as_ref()
-                            .map(|el| el.unchecked_ref::<web_sys::Node>())
-                            .filter(|el| el.contains(Some(node)))
-                    })
-                    .is_some();
-                if !focus_inside {
-                    open.set(false);
-                }
-            }
+            on:focusout=move |_| open.set(false)
         >
+
             <NavButton>"Projects"</NavButton>
             <div
                 class=move || {
