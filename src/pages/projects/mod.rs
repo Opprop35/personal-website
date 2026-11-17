@@ -32,7 +32,7 @@ pub fn fragments_view(fragments: &'static [Fragment]) -> impl IntoView {
                 view! {
                     <Link
                         href=url
-                        class="underline text-background-hover-ink decoration-background-hover-ink/50"
+                        class="underline text-background-hover-ink decoration-background-hover-ink/50 focus-ring"
                         external=true
                     >
                         {label}

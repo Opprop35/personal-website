@@ -3,7 +3,7 @@ use leptos::prelude::*;
 /// Style for a link that encapsulates an image: the image smoothly scales up
 /// on hover to give clear interactive feedback without disturbing the layout.
 pub const IMAGE_LINK: &str =
-    "transition-transform duration-150 hover:scale-110 ease-nav";
+    "transition-transform duration-150 hover:scale-110 ease-nav focus-ring";
 
 #[component]
 pub fn Link(

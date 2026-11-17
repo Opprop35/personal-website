@@ -25,8 +25,12 @@
   }
 }
 
+@utility focus-ring {
+  @apply focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-background-hover-ink;
+}
+
 @utility bg-button {
-  @apply rounded-default transition-colors duration-150 hover:bg-background-hover hover:text-background-hover-ink;
+  @apply rounded-default transition-colors duration-150 hover:bg-background-hover hover:text-background-hover-ink focus-ring;
 }
 
 @utility nav-button {
@@ -46,7 +50,7 @@
 }
 
 @utility link-muted {
-  @apply text-background-hover-ink hover:underline;
+  @apply text-background-hover-ink hover:underline focus-ring;
 }
 
 @page {
