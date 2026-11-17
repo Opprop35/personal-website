@@ -51,6 +51,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         <div class="block">
             <div class="flex flex-col items-center transition-transform duration-300 ease-nav has-[.link-nav:hover]:scale-[1.02]">
                 <a
+                    tabindex="-1"
                     href=project.href
                     class="flex link-nav w-fit rounded-t-nav focus-ring"
                 >
