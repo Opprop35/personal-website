@@ -7,7 +7,7 @@ pub fn TextSizedImage(image: impl Into<String>, alt: impl Into<String>) -> impl 
 
     view! {
         <div class="w-[1rem] md:w-[1.25rem] lg:w-[1.5rem]">
-            <img class="w-full object-fit" src=image alt=alt />
+            <img class="w-full object-contain" src=image alt=alt />
         </div>
     }
 }
