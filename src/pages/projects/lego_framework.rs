@@ -5,7 +5,7 @@ use crate::pages::projects::ProjectPageView;
 use crate::project::{Date, Info, Month, Project};
 use crate::skill::Skill;
 
-pub const PAGE: Project = Project {
+pub const PROJECT: Project = Project {
     title: "LEGO® Brick Editor",
     href: "/LegoFramework",
     card_thumbnail: "lego-thumbnail.webp",
@@ -50,5 +50,5 @@ pub const PAGE: Project = Project {
 #[component]
 pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - LegoFramework");
-    view! { <ProjectPageView data=&PAGE /> }
+    view! { <ProjectPageView data=&PROJECT /> }
 }

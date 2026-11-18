@@ -5,7 +5,7 @@ use crate::pages::projects::ProjectPageView;
 use crate::project::{Info, Project};
 use crate::skill::Skill;
 
-pub const PAGE: Project = Project {
+pub const PROJECT: Project = Project {
     title: "Radorian",
     href: "/Radorian",
     card_thumbnail: "radorian-thumbnail.webp",
@@ -52,5 +52,5 @@ pub const PAGE: Project = Project {
 #[component]
 pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - Radorian");
-    view! { <ProjectPageView data=&PAGE /> }
+    view! { <ProjectPageView data=&PROJECT /> }
 }

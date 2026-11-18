@@ -5,7 +5,7 @@ use crate::pages::projects::ProjectPageView;
 use crate::project::{Date, Info, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
-pub const PAGE: Project = Project {
+pub const PROJECT: Project = Project {
     title: "Level Editor Plugin",
     href: "/LevelEditorPlugin",
     card_thumbnail: "level-editor-thumbnail.webp",
@@ -54,5 +54,5 @@ pub const PAGE: Project = Project {
 #[component]
 pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - Level Editor Plugin");
-    view! { <ProjectPageView data=&PAGE /> }
+    view! { <ProjectPageView data=&PROJECT /> }
 }

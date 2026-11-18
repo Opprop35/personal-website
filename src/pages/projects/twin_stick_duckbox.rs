@@ -5,7 +5,7 @@ use crate::components::Fragment;
 use crate::project::{Date, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
-pub const PAGE: Project = Project {
+pub const PROJECT: Project = Project {
     title: "Twin-Stick Duckbox",
     href: "/TwinStickDuckBox",
     card_thumbnail: "tsj-thumbnail.webp",
@@ -94,5 +94,5 @@ pub const PAGE: Project = Project {
 #[component]
 pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - Twin-Stick Duckbox");
-    view! { <ProjectPageView data=&PAGE /> }
+    view! { <ProjectPageView data=&PROJECT /> }
 }

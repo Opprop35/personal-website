@@ -7,14 +7,14 @@ use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
 const PROJECTS: [&Project; 8] = [
-    &projects::lego_framework::PAGE,
-    &projects::duck_side_of_the_moon::PAGE,
-    &projects::attic_panic::PAGE,
-    &projects::radorian::PAGE,
-    &projects::duckside_of_the_moon_student::PAGE,
-    &projects::level_editor_plugin::PAGE,
-    &projects::twin_stick_duckbox::PAGE,
-    &projects::folivoras_fall::PAGE,
+    &projects::lego_framework::PROJECT,
+    &projects::duck_side_of_the_moon::PROJECT,
+    &projects::attic_panic::PROJECT,
+    &projects::radorian::PROJECT,
+    &projects::duckside_of_the_moon_student::PROJECT,
+    &projects::level_editor_plugin::PROJECT,
+    &projects::twin_stick_duckbox::PROJECT,
+    &projects::folivoras_fall::PROJECT,
 ];
 
 const ABOUT_TOOLS: [Fragment; 9] = [
