@@ -186,8 +186,7 @@ pub fn Home() -> impl IntoView {
                     <h2 class="mt-1 font-semibold text-[1.25em] text-background-hover-ink">
                         "Software Engineer"
                     </h2>
-                    // TODO: Tweak this divider so that margin is relative and smaller.
-                    <div class="my-6 divider" />
+                    <div class="my-[1em] divider" />
                     <Paragraphs
                         paragraphs=&INTRODUCTION
                         class="space-y-5 leading-relaxed text-ink"
