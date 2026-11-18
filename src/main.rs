@@ -1,4 +1,5 @@
 mod components;
+mod organization;
 mod pages;
 mod project;
 mod skill;

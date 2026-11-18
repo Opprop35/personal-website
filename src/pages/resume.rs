@@ -1,53 +1,79 @@
 use leptos::prelude::*;
 
 use crate::components::{Fragment, Fragments, Link};
+use crate::organization::Organization;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
-struct Experience {
-    org: &'static str,
-    role: &'static str,
-    period: &'static str,
-    points: &'static [&'static str],
-    url: Option<&'static str>,
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+enum ExperienceSource {
+    Organization(Organization),
+    Personal,
 }
 
-const EXPERIENCE: [Experience; 3] = [
-    Experience {
-        org: "THE LEGO GROUP",
-        role: "LEGO® Brick Editor | Tools Programmer",
+impl ExperienceSource {
+    fn name(self) -> &'static str {
+        match self {
+            Self::Organization(organization) => organization.title(),
+            Self::Personal => "Personal Projects",
+        }
+    }
+
+    fn url(self) -> Option<&'static str> {
+        match self {
+            Self::Organization(organization) => Some(organization.url()),
+            Self::Personal => None,
+        }
+    }
+}
+
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+struct ExperienceData {
+    source: ExperienceSource,
+    subtitle: &'static str,
+    period: &'static str,
+    details: Option<&'static [Fragment]>,
+}
+
+const PROJECTS: [ExperienceData; 3] = [
+    ExperienceData {
+        source: ExperienceSource::Organization(Organization::TheLegoGroup),
+        subtitle: "LEGO® Brick Editor | Tools Programmer",
         period: "November 2024 – July 2026",
-        points: &[
-            "Brick Snapping Logic & Tooling",
-            "Import Pipeline Redesign",
-            "Connection Point Based Gizmo",
-        ],
-        url: Some("https://www.lego.com/en-us/aboutus/lego-group"),
+        details: Some(&[
+            Fragment::List(&[
+                "Brick Snapping Logic & Tooling",
+                "Import Pipeline Redesign",
+                "Connection Point Based Gizmo",
+            ]),
+        ]),
     },
-    Experience {
-        org: "STARBREW GAMES",
-        role: "Duckside of the Moon | Game Developer",
+    ExperienceData {
+        source: ExperienceSource::Organization(Organization::StarbrewGames),
+        subtitle: "Duckside of the Moon | Game Developer",
         period: "June 2023 – June 2024",
-        points: &[
-            "Dialogue, Quest, Crafting, & Upgrade Systems",
-            "Save Game System",
-            "Technical Animation",
-            "UI Programming",
-        ],
-        url: Some("https://starbrewgames.com/"),
+        details: Some(&[
+            Fragment::List(&[
+                "Dialogue, Quest, Crafting, & Upgrade Systems",
+                "Save Game System",
+                "Technical Animation",
+                "UI Programming",
+            ]),
+        ]),
     },
-    Experience {
-        org: "PERSONAL PROJECTS",
-        role: "Various projects | Game Developer",
+    ExperienceData {
+        source: ExperienceSource::Personal,
+        subtitle: "Various projects | Game Developer",
         period: "April 2021 – Present",
-        points: &[
-            "Asset Pipelines & Tools",
-            "Procedural Geometry",
-            "Online Multiplayer",
-            "Shader Programming",
-            "Third Person Camera",
-        ],
-        url: None,
+        details: Some(&[
+            Fragment::List(&[
+                "Asset Pipelines & Tools",
+                "Procedural Geometry",
+                "Online Multiplayer",
+                "Shader Programming",
+                "Third Person Camera",
+            ]),
+        ]),
     },
 ];
 
@@ -59,40 +85,31 @@ const SOCRATES_NOTE: [Fragment; 2] = [
     Fragment::MutedText(" (Top 10% of students)"),
 ];
 
-struct Education {
-    school: &'static str,
-    study: &'static str,
-    period: &'static str,
-    note: Option<&'static [Fragment]>,
-    url: Option<&'static str>,
-}
-
-const EDUCATION: [Education; 3] = [
-    Education {
-        school: "BREDA UNIVERSITY OF APPLIED SCIENCES",
-        study: "Creative Media and Game Technologies",
+const EDUCATION: [ExperienceData; 3] = [
+    ExperienceData {
+        source: ExperienceSource::Organization(Organization::BredaUniversityOfAppliedSciences),
+        subtitle: "Creative Media and Game Technologies",
         period: "Sep 2020 – Jul 2024",
-        note: None,
-        url: Some("https://www.buas.nl/en"),
+        details: None,
     },
-    Education {
-        school: "TU DELFT",
-        study: "Computer Science",
+    ExperienceData {
+        source: ExperienceSource::Organization(Organization::TuDelft),
+        subtitle: "Computer Science",
         period: "Sep 2018 – Nov 2019",
-        note: None,
-        url: Some("https://www.tudelft.nl/"),
+        details: None,
     },
-    Education {
-        school: "ISW GASTHUISLAAN",
-        study: "Pre-University Education (VWO)",
+    ExperienceData {
+        source: ExperienceSource::Organization(Organization::IswGasthuislaan),
+        subtitle: "Pre-University Education (VWO)",
         period: "Sep 2012 – Jun 2018",
-        note: Some(&SOCRATES_NOTE),
-        url: Some("https://iswgasthuislaan.nl/"),
+        details: Some(&SOCRATES_NOTE),
     },
 ];
 
-fn org_name(name: &'static str, url: Option<&'static str>) -> AnyView {
-    if let Some(url) = url {
+#[component]
+fn ExperienceHeader(source: ExperienceSource) -> AnyView {
+    let name = source.name();
+    if let Some(url) = source.url() {
         return view! {
             <Link href=url class="hover:underline focus-ring" external=true>
                 {name}
@@ -101,6 +118,30 @@ fn org_name(name: &'static str, url: Option<&'static str>) -> AnyView {
         .into_any();
     }
     view! { <span>{name}</span> }.into_any()
+}
+
+#[component]
+fn Experience(experience: ExperienceData) -> impl IntoView {
+    view! {
+        <article class="last:mb-0 mb-[7mm]">
+            <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
+                <h3 class="font-semibold tracking-wide text-[15px] uppercase">
+                    <ExperienceHeader source=experience.source />
+                </h3>
+                <span class="text-[12px] text-ink-muted">{experience.period}</span>
+            </div>
+            <p class="mt-[1mm] text-[13px] text-ink-muted">{experience.subtitle}</p>
+            {experience
+                .details
+                .map(|details| {
+                    view! {
+                        <div class="text-[12px] leading-snug">
+                            <Fragments fragments=details />
+                        </div>
+                    }
+                })}
+        </article>
+    }
 }
 
 fn skill_items(skills: &[Skill]) -> impl IntoView {
@@ -148,54 +189,19 @@ fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView
 pub fn Resume() -> impl IntoView {
     document().set_title("Jesse Stolk - Resume");
 
-    let experience = EXPERIENCE
+    let projects = PROJECTS
         .iter()
-        .map(|e| {
-            view! {
-                <article class="last:mb-0 mb-[7mm]">
-                    <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
-                        <h3 class="font-semibold tracking-wide text-[15px]">
-                            {org_name(e.org, e.url)}
-                        </h3>
-                        <span class="text-[12px] text-ink-muted">{e.period}</span>
-                    </div>
-                    <p class="mt-[1mm] text-[13px] text-background-hover-ink">{e.role}</p>
-                    <ul class="list-disc mt-[3mm] space-y-[1.5mm] pl-[5mm] text-[13px] marker:text-ink-muted">
-                        {e
-                            .points
-                            .iter()
-                            .copied()
-                            .map(|point| view! { <li>{point}</li> })
-                            .collect_view()}
-                    </ul>
-                </article>
-            }
+        .copied()
+        .map(|experience| {
+            view! { <Experience experience=experience /> }
         })
         .collect_view();
 
     let education = EDUCATION
         .iter()
-        .map(|d| {
-            view! {
-                <article class="last:mb-0 mb-[5mm]">
-                    <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
-                        <h3 class="font-semibold tracking-wide text-[15px]">
-                            {org_name(d.school, d.url)}
-                        </h3>
-                        <span class="text-[12px] text-ink-muted">{d.period}</span>
-                    </div>
-                    <p class="mt-[1mm] text-[13px] text-ink-muted">{d.study}</p>
-                    {d
-                        .note
-                        .map(|note| {
-                            view! {
-                                <p class="italic mt-[1mm] text-[12px]">
-                                    <Fragments fragments=note />
-                                </p>
-                            }
-                        })}
-                </article>
-            }
+        .copied()
+        .map(|experience| {
+            view! { <Experience experience=experience /> }
         })
         .collect_view();
 
@@ -278,9 +284,9 @@ pub fn Resume() -> impl IntoView {
 
                 <main class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
                     <section>
-                        <h2 class="label-uppercase">"Experience"</h2>
+                        <h2 class="label-uppercase">"Projects"</h2>
                         <div class="mt-[2.5mm] mb-[6mm] divider" />
-                        {experience}
+                        {projects}
                     </section>
                     <p class="mt-[5mm] text-[13px]">
                         <Link href="https://jessestolk.com" class="link-muted" external=true>

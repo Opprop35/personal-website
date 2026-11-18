@@ -1,8 +1,10 @@
 use leptos::prelude::*;
 
 use crate::components::Link;
+use crate::organization::Organization;
 use crate::skill::Skill;
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Fragment {
     Text(&'static str),
     StrongText(&'static str),
@@ -19,6 +21,13 @@ impl Fragment {
         Fragment::Link {
             url: skill.url(),
             label: skill.title(),
+        }
+    }
+
+    pub const fn organization(organization: Organization) -> Self {
+        Fragment::Link {
+            url: organization.url(),
+            label: organization.title(),
         }
     }
 }
@@ -54,7 +63,7 @@ pub fn Fragments(fragments: &'static [Fragment]) -> impl IntoView {
             Fragment::List(items) => {
                 let items = *items;
                 view! {
-                    <ul class="pl-5 my-3 space-y-1 list-disc marker:text-ink-muted">
+                    <ul class="pl-5 list-disc marker:text-ink-muted">
                         {items.iter().copied().map(|item| view! { <li>{item}</li> }).collect_view()}
                     </ul>
                 }

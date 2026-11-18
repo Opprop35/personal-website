@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::Fragment;
+use crate::organization::Organization;
 use crate::pages::projects::ProjectPageView;
 use crate::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
@@ -33,8 +34,10 @@ pub const PROJECT: Project = Project {
         socials: &[],
     },
     description: &[
+        Fragment::Text("At "),
+        Fragment::organization(Organization::TheLegoGroup),
         Fragment::Text(
-            "At The LEGO Group I worked on a general purpose LEGO framework for Unreal Engine. \
+            " I worked on a general purpose LEGO framework for Unreal Engine. \
              The LEGO® Brick Editor was a key deliverable. I mainly contributed to the Brick \
              building UX, Bug fixes, Automated Tests, and ",
         ),
