@@ -34,11 +34,11 @@
 }
 
 @utility nav-button {
-  @apply inline-flex items-center p-2 bg-button;
+  @apply inline-flex items-center p-[0.5em] bg-button;
 }
 
 @utility menu-button {
-  @apply block w-full px-3 py-2 text-left bg-button;
+  @apply block w-full px-[0.75em] py-[0.5em] text-left bg-button;
 }
 
 @utility divider {
