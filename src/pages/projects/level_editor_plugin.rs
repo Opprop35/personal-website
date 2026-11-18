@@ -1,8 +1,10 @@
 use leptos::prelude::*;
 
-use crate::components::Fragment;
+use crate::components::{Paragraph, TextFragment};
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType, Section, Showcase};
+use crate::project::{
+    Date, Info, Month, Project, ProjectEndDate, ProjectType, SectionBlock, Showcase,
+};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
@@ -28,24 +30,23 @@ pub const PROJECT: Project = Project {
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Perforce],
         socials: &[],
     },
-    description: &[
-        Fragment::Text("An Unreal Engine "),
-        Fragment::StrongText("editor plugin"),
-        Fragment::Text(
+    description: &[Paragraph::Text(&[
+        TextFragment::Text("An Unreal Engine "),
+        TextFragment::StrongText("editor plugin"),
+        TextFragment::Text(
             " I made in order to get more familiar with C++. The plugin allows you to draw on a \
              grid and define custom behaviours for this. It was designed with quick iteration \
              and flexibility in mind.",
         ),
-    ],
-    sections: &[Section {
-        heading: None,
+    ])],
+    sections: &[SectionBlock::Section {
         title: "Custom Blueprint Behaviours",
-        body: &[Fragment::Text(
+        body: &[Paragraph::Text(&[TextFragment::Text(
             "I defined an interface in C++ that could be implemented through blueprints and \
              allows you to define your own behaviours when dragging across the grid. By \
              implementing this interface I created a blueprint that would automatically tile \
              itself using a free tileset I found online.",
-        )],
+        )])],
         showcase: Some(Showcase::Video("-9xbKIwheJ8")),
     }],
     under_construction: false,

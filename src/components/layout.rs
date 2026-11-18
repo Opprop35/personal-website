@@ -1,19 +1,20 @@
 use leptos::prelude::*;
 
-use crate::components::{Fragment, Fragments, Link, ProjectsMenu};
+use crate::components::{Link, Paragraph, Paragraphs, ProjectsMenu, TextFragment};
 
-const FOOTER_TEXT: [Fragment; 4] = [
-    Fragment::Text("Website made using "),
-    Fragment::Link {
+// TODO: Leptos and Tailwind can be skills as well.
+const FOOTER: [Paragraph; 1] = [Paragraph::Text(&[
+    TextFragment::Text("Website made using "),
+    TextFragment::Link {
         url: "https://leptos.dev/",
         label: "Leptos",
     },
-    Fragment::Text(" & "),
-    Fragment::Link {
+    TextFragment::Text(" & "),
+    TextFragment::Link {
         url: "https://tailwindcss.com/",
         label: "Tailwind",
     },
-];
+])];
 
 #[component]
 pub fn Layout(children: impl IntoView) -> impl IntoView {
@@ -21,7 +22,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
         // TODO: split out header and footer into components
         <div class="text-xs md:text-sm lg:text-base 2xl:text-lg bg-background-light text-ink">
             <div class="flex sticky top-0 z-40 flex-row justify-between items-center w-full print:hidden h-fit border-b-1 border-line bg-background/85 backdrop-blur-sm">
-                <div class="flex flex-row gap-[0.75em] items-center py-[0.25em] pl-3 justify-left">
+                <div class="flex flex-row items-center pl-3 gap-[0.75em] py-[0.25em] justify-left">
                     <Link href="/" class="nav-button">
                         <svg
                             viewBox="0 0 24 24"
@@ -41,7 +42,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
                     </Link>
                 </div>
 
-                <div class="flex gap-[0.75em] items-center py-[0.25em] pr-3 justify-right">
+                <div class="flex items-center pr-3 gap-[0.75em] py-[0.25em] justify-right">
                     <Link href="https://github.com/Opprop35" class="nav-button" external=true>
                         <svg
                             viewBox="0 0 24 24"
@@ -74,9 +75,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
             <div class="flex flex-col min-h-screen bg-background-light">{children}</div>
 
             <div class="py-3 px-4 print:hidden bg-background text-ink-muted">
-                <p class="text-center">
-                    <Fragments fragments=&FOOTER_TEXT />
-                </p>
+                <Paragraphs paragraphs=&FOOTER class="text-center" />
             </div>
         </div>
     }

@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
-use crate::components::{Fragments, Link, SectionHeading, TextSizedImage};
-use crate::project::{Project, Section, Showcase};
+use crate::components::{Link, Paragraphs, SectionHeading, TextSizedImage};
+use crate::project::{Project, SectionBlock, Showcase};
 use crate::IMAGE_DIR;
 
 pub mod attic_panic;
@@ -13,60 +13,66 @@ pub mod level_editor_plugin;
 pub mod radorian;
 pub mod twin_stick_duckbox;
 
-fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
+fn showcase_view(showcase: Showcase) -> impl IntoView {
     match showcase {
-        Showcase::Video(code) => {
-            let code = *code;
-            view! {
-                <div class="relative aspect-video">
-                    <iframe
-                        class="absolute inset-0 w-full h-full border border-line rounded-default"
-                        src=format!("https://www.youtube.com/embed/{code}")
-                        allow="autoplay"
-                        title="Project video"
-                    ></iframe>
-                </div>
-            }
-            .into_any()
+        Showcase::Video(code) => view! {
+            <div class="relative aspect-video">
+                <iframe
+                    class="absolute inset-0 w-full h-full border border-line rounded-default"
+                    src=format!("https://www.youtube.com/embed/{code}")
+                    allow="autoplay"
+                    title="Project video"
+                ></iframe>
+            </div>
         }
-        Showcase::Image { src, alt } => {
-            let src = *src;
-            let alt = *alt;
+        .into_any(),
+        Showcase::Image { src, alt } => view! {
+            <img
+                src=format!("{IMAGE_DIR}/{src}")
+                alt=alt
+                class="object-cover w-full border border-line rounded-default"
+            />
+        }
+        .into_any(),
+    }
+}
+
+#[component]
+fn Section(title: &'static str, showcase: Option<Showcase>, children: Children) -> impl IntoView {
+    let showcase = showcase.map(showcase_view);
+    view! {
+        <div class="flex flex-col gap-6 md:flex-row md:gap-8 md:items-start">
+            <article class="w-full min-w-0 md:w-5/12">
+                <h4 class="pb-1 font-semibold text-ink">{title}</h4>
+                <div class="leading-relaxed text-ink">{children()}</div>
+            </article>
+            <div class="w-full min-w-0 md:w-7/12">{showcase}</div>
+        </div>
+    }
+}
+
+fn section_view(block: &'static SectionBlock) -> impl IntoView {
+    match block {
+        SectionBlock::Heading(heading) => {
+            let heading = *heading;
+            view! { <SectionHeading title=heading /> }.into_any()
+        }
+        SectionBlock::Section {
+            title,
+            body,
+            showcase,
+        } => {
+            let title = *title;
+            let body = *body;
+            let showcase = *showcase;
             view! {
-                <img
-                    src=format!("{IMAGE_DIR}/{src}")
-                    alt=alt
-                    class="object-cover w-full border border-line rounded-default"
-                />
+                <Section title=title showcase=showcase>
+                    <Paragraphs paragraphs=body class="space-y-4" />
+                </Section>
             }
             .into_any()
         }
     }
-}
-
-fn section_view(section: &'static Section) -> impl IntoView {
-    let heading = section.heading.map(|heading| {
-        view! { <SectionHeading title=heading /> }
-    });
-
-    let details = if section.title.is_empty() && section.body.is_empty() {
-        None
-    } else {
-        let showcase = section.showcase.as_ref().map(showcase_view);
-        Some(view! {
-            <div class="flex flex-col gap-6 md:flex-row md:gap-8 md:items-start">
-                <div class="w-full min-w-0 md:w-5/12">
-                    <h4 class="pb-1 font-semibold text-ink">{section.title}</h4>
-                    <div class="leading-relaxed text-ink">
-                        <Fragments fragments=section.body />
-                    </div>
-                </div>
-                <div class="w-full min-w-0 md:w-7/12">{showcase}</div>
-            </div>
-        })
-    };
-
-    view! { <section class="flex flex-col gap-6">{heading} {details}</section> }
 }
 
 #[component]
@@ -160,9 +166,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
             .map(|genre| genre.label())
             .collect::<Vec<_>>()
             .join(", ");
-        view! {
-            <InfoRow label="Genres">{genres}</InfoRow>
-        }
+        view! { <InfoRow label="Genres">{genres}</InfoRow> }
     });
 
     let info_rows = view! {
@@ -208,13 +212,16 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <div class="w-full min-w-0 lg:w-5/12">
                             <h3 class="mb-3 label-uppercase">"Project Info"</h3>
-                            <div class="grid grid-cols-1 gap-y-1 text-ink sm:grid-cols-[max-content_1fr] sm:gap-x-3 sm:gap-y-2 sm:items-center">
-                    {info_rows}
-                </div>
+                            <div class="grid grid-cols-1 gap-y-1 sm:gap-y-2 sm:gap-x-5 sm:items-center text-ink sm:grid-cols-[max-content_1fr]">
+                                {info_rows}
+                            </div>
                         </div>
                         <div class="w-full min-w-0 lg:w-7/12">
                             <h3 class="mb-3 label-uppercase">"Description"</h3>
-                            <Fragments fragments=data.description />
+                            <Paragraphs
+                                paragraphs=data.description
+                                class="space-y-4 leading-relaxed text-ink"
+                            />
                         </div>
                     </div> {has_more_content.then(|| view! { <div class="divider" /> })}
                     <div class="flex flex-col gap-10">{sections}{under_construction}</div>

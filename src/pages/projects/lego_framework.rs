@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::Fragment;
+use crate::components::{Paragraph, TextFragment};
 use crate::organization::Organization;
 use crate::pages::projects::ProjectPageView;
 use crate::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
@@ -33,19 +33,19 @@ pub const PROJECT: Project = Project {
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Git, Skill::Perforce],
         socials: &[],
     },
-    description: &[
-        Fragment::Text("At "),
-        Fragment::organization(Organization::TheLegoGroup),
-        Fragment::Text(
+    description: &[Paragraph::Text(&[
+        TextFragment::Text("At "),
+        TextFragment::organization(Organization::TheLegoGroup),
+        TextFragment::Text(
             " I worked on a general purpose LEGO framework for Unreal Engine. \
              The LEGO® Brick Editor was a key deliverable. I mainly contributed to the Brick \
              building UX, Bug fixes, Automated Tests, and ",
         ),
-        Fragment::StrongText("redesigned"),
-        Fragment::Text(
+        TextFragment::StrongText("redesigned"),
+        TextFragment::Text(
             " the framework's import pipeline to be more idiomatic, performant and flexible.",
         ),
-    ],
+    ])],
     sections: &[],
     under_construction: true,
 };

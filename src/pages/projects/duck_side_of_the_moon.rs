@@ -1,8 +1,10 @@
 use leptos::prelude::*;
 
-use crate::components::Fragment;
+use crate::components::{Paragraph, TextFragment};
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType, Section, Showcase};
+use crate::project::{
+    Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType, SectionBlock, Showcase,
+};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
@@ -54,77 +56,83 @@ pub const PROJECT: Project = Project {
             },
         ],
     },
-    description: &[
-        Fragment::Text(
+    description: &[Paragraph::Text(&[
+        TextFragment::Text(
             "A remake of the original student project. This time it's a cozy adventure game. I \
              was the main ",
         ),
-        Fragment::StrongText("systems & tools programmer"),
-        Fragment::Text(
+        TextFragment::StrongText("systems & tools programmer"),
+        TextFragment::Text(
             " for the project and built its core systems using a combination of C++ and \
              Blueprints. I also helped establish the indie company ",
         ),
-        Fragment::Link {
+        TextFragment::Link {
             url: "https://starbrewgames.com/",
             label: "Starbrew Games",
         },
-        Fragment::Text(" but left the project and company midway through development."),
+        TextFragment::Text(" but left the project and company midway through development."),
+    ]),
     ],
     sections: &[
-        Section {
-            heading: Some("Dialogue"),
+        SectionBlock::Heading("Dialogue"),
+        SectionBlock::Section {
             title: "Dialogue Trees",
             body: &[
-                Fragment::Text(
-                    "In order to build this game's dialogue system I utilized Unreal Engine's \
-                     Instanced UObjects to build a tree of nested dialogue events. These trees \
-                     are built up of:",
-                ),
-                Fragment::List(&[
+                Paragraph::Text(&[
+                    TextFragment::Text(
+                        "In order to build this game's dialogue system I utilized Unreal Engine's \
+                         Instanced UObjects to build a tree of nested dialogue events. These trees \
+                         are built up of:",
+                    ),
+                ]),
+                Paragraph::List(&[
                     "Flow Control (sequences, selectors, choices, etc.)",
                     "Conditions (HasItems, IsQuestCompleted, etc.)",
                     "Events (text, animation, tags/flags, etc.)",
                 ]),
-                Fragment::Text(
-                    "Flow Control will trigger different child Events based on the Conditions \
-                     those Events have. For example, the selector executes only the first event \
-                     for which all conditions are true.",
-                ),
+                Paragraph::Text(&[
+                    TextFragment::Text(
+                        "Flow Control will trigger different child Events based on the Conditions \
+                         those Events have. For example, the selector executes only the first event \
+                         for which all conditions are true.",
+                    ),
+                ]),
             ],
             showcase: Some(Showcase::Image {
                 src: "dsotm-dialogue-tree.webp",
                 alt: "Dialogue Tree",
             }),
         },
-        Section {
-            heading: None,
+        SectionBlock::Section {
             title: "Blueprintable Dialogue Triggers",
-            body: &[Fragment::Text(
+            body: &[Paragraph::Text(&[TextFragment::Text(
                 "To give Designers even more flexibility when working with the system I allowed \
                  them to create custom events as well. This could simply be done by inheriting \
                  from a TriggerDialogueEvent as you can see in the video.",
-            )],
+            )]),
+            ],
             showcase: Some(Showcase::Video("WeMdvLGzth8")),
         },
-        Section {
-            heading: None,
+        SectionBlock::Section {
             title: "Details Panel Customization",
-            body: &[Fragment::Text(
+            body: &[Paragraph::Text(&[TextFragment::Text(
                 "To make building dialogue trees more user friendly I did some research into \
                  Details Panel Customization. This allowed me to add color coding, create a more \
                  compact layout, and add a special wrap button. In the video to the right you \
                  can see how the tree becomes much more readable thanks to this feature.",
-            )],
+            )]),
+            ],
             showcase: Some(Showcase::Video("GuhgFl8Wt-A")),
         },
-        Section {
-            heading: None,
+        SectionBlock::Section {
             title: "Typewriter Text Block",
             body: &[
-                Fragment::Text(
-                    "I also implemented a text block that had several custom features such as:",
-                ),
-                Fragment::List(&[
+                Paragraph::Text(&[
+                    TextFragment::Text(
+                        "I also implemented a text block that had several custom features such as:",
+                    ),
+                ]),
+                Paragraph::List(&[
                     "Being able to print characters one-by-one while keeping consistent \
                      text-wrapping.",
                     "Allowing the creation of animated font materials by packing data in the \
@@ -135,82 +143,62 @@ pub const PROJECT: Project = Project {
             ],
             showcase: Some(Showcase::Video("O8jYwwE2SFA")),
         },
-        Section {
-            heading: Some("Save Game"),
+        SectionBlock::Heading("Save Game"),
+        SectionBlock::Section {
             title: "Save Game System",
             body: &[
-                Fragment::Text(
-                    "I was also responsible for building the game's save game system. \
-                     Implementing features such as:",
-                ),
-                Fragment::List(&[
+                Paragraph::Text(&[
+                    TextFragment::Text(
+                        "I was also responsible for building the game's save game system. \
+                         Implementing features such as:",
+                    ),
+                ]),
+                Paragraph::List(&[
                     "Saving Placed & Spawned Actors",
                     "Saving Global Game State",
                     "Managing Save Game Slots",
                 ]),
-                Fragment::Text(
-                    "I would've liked to build more robust validation as well but I left the \
-                     team before I could take that task on.",
-                ),
+                Paragraph::Text(&[
+                    TextFragment::Text(
+                        "I would've liked to build more robust validation as well but I left the \
+                         team before I could take that task on.",
+                    ),
+                ]),
             ],
             showcase: Some(Showcase::Video("f0m2nBT5Vm4")),
         },
-        Section {
-            heading: Some("Inventory & Crafting System"),
+        SectionBlock::Heading("Inventory & Crafting System"),
+        SectionBlock::Section {
             title: "Asset Definitions",
-            body: &[Fragment::Text(
+            body: &[Paragraph::Text(&[TextFragment::Text(
                 "I used Unreal Engine's Asset Definitions to customize the look of certain types \
                  of assets in the content browser. For example every Item asset displays the \
                  same icon used in the in-game UI.",
-            )],
+            )]),
+            ],
             showcase: Some(Showcase::Image {
                 src: "dsotm-item-assets.webp",
                 alt: "Item Assets",
             }),
         },
-        Section {
-            heading: None,
+        SectionBlock::Section {
             title: "Recipe Data Assets",
-            body: &[Fragment::Text(
+            body: &[Paragraph::Text(&[TextFragment::Text(
                 "Here you can see what a recipe data asset looks like. You can see the icons also \
                  show up in here allowing you to see at a glance what ingredients this recipe \
                  requires.",
-            )],
+            )]),
+            ],
             showcase: Some(Showcase::Image {
                 src: "dsotm-recipe-asset.webp",
                 alt: "Recipe Data Asset",
             }),
         },
-        Section {
-            heading: Some("Quest System..."),
-            title: "",
-            body: &[],
-            showcase: None,
-        },
-        Section {
-            heading: Some("Upgrade System..."),
-            title: "",
-            body: &[],
-            showcase: None,
-        },
-        Section {
-            heading: Some("Technical Animation..."),
-            title: "",
-            body: &[],
-            showcase: None,
-        },
-        Section {
-            heading: Some("UI Programming..."),
-            title: "",
-            body: &[],
-            showcase: None,
-        },
-        Section {
-            heading: Some("And more..."),
-            title: "",
-            body: &[],
-            showcase: None,
-        },
+        SectionBlock::Heading("Quest System..."),
+        SectionBlock::Heading("Upgrade System..."),
+        SectionBlock::Heading("Technical Animation..."),
+        SectionBlock::Heading("UI Programming..."),
+        SectionBlock::Heading("And more..."),
     ],
     under_construction: false,
 };

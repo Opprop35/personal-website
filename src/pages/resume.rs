@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Fragment, Fragments, Link};
+use crate::components::{Link, Paragraph, Paragraphs, TextFragment};
 use crate::organization::Organization;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
@@ -32,7 +32,7 @@ struct ExperienceData {
     source: ExperienceSource,
     subtitle: &'static str,
     period: &'static str,
-    details: Option<&'static [Fragment]>,
+    details: Option<&'static [Paragraph]>,
 }
 
 const PROJECTS: [ExperienceData; 3] = [
@@ -40,50 +40,44 @@ const PROJECTS: [ExperienceData; 3] = [
         source: ExperienceSource::Organization(Organization::TheLegoGroup),
         subtitle: "LEGO® Brick Editor | Tools Programmer",
         period: "November 2024 – July 2026",
-        details: Some(&[
-            Fragment::List(&[
-                "Brick Snapping Logic & Tooling",
-                "Import Pipeline Redesign",
-                "Connection Point Based Gizmo",
-            ]),
-        ]),
+        details: Some(&[Paragraph::List(&[
+            "Brick Snapping Logic & Tooling",
+            "Import Pipeline Redesign",
+            "Connection Point Based Gizmo",
+        ])]),
     },
     ExperienceData {
         source: ExperienceSource::Organization(Organization::StarbrewGames),
         subtitle: "Duckside of the Moon | Game Developer",
         period: "June 2023 – June 2024",
-        details: Some(&[
-            Fragment::List(&[
-                "Dialogue, Quest, Crafting, & Upgrade Systems",
-                "Save Game System",
-                "Technical Animation",
-                "UI Programming",
-            ]),
-        ]),
+        details: Some(&[Paragraph::List(&[
+            "Dialogue, Quest, Crafting, & Upgrade Systems",
+            "Save Game System",
+            "Technical Animation",
+            "UI Programming",
+        ])]),
     },
     ExperienceData {
         source: ExperienceSource::Personal,
         subtitle: "Various projects | Game Developer",
         period: "April 2021 – Present",
-        details: Some(&[
-            Fragment::List(&[
-                "Asset Pipelines & Tools",
-                "Procedural Geometry",
-                "Online Multiplayer",
-                "Shader Programming",
-                "Third Person Camera",
-            ]),
-        ]),
+        details: Some(&[Paragraph::List(&[
+            "Asset Pipelines & Tools",
+            "Procedural Geometry",
+            "Online Multiplayer",
+            "Shader Programming",
+            "Third Person Camera",
+        ])]),
     },
 ];
 
-const SOCRATES_NOTE: [Fragment; 2] = [
-    Fragment::Link {
+const SOCRATES_NOTE: [Paragraph; 1] = [Paragraph::Text(&[
+    TextFragment::Link {
         url: "https://www.socrateshonours.org/lid-worden/toelatingscriteria",
         label: "Socrates",
     },
-    Fragment::MutedText(" (Top 10% of students)"),
-];
+    TextFragment::MutedText(" (Top 10% of students)"),
+])];
 
 const EDUCATION: [ExperienceData; 3] = [
     ExperienceData {
@@ -125,7 +119,7 @@ fn Experience(experience: ExperienceData) -> impl IntoView {
     view! {
         <article class="last:mb-0 mb-[7mm]">
             <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
-                <h3 class="font-semibold tracking-wide text-[15px] uppercase">
+                <h3 class="font-semibold tracking-wide uppercase text-[15px]">
                     <ExperienceHeader source=experience.source />
                 </h3>
                 <span class="text-[12px] text-ink-muted">{experience.period}</span>
@@ -135,9 +129,7 @@ fn Experience(experience: ExperienceData) -> impl IntoView {
                 .details
                 .map(|details| {
                     view! {
-                        <div class="text-[12px] leading-snug">
-                            <Fragments fragments=details />
-                        </div>
+                        <Paragraphs paragraphs=details class="space-y-3 leading-snug text-[12px]" />
                     }
                 })}
         </article>

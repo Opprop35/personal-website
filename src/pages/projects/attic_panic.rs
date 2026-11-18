@@ -1,8 +1,10 @@
 use leptos::prelude::*;
 
-use crate::components::Fragment;
+use crate::components::{Paragraph, TextFragment};
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType, Section, Showcase};
+use crate::project::{
+    Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType, SectionBlock, Showcase,
+};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
@@ -53,53 +55,52 @@ pub const PROJECT: Project = Project {
             },
         ],
     },
-    description: &[
-        Fragment::Text("A year long student project. Attic Panic is an "),
-        Fragment::StrongText("online multiplayer"),
-        Fragment::Text(
+    description: &[Paragraph::Text(&[
+        TextFragment::Text("A year long student project. Attic Panic is an "),
+        TextFragment::StrongText("online multiplayer"),
+        TextFragment::Text(
             " top-down shooter with rogue-like elements. I mainly worked on the upgrade system, \
              individual upgrades, and replication of upgrades between server & clients.",
         ),
-    ],
+    ]),
+],
     sections: &[
-        Section {
-            heading: Some("Upgrades"),
+        SectionBlock::Heading("Upgrades"),
+        SectionBlock::Section {
             title: "Upgrade Data",
-            body: &[Fragment::Text(
-                "While working on the game I redesigned & refactored the upgrade system in order \
-                 to create a smoother data-driven experience for designers. This way the upgrades \
-                 could be balanced & tweaked more easily throughout development. I defined Data \
-                 Assets in C++ which can be created in the content browser of Unreal and were \
-                 automatically detected and used by the game's systems. I also created a short \
-                 video for the team explaining how to create these.",
-            )],
+            body: &[Paragraph::Text(&[
+                TextFragment::Text(
+                    "While working on the game I redesigned & refactored the upgrade system in order \
+                     to create a smoother data-driven experience for designers. This way the upgrades \
+                     could be balanced & tweaked more easily throughout development. I defined Data \
+                     Assets in C++ which can be created in the content browser of Unreal and were \
+                     automatically detected and used by the game's systems. I also created a short \
+                     video for the team explaining how to create these.",
+                ),
+            ]),
+            ],
             showcase: Some(Showcase::Video("i1D-GloaSK4")),
         },
-        Section {
-            heading: None,
+        SectionBlock::Section {
             title: "Upgrade Functionality & Replication",
-            body: &[Fragment::Text(
+            body: &[Paragraph::Text(&[TextFragment::Text(
                 "I worked on a lot of upgrades for the game and made sure those upgrades \
-                     would replicate properly between the different players.",
-            )],
+                    would replicate properly between the different players.",
+            )]),
+            ],
             showcase: Some(Showcase::Video("UryKkAPVYIQ")),
         },
-        Section {
-            heading: None,
+        SectionBlock::Section {
             title: "Upgrade VFX Implementation",
-            body: &[Fragment::Text(
+            body: &[Paragraph::Text(&[TextFragment::Text(
                 "I worked closely with one of the VFX artists to implement some of the VFX. Here \
                  you can see such an example we worked on the mine laying animation, explosion \
                  effect, and Disappear effect.",
-            )],
+            )]),
+            ],
             showcase: Some(Showcase::Video("59EkYuxYBVM")),
         },
-        Section {
-            heading: Some("And more..."),
-            title: "",
-            body: &[],
-            showcase: None,
-        },
+        SectionBlock::Heading("And more..."),
     ],
     under_construction: false,
 };

@@ -1,4 +1,4 @@
-use crate::components::Fragment;
+use crate::components::Paragraph;
 use crate::skill::Skill;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -131,6 +131,7 @@ impl ProjectEndDate {
     }
 }
 
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Showcase {
     Video(&'static str),
     Image {
@@ -139,11 +140,13 @@ pub enum Showcase {
     },
 }
 
-pub struct Section {
-    pub heading: Option<&'static str>,
-    pub title: &'static str,
-    pub body: &'static [Fragment],
-    pub showcase: Option<Showcase>,
+pub enum SectionBlock {
+    Heading(&'static str),
+    Section {
+        title: &'static str,
+        body: &'static [Paragraph],
+        showcase: Option<Showcase>,
+    },
 }
 
 pub struct Link {
@@ -183,10 +186,10 @@ pub struct Project {
     pub badges: &'static [Link],
     /// The structured project-info block (role, skills, end date, socials, ...).
     pub info: Info,
-    /// The description paragraph, shown on both the card and the detail page.
-    pub description: &'static [Fragment],
+    /// The description paragraphs, shown on both the card and the detail page.
+    pub description: &'static [Paragraph],
     /// The detailed content sections shown on the detail page.
-    pub sections: &'static [Section],
+    pub sections: &'static [SectionBlock],
     /// When set, shows an "Under Construction" banner in place of the sections.
     pub under_construction: bool,
 }

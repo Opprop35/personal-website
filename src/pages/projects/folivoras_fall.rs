@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
+use crate::components::{Paragraph, TextFragment};
 use crate::pages::projects::ProjectPageView;
-use crate::components::Fragment;
 use crate::project::{Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
@@ -32,11 +32,11 @@ pub const PROJECT: Project = Project {
         skills: &[Skill::Unreal, Skill::Perforce],
         socials: &[],
     },
-    description: &[Fragment::Text(
+    description: &[Paragraph::Text(&[TextFragment::Text(
         "The first big team project I worked on as a student. Folivora's Fall is a stealth \
          platformer set in a haunted mansion where you play as a sloth. During this project I \
          mostly focussed on level design and some implementation.",
-    )],
+    )])],
     sections: &[],
     under_construction: false,
 };
