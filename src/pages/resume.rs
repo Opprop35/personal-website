@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::Link;
+use crate::components::{Fragment, Fragments, Link};
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
@@ -51,25 +51,33 @@ const EXPERIENCE: [Experience; 3] = [
     },
 ];
 
+const SOCRATES_NOTE: [Fragment; 2] = [
+    Fragment::Link {
+        url: "https://www.socrateshonours.org/lid-worden/toelatingscriteria",
+        label: "Socrates",
+    },
+    Fragment::MutedText(" (Top 10% of students)"),
+];
+
 struct Education {
     school: &'static str,
     study: &'static str,
     period: &'static str,
-    note: Option<&'static str>,
+    note: Option<&'static [Fragment]>,
     url: Option<&'static str>,
 }
 
 const EDUCATION: [Education; 3] = [
     Education {
-        school: "BUAS | BREDA UNIVERSITY OF APPLIED SCIENCES",
+        school: "BREDA UNIVERSITY OF APPLIED SCIENCES",
         study: "Creative Media and Game Technologies",
         period: "Sep 2020 – Jul 2024",
         note: None,
         url: Some("https://www.buas.nl/en"),
     },
     Education {
-        school: "TU DELFT | DELFT UNIVERSITY OF TECHNOLOGY",
-        study: "Technical Informatics",
+        school: "TU DELFT",
+        study: "Computer Science",
         period: "Sep 2018 – Nov 2019",
         note: None,
         url: Some("https://www.tudelft.nl/"),
@@ -78,7 +86,7 @@ const EDUCATION: [Education; 3] = [
         school: "ISW GASTHUISLAAN",
         study: "Pre-University Education (VWO)",
         period: "Sep 2012 – Jun 2018",
-        note: Some("Socrates (Top 10% of students)"),
+        note: Some(&SOCRATES_NOTE),
         url: Some("https://iswgasthuislaan.nl/"),
     },
 ];
@@ -92,8 +100,7 @@ fn org_name(name: &'static str, url: Option<&'static str>) -> AnyView {
         }
         .into_any();
     }
-    view! { <span>{name}</span> }
-    .into_any()
+    view! { <span>{name}</span> }.into_any()
 }
 
 fn skill_items(skills: &[Skill]) -> impl IntoView {
@@ -109,7 +116,7 @@ fn skill_items(skills: &[Skill]) -> impl IntoView {
                 <li>
                     <Link
                         href=url
-                        class="inline-flex items-center hover:underline gap-[1.5mm] focus-ring"
+                        class="inline-flex items-center hover:underline focus-ring gap-[1.5mm]"
                         external=true
                     >
                         <img
@@ -182,7 +189,9 @@ pub fn Resume() -> impl IntoView {
                         .note
                         .map(|note| {
                             view! {
-                                <p class="italic mt-[1mm] text-[12px] text-ink-muted">{note}</p>
+                                <p class="italic mt-[1mm] text-[12px]">
+                                    <Fragments fragments=note />
+                                </p>
                             }
                         })}
                 </article>
@@ -192,11 +201,7 @@ pub fn Resume() -> impl IntoView {
 
     let personal_details = view! {
         <li>
-            <Link
-                href="https://jessestolk.com"
-                class="link-muted"
-                external=true
-            >
+            <Link href="https://jessestolk.com" class="link-muted" external=true>
                 "jessestolk.com"
             </Link>
         </li>
@@ -278,11 +283,7 @@ pub fn Resume() -> impl IntoView {
                         {experience}
                     </section>
                     <p class="mt-[5mm] text-[13px]">
-                        <Link
-                            href="https://jessestolk.com"
-                            class="link-muted"
-                            external=true
-                        >
+                        <Link href="https://jessestolk.com" class="link-muted" external=true>
                             "See jessestolk.com for more info…"
                         </Link>
                     </p>

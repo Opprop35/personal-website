@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
+use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, Project, Section, Showcase};
+use crate::project::{Date, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
 pub const PAGE: Project = Project {
@@ -67,7 +68,7 @@ pub const PAGE: Project = Project {
     },
     description: &[
         Fragment::Text("The original student version of Duckside of the Moon. It's a "),
-        Fragment::Emph("survival game"),
+        Fragment::StrongText("survival game"),
         Fragment::Text(
             " set in space where you play as a duck astronaut. I built the crafting system & core \
              gameplay loop for this game and balanced them.",

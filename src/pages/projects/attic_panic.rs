@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
+use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, Project, Section, Showcase};
+use crate::project::{Date, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
 pub const PAGE: Project = Project {
@@ -54,7 +55,7 @@ pub const PAGE: Project = Project {
     },
     description: &[
         Fragment::Text("A year long student project. Attic Panic is an "),
-        Fragment::Emph("online multiplayer"),
+        Fragment::StrongText("online multiplayer"),
         Fragment::Text(
             " top-down shooter with rogue-like elements. I mainly worked on the upgrade system, \
              individual upgrades, and replication of upgrades between server & clients.",

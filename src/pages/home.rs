@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, SectionHeading, TextSizedImage};
-use crate::pages::projects::{self, fragments_view};
+use crate::components::{Fragment, Fragments, Link, SectionHeading, TextSizedImage};
+use crate::pages::projects;
 use crate::project::Project;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
@@ -17,10 +17,22 @@ const PROJECTS: [&Project; 8] = [
     &projects::folivoras_fall::PAGE,
 ];
 
+const ABOUT_TOOLS: [Fragment; 9] = [
+    Fragment::Text("My favourite tools at the moment are "),
+    Fragment::skill(Skill::Rust),
+    Fragment::Text(", "),
+    Fragment::skill(Skill::Bevy),
+    Fragment::Text(", "),
+    Fragment::skill(Skill::ArchLinux),
+    Fragment::Text(", and "),
+    Fragment::skill(Skill::LazyVim),
+    Fragment::Text(
+        ", but I'm experienced in various other Languages, Game Engines and IDEs as well.",
+    ),
+];
+
 #[component]
 fn ProjectCard(project: &'static Project) -> impl IntoView {
-    let description = fragments_view(project.description);
-
     let contributions = project
         .main_contributions
         .iter()
@@ -68,7 +80,9 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                             <div class="flex flex-col gap-6 lg:w-1/2">
                                 <div>
                                     <h3 class="mb-2 label-uppercase">"Summary"</h3>
-                                    <p class="leading-relaxed text-ink">{description}</p>
+                                    <p class="leading-relaxed text-ink">
+                                        <Fragments fragments=project.description />
+                                    </p>
                                 </div>
                                 <div>
                                     <h3 class="mb-2 label-uppercase">"Main Contributions"</h3>
@@ -159,13 +173,17 @@ pub fn Home() -> impl IntoView {
                         "Software Engineer"
                     </p>
                     <div class="my-6 divider" />
-                    <p class="leading-relaxed text-ink">
-                        "My name is Jesse, I'm a software engineer who has been seriously programming for roughly nine years."
-                        <br /> <br />
-                        "I spent most of my career on games, game tooling, and learning game engine architecture. Having said that, recently I'm interested in exploring other areas of software engineering such as research software engineering and cyber security."
-                        <br /> <br />
-                        "My favourite tools at the moment are Rust, Bevy Engine, Linux, and LazyVim, but I'm experienced in various other Languages, Game Engines and IDEs as well."
-                    </p>
+                    <div class="space-y-5">
+                        <p class="leading-relaxed text-ink">
+                            "My name is Jesse, I'm a software engineer who has been seriously programming for roughly nine years."
+                        </p>
+                        <p class="leading-relaxed text-ink">
+                            "I spent most of my career on games, game tooling, and learning game engine architecture. Having said that, recently I'm interested in exploring other areas of software engineering such as research software engineering and cyber security."
+                        </p>
+                        <p class="leading-relaxed text-ink">
+                            <Fragments fragments=&ABOUT_TOOLS />
+                        </p>
+                    </div>
                 </div>
             </div>
 

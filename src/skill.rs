@@ -30,7 +30,7 @@ impl Skill {
         Self::Blender,
     ];
 
-    pub fn title(self) -> &'static str {
+    pub const fn title(self) -> &'static str {
         match self {
             Self::Rust => "Rust",
             Self::Cpp => "C++",
@@ -81,7 +81,7 @@ impl Skill {
         }
     }
 
-    pub fn url(self) -> &'static str {
+    pub const fn url(self) -> &'static str {
         match self {
             Self::Rust => "https://www.rust-lang.org",
             Self::Cpp => "https://isocpp.org",

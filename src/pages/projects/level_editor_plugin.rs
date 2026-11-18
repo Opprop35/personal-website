@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
+use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Month, Project, Section, Showcase};
+use crate::project::{Date, Info, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
 pub const PAGE: Project = Project {
@@ -29,7 +30,7 @@ pub const PAGE: Project = Project {
     },
     description: &[
         Fragment::Text("An Unreal Engine "),
-        Fragment::Emph("editor plugin"),
+        Fragment::StrongText("editor plugin"),
         Fragment::Text(
             " I made in order to get more familiar with C++. The plugin allows you to draw on a \
              grid and define custom behaviours for this. It was designed with quick iteration \

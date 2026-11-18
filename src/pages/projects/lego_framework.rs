@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
+use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Month, Project};
+use crate::project::{Date, Info, Month, Project};
 use crate::skill::Skill;
 
 pub const PAGE: Project = Project {
@@ -37,7 +38,7 @@ pub const PAGE: Project = Project {
              The LEGO® Brick Editor was a key deliverable. I mainly contributed to the Brick \
              building UX, Bug fixes, Automated Tests, and ",
         ),
-        Fragment::Emph("redesigned"),
+        Fragment::StrongText("redesigned"),
         Fragment::Text(
             " the framework's import pipeline to be more idiomatic, performant and flexible.",
         ),

@@ -1,6 +1,19 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, ProjectsMenu};
+use crate::components::{Fragment, Fragments, Link, ProjectsMenu};
+
+const FOOTER_TEXT: [Fragment; 4] = [
+    Fragment::Text("Website made using "),
+    Fragment::Link {
+        url: "https://leptos.dev/",
+        label: "Leptos",
+    },
+    Fragment::Text(" & "),
+    Fragment::Link {
+        url: "https://tailwindcss.com/",
+        label: "Tailwind",
+    },
+];
 
 #[component]
 pub fn Layout(children: impl IntoView) -> impl IntoView {
@@ -62,21 +75,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
 
             <div class="py-3 px-4 print:hidden bg-background text-ink-muted">
                 <p class="text-center">
-                    "Website made using "
-                    <Link
-                        href="https://leptos.dev/"
-                        class="link-muted"
-                        external=true
-                    >
-                        "Leptos"
-                    </Link> " & "
-                    <Link
-                        href="https://tailwindcss.com/"
-                        class="link-muted"
-                        external=true
-                    >
-                        "Tailwind"
-                    </Link>
+                    <Fragments fragments=&FOOTER_TEXT />
                 </p>
             </div>
         </div>

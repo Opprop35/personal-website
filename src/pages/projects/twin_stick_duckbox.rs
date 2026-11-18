@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, Project, Section, Showcase};
+use crate::components::Fragment;
+use crate::project::{Date, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
 pub const PAGE: Project = Project {

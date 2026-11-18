@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, SectionHeading, TextSizedImage};
-use crate::project::{Fragment, Project, Section, Showcase};
+use crate::components::{Fragments, Link, SectionHeading, TextSizedImage};
+use crate::project::{Project, Section, Showcase};
 use crate::IMAGE_DIR;
 
 pub mod attic_panic;
@@ -12,42 +12,6 @@ pub mod lego_framework;
 pub mod level_editor_plugin;
 pub mod radorian;
 pub mod twin_stick_duckbox;
-
-pub fn fragments_view(fragments: &'static [Fragment]) -> impl IntoView {
-    fragments
-        .iter()
-        .map(|fragment| match fragment {
-            Fragment::Text(text) => {
-                let text = *text;
-                view! { <span>{text}</span> }.into_any()
-            }
-            Fragment::Emph(text) => {
-                let text = *text;
-                view! { <strong class="font-semibold text-background-hover-ink">{text}</strong> }
-                    .into_any()
-            }
-            Fragment::Link { url, label } => {
-                let url = *url;
-                let label = *label;
-                view! {
-                    <Link href=url class="link-muted" external=true>
-                        {label}
-                    </Link>
-                }
-                .into_any()
-            }
-            Fragment::List(items) => {
-                let items = *items;
-                view! {
-                    <ul class="pl-5 my-3 space-y-1 list-disc marker:text-ink-muted">
-                        {items.iter().copied().map(|item| view! { <li>{item}</li> }).collect_view()}
-                    </ul>
-                }
-                .into_any()
-            }
-        })
-        .collect_view()
-}
 
 fn showcase_view(showcase: &'static Showcase) -> impl IntoView {
     match showcase {
@@ -88,13 +52,14 @@ fn section_view(section: &'static Section) -> impl IntoView {
     let details = if section.title.is_empty() && section.body.is_empty() {
         None
     } else {
-        let body = fragments_view(section.body);
         let showcase = section.showcase.as_ref().map(showcase_view);
         Some(view! {
             <div class="flex flex-col gap-6 md:flex-row md:gap-8 md:items-start">
                 <div class="w-full min-w-0 md:w-5/12">
                     <h4 class="pb-1 font-semibold text-ink">{section.title}</h4>
-                    <div class="leading-relaxed text-ink">{body}</div>
+                    <div class="leading-relaxed text-ink">
+                        <Fragments fragments=section.body />
+                    </div>
                 </div>
                 <div class="w-full min-w-0 md:w-7/12">{showcase}</div>
             </div>
@@ -205,8 +170,6 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         {socials_row}
     };
 
-    let description = fragments_view(data.description);
-
     let sections = data.sections.iter().map(section_view).collect_view();
 
     let under_construction = data.under_construction.then(|| {
@@ -240,7 +203,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                         </div>
                         <div class="w-full min-w-0 lg:w-7/12">
                             <h3 class="mb-3 label-uppercase">"Description"</h3>
-                            {description}
+                            <Fragments fragments=data.description />
                         </div>
                     </div> {has_more_content.then(|| view! { <div class="divider" /> })}
                     <div class="flex flex-col gap-10">{sections}{under_construction}</div>

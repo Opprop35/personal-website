@@ -1,3 +1,4 @@
+pub mod fragments;
 pub mod layout;
 pub mod links;
 pub mod menus;
@@ -6,6 +7,7 @@ pub mod section_heading;
 pub mod text_sized_image;
 pub mod toast;
 
+pub use fragments::{Fragment, Fragments};
 pub use layout::Layout;
 pub use links::Link;
 pub use menus::projects_menu::ProjectsMenu;

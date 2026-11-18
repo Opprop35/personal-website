@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
+use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Fragment, Info, Project};
+use crate::project::{Info, Project};
 use crate::skill::Skill;
 
 pub const PAGE: Project = Project {
@@ -37,7 +38,7 @@ pub const PAGE: Project = Project {
     },
     description: &[
         Fragment::Text("A "),
-        Fragment::Emph("personal project"),
+        Fragment::StrongText("personal project"),
         Fragment::Text(
             " I used to work on in my spare time at university. It's a third person game with an \
              experimental art style. I made everything myself from code to art to sound to \

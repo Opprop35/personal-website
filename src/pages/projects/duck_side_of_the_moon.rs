@@ -1,7 +1,8 @@
 use leptos::prelude::*;
 
+use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Fragment, Info, Link, Month, Project, Section, Showcase};
+use crate::project::{Date, Info, Link, Month, Project, Section, Showcase};
 use crate::skill::Skill;
 
 pub const PAGE: Project = Project {
@@ -58,7 +59,7 @@ pub const PAGE: Project = Project {
             "A remake of the original student project. This time it's a cozy adventure game. I \
              was the main ",
         ),
-        Fragment::Emph("systems & tools programmer"),
+        Fragment::StrongText("systems & tools programmer"),
         Fragment::Text(
             " for the project and built its core systems using a combination of C++ and \
              Blueprints. I also helped establish the indie company ",

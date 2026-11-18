@@ -1,3 +1,4 @@
+use crate::components::Fragment;
 use crate::skill::Skill;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -36,7 +37,6 @@ impl Month {
     }
 }
 
-/// A calendar date with day, month and year.
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub struct Date {
     pub day: u8,
@@ -53,16 +53,6 @@ impl Date {
             year = self.year
         )
     }
-}
-
-pub enum Fragment {
-    Text(&'static str),
-    Emph(&'static str),
-    Link {
-        url: &'static str,
-        label: &'static str,
-    },
-    List(&'static [&'static str]),
 }
 
 pub enum Showcase {
