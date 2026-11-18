@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 use crate::pages::projects::ProjectPageView;
 use crate::components::Fragment;
-use crate::project::{Date, Info, Link, Month, Project};
+use crate::project::{Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
@@ -19,12 +19,12 @@ pub const PROJECT: Project = Project {
     }],
     info: Info {
         role: "Level Designer",
-        genres: "Platformer, Puzzle, Stealth",
-        project_type: "University Project",
+        genres: Some(&[Genre::Platformer, Genre::Puzzle, Genre::Stealth]),
+        project_type: ProjectType::StudentGame,
         platforms: "PC",
         team_size: "11",
         duration: "8 weeks",
-        release_date: Some(Date {
+        end_date: ProjectEndDate::Ended(Date {
             day: 7,
             month: Month::July,
             year: 2021,

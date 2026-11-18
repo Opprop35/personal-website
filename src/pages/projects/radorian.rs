@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Info, Project};
+use crate::project::{Date, Genre, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
@@ -21,12 +21,16 @@ pub const PROJECT: Project = Project {
     badges: &[],
     info: Info {
         role: "Sole Developer",
-        genres: "Atmospheric, Crafting, Third Person",
-        project_type: "Personal Project",
+        genres: Some(&[Genre::Atmospheric, Genre::Crafting, Genre::ThirdPerson]),
+        project_type: ProjectType::PersonalProject,
         platforms: "PC",
         team_size: "Solo",
         duration: "Too Long",
-        release_date: None,
+        end_date: ProjectEndDate::Ended(Date {
+            day: 21,
+            month: Month::December,
+            year: 2024,
+        }),
         skills: &[
             Skill::Godot,
             Skill::CSharp,

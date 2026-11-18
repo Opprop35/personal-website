@@ -101,7 +101,7 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                         >
                             "Read More"
                         </a>
-                        <span class="text-ink-muted">{project.info.release_date_label()}</span>
+                        <span class="text-ink-muted">{project.info.end_date.label()}</span>
                     </div>
                 </div>
             </div>

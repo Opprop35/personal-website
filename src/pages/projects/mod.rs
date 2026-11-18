@@ -72,10 +72,8 @@ fn section_view(section: &'static Section) -> impl IntoView {
 #[component]
 fn InfoRow(label: &'static str, children: Children) -> impl IntoView {
     view! {
-        <div class="flex flex-col gap-0.5 sm:flex-row sm:gap-x-3 sm:items-baseline">
-            <span class="shrink-0 text-ink-muted">{label}</span>
-            <span class="min-w-0">{children()}</span>
-        </div>
+        <span class="text-ink-muted">{label}":"</span>
+        <span class="min-w-0">{children()}</span>
     }
 }
 
@@ -156,17 +154,28 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         }
     });
 
+    let genres_row = info.genres.map(|genres| {
+        let genres = genres
+            .iter()
+            .map(|genre| genre.label())
+            .collect::<Vec<_>>()
+            .join(", ");
+        view! {
+            <InfoRow label="Genres">{genres}</InfoRow>
+        }
+    });
+
     let info_rows = view! {
         <InfoRow label="Role">{info.role}</InfoRow>
-        <InfoRow label="Genres">{info.genres}</InfoRow>
-        <InfoRow label="Type">{info.project_type}</InfoRow>
+        {genres_row}
+        <InfoRow label="Type">{info.project_type.label()}</InfoRow>
         <InfoRow label="Skills Applied">
             <span class="inline-flex gap-2 items-center">{skills}</span>
         </InfoRow>
         <InfoRow label="Platforms">{info.platforms}</InfoRow>
         <InfoRow label="Team Size">{info.team_size}</InfoRow>
         <InfoRow label="Duration">{info.duration}</InfoRow>
-        <InfoRow label="Release Date">{info.release_date_label()}</InfoRow>
+        <InfoRow label="End Date">{info.end_date.label()}</InfoRow>
         {socials_row}
     };
 
@@ -199,7 +208,9 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <div class="w-full min-w-0 lg:w-5/12">
                             <h3 class="mb-3 label-uppercase">"Project Info"</h3>
-                            <div class="grid gap-y-2 text-ink">{info_rows}</div>
+                            <div class="grid grid-cols-1 gap-y-1 text-ink sm:grid-cols-[max-content_1fr] sm:gap-x-3 sm:gap-y-2 sm:items-center">
+                    {info_rows}
+                </div>
                         </div>
                         <div class="w-full min-w-0 lg:w-7/12">
                             <h3 class="mb-3 label-uppercase">"Description"</h3>

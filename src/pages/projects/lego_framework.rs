@@ -2,11 +2,11 @@ use leptos::prelude::*;
 
 use crate::components::Fragment;
 use crate::pages::projects::ProjectPageView;
-use crate::project::{Date, Info, Month, Project};
+use crate::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
-    title: "LEGO® Brick Editor",
+    title: "LEGO® Framework",
     href: "/LegoFramework",
     card_thumbnail: "lego-thumbnail.webp",
     main_contributions: &[
@@ -19,15 +19,15 @@ pub const PROJECT: Project = Project {
     badges: &[],
     info: Info {
         role: "Tools Programmer",
-        genres: "None",
-        project_type: "Plugins & Tooling",
+        genres: None,
+        project_type: ProjectType::PluginsAndTooling,
         platforms: "PC",
         team_size: "~5",
         duration: "2 Years",
-        release_date: Some(Date {
-            day: 17,
-            month: Month::June,
-            year: 2025,
+        end_date: ProjectEndDate::Ended(Date {
+            day: 1,
+            month: Month::August,
+            year: 2026,
         }),
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Git, Skill::Perforce],
         socials: &[],
