@@ -1,10 +1,6 @@
 name: Deploy to GitHub Pages
 
 on:
-  push:
-    branches:
-      - main
-  pull_request:
   workflow_dispatch:
 
 permissions:
@@ -13,15 +9,15 @@ permissions:
   id-token: write
 
 concurrency:
-  group: "pages"
-  cancel-in-progress: false
+  group: "deploy"
+  cancel-in-progress: true
 
 jobs:
   build:
     runs-on: ubuntu-latest
     steps:
       - name: Checkout
-        uses: actions/checkout@v4
+        uses: actions/checkout@v7.0.1
 
       - name: Set up Rust
         run: |
@@ -29,9 +25,12 @@ jobs:
           rustup default stable
           rustup target add wasm32-unknown-unknown
 
-      - name: Install Trunk
+      - name: Cache Rust dependencies
+        uses: Swatinem/rust-cache@v2.9.3
+
+      - name: Download Trunk
         run: |
-          curl -sSL https://github.com/trunk-rs/trunk/releases/latest/download/trunk-x86_64-unknown-linux-gnu.tar.gz | tar xz
+          curl -sSL https://github.com/trunk-rs/trunk/releases/download/v0.22.1/trunk-x86_64-unknown-linux-gnu.tar.gz | tar xz
           mv trunk /usr/local/bin/trunk
 
       - name: Build
@@ -42,13 +41,10 @@ jobs:
 
       - name: Verify artifact
         run: |
-          ls -la dist
-          test -f dist/index.html && echo "index.html present"
-          test -f dist/404.html  && echo "404.html present"
-          test -f dist/CNAME     && echo "CNAME present"
+          test -f dist/index.html && test -f dist/404.html && test -f dist/CNAME
 
       - name: Upload artifact
-        uses: actions/upload-pages-artifact@v3
+        uses: actions/upload-pages-artifact@v4.0.0
         with:
           path: dist
 
@@ -61,4 +57,4 @@ jobs:
     steps:
       - name: Deploy to GitHub Pages
         id: deployment
-        uses: actions/deploy-pages@v4
+        uses: actions/deploy-pages@v4.0.5
