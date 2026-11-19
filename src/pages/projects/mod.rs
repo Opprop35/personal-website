@@ -1,8 +1,8 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, Paragraphs, SectionHeading, TextSizedImage};
-use crate::project::{Project, SectionBlock, Showcase};
 use crate::IMAGE_DIR;
+use crate::components::{Link, Paragraphs, Section, TextSizedImage};
+use crate::project::{Project, SectionBlock, Showcase};
 
 pub mod attic_panic;
 pub mod duck_side_of_the_moon;
@@ -38,7 +38,11 @@ fn showcase_view(showcase: Showcase) -> impl IntoView {
 }
 
 #[component]
-fn Section(title: &'static str, showcase: Option<Showcase>, children: Children) -> impl IntoView {
+fn SectionBody(
+    title: &'static str,
+    showcase: Option<Showcase>,
+    children: Children,
+) -> impl IntoView {
     let showcase = showcase.map(showcase_view);
     view! {
         <div class="flex flex-col gap-6 md:flex-row md:gap-8 md:items-start">
@@ -55,7 +59,7 @@ fn section_view(block: &'static SectionBlock) -> impl IntoView {
     match block {
         SectionBlock::Heading(heading) => {
             let heading = *heading;
-            view! { <SectionHeading title=heading /> }.into_any()
+            view! { <Section title=heading /> }.into_any()
         }
         SectionBlock::Section {
             title,
@@ -66,9 +70,9 @@ fn section_view(block: &'static SectionBlock) -> impl IntoView {
             let body = *body;
             let showcase = *showcase;
             view! {
-                <Section title=title showcase=showcase>
+                <SectionBody title=title showcase=showcase>
                     <Paragraphs paragraphs=body class="space-y-4" />
-                </Section>
+                </SectionBody>
             }
             .into_any()
         }

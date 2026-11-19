@@ -1,18 +1,19 @@
 use leptos::prelude::*;
 
-use crate::components::{
-    Link, Paragraph, Paragraphs, SectionHeading, TextFragment, TextSizedImage,
-};
+use crate::components::{Link, Paragraph, Paragraphs, Section, TextFragment, TextSizedImage};
 use crate::pages::projects;
 use crate::project::Project;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
-const PROJECTS: [&Project; 8] = [
+const PROJECTS: [&Project; 4] = [
     &projects::lego_framework::PROJECT,
     &projects::duck_side_of_the_moon::PROJECT,
     &projects::attic_panic::PROJECT,
     &projects::radorian::PROJECT,
+];
+
+const OLDER_PROJECTS: [&Project; 4] = [
     &projects::duckside_of_the_moon_student::PROJECT,
     &projects::level_editor_plugin::PROJECT,
     &projects::twin_stick_duckbox::PROJECT,
@@ -153,6 +154,20 @@ fn SkillCard(skill: Skill) -> impl IntoView {
 }
 
 #[component]
+fn OlderProjectRow(project: &'static Project) -> impl IntoView {
+    view! {
+        <Link
+            href=project.href
+            class="flex flex-wrap gap-y-1 gap-x-3 items-baseline py-3 px-4 w-full border transition-colors duration-150 focus-ring border-line bg-background hover:border-background-hover-ink/50"
+        >
+            <span class="font-semibold text-ink">{project.title}</span>
+            <span class="text-ink-muted">{project.info.project_type.label()}</span>
+            <span class="ml-auto text-ink-muted">{project.info.end_date.label()}</span>
+        </Link>
+    }
+}
+
+#[component]
 pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - Software Engineer");
 
@@ -161,6 +176,14 @@ pub fn Page() -> impl IntoView {
         .copied()
         .map(|project| {
             view! { <ProjectCard project=project /> }
+        })
+        .collect_view();
+
+    let older_projects = OLDER_PROJECTS
+        .iter()
+        .copied()
+        .map(|project| {
+            view! { <OlderProjectRow project=project /> }
         })
         .collect_view();
 
@@ -173,7 +196,7 @@ pub fn Page() -> impl IntoView {
         .collect_view();
 
     view! {
-        <div class="flex flex-col w-full">
+        <div class="flex flex-col gap-10 w-full">
             <div class="flex flex-col items-stretch md:flex-row bg-background-light">
                 <iframe
                     class="w-full md:order-last md:w-7/12 md:h-auto h-[72vh] max-h-[55vw] md:max-h-none"
@@ -194,19 +217,23 @@ pub fn Page() -> impl IntoView {
                 </div>
             </div>
 
-            <div class="flex flex-col">
-                <SectionHeading title="Projects" class="py-6 px-4 md:px-8 lg:py-8" />
-                <div class="flex flex-col gap-10 px-4 pt-4 pb-8 mx-auto w-full max-w-6xl md:px-8 lg:px-0">
+            <Section title="Projects">
+                <div class="flex flex-col gap-10 px-4 pb-8 mx-auto w-full max-w-6xl md:px-8 lg:px-0">
                     {projects}
                 </div>
-            </div>
+            </Section>
 
-            <div class="flex flex-col">
-                <SectionHeading title="Software Skills" class="py-6 px-4 md:px-8 lg:py-8" />
+            <Section title="Older projects" collapsible=true>
+                <div class="flex flex-col gap-3 px-4 pb-8 mx-auto w-full max-w-6xl md:px-8 lg:px-0">
+                    {older_projects}
+                </div>
+            </Section>
+
+            <Section title="Software Skills">
                 <div class="grid grid-cols-1 gap-4 px-4 pb-14 mx-auto w-full max-w-6xl sm:grid-cols-2 lg:grid-cols-5 lg:px-0">
                     {skills}
                 </div>
-            </div>
+            </Section>
         </div>
     }
 }
