@@ -7,7 +7,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Folivora's Fall",
-    href: "/FolivorasFall",
+    href: "/folivoras-fall",
     card_thumbnail: "ff-thumbnail.webp",
     main_contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
     background: Some("ff-background.webp"),

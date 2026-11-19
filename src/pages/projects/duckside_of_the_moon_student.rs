@@ -9,7 +9,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Duckside of the Moon (Student)",
-    href: "/DucksideOfTheMoonStudent",
+    href: "/duckside-of-the-moon-student",
     card_thumbnail: "dsotm-student-thumbnail.webp",
     main_contributions: &[
         "Inventory & Crafting System",

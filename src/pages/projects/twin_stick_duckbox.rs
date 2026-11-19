@@ -9,7 +9,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Twin-Stick Duckbox",
-    href: "/TwinStickDuckBox",
+    href: "/twin-stick-duckbox",
     card_thumbnail: "tsj-thumbnail.webp",
     main_contributions: &[
         "Enemy Spawn Event System",

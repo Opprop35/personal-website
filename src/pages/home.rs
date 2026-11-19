@@ -153,7 +153,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
 }
 
 #[component]
-pub fn Home() -> impl IntoView {
+pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - Software Engineer");
 
     let projects = PROJECTS

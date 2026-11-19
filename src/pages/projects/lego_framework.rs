@@ -8,7 +8,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "LEGO® Framework",
-    href: "/LegoFramework",
+    href: "/lego-framework",
     card_thumbnail: "lego-thumbnail.webp",
     main_contributions: &[
         "Brick Snapping Logic & Tooling",

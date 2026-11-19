@@ -179,7 +179,7 @@ fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView
 }
 
 #[component]
-pub fn Resume() -> impl IntoView {
+pub fn Page() -> impl IntoView {
     document().set_title(&format!("Jesse Stolk - {}", resume_label()));
 
     let projects = PROJECTS

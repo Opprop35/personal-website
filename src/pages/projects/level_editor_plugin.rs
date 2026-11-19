@@ -9,7 +9,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Level Editor Plugin",
-    href: "/LevelEditorPlugin",
+    href: "/level-editor-plugin",
     card_thumbnail: "level-editor-thumbnail.webp",
     main_contributions: &["Tool Programming", "Tool Design"],
     background: Some("level-editor-background.webp"),
