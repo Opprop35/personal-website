@@ -1,4 +1,5 @@
 mod components;
+mod locale;
 mod organization;
 mod pages;
 mod project;

@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::{Link, Paragraph, Paragraphs, TextFragment};
+use crate::locale::resume_label;
 use crate::organization::Organization;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
@@ -179,7 +180,7 @@ fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView
 
 #[component]
 pub fn Resume() -> impl IntoView {
-    document().set_title("Jesse Stolk - Resume");
+    document().set_title(&format!("Jesse Stolk - {}", resume_label()));
 
     let projects = PROJECTS
         .iter()

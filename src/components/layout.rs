@@ -1,6 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::{Link, Paragraph, Paragraphs, ProjectsMenu, TextFragment};
+use crate::locale::resume_label;
 
 // TODO: Leptos and Tailwind can be skills as well.
 const FOOTER: [Paragraph; 1] = [Paragraph::Text(&[
@@ -38,7 +39,7 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
                     <ProjectsMenu />
 
                     <Link href="/resume" class="nav-button">
-                        "Resume"
+                        {resume_label()}
                     </Link>
                 </div>
 
