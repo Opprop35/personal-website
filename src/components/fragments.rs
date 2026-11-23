@@ -48,7 +48,7 @@ pub fn TextFragments(fragments: &'static [TextFragment]) -> impl IntoView {
             }
             TextFragment::StrongText(text) => {
                 let text = *text;
-                view! { <strong class="font-semibold text-background-hover-ink">{text}</strong> }
+                view! { <strong class="font-bold text-ink">{text}</strong> }
                     .into_any()
             }
             TextFragment::MutedText(text) => {

@@ -170,7 +170,7 @@ fn skill_items(skills: &[Skill]) -> impl IntoView {
 fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView {
     view! {
         <section class="last:mb-0 mb-[7mm]">
-            <h2 class="font-semibold uppercase mb-[3mm] text-[11px] tracking-[0.16em] text-background-hover-ink">
+            <h2 class="font-semibold uppercase mb-[3mm] text-[11px] tracking-[0.16em] text-ink-muted">
                 {title}
             </h2>
             <ul class="leading-snug space-y-[2.5mm] text-[13px] text-ink">{children}</ul>
@@ -205,7 +205,7 @@ pub fn Page() -> impl IntoView {
             </Link>
         </li>
         <li>
-            <a href="mailto:jeus.stolk@gmail.com" class="break-all hover:underline focus-ring">
+            <a href="mailto:jeus.stolk@gmail.com" class="link-muted break-all">
                 "jeus.stolk@gmail.com"
             </a>
         </li>
@@ -233,8 +233,8 @@ pub fn Page() -> impl IntoView {
     };
 
     view! {
-        <div class="flex flex-col flex-1 mx-auto w-full max-w-[210mm] bg-background-light">
-            <header class="flex items-center gap-[8mm] bg-background px-[12mm] py-[9mm]">
+        <div class="flex flex-col flex-1 mx-auto w-full max-w-[210mm] bg-surface">
+            <header class="flex items-center gap-[8mm] bg-surface-deep px-[12mm] py-[9mm]">
                 <img
                     src="public/images/personal-photo.webp"
                     alt="Portrait of Jesse Stolk"
@@ -242,7 +242,7 @@ pub fn Page() -> impl IntoView {
                 />
                 <div class="flex-1 min-w-0">
                     <h1 class="font-bold text-[26px] tracking-[0.06em]">"JESSE STOLK"</h1>
-                    <p class="mt-[1.5mm] text-[14px] text-background-hover-ink">
+                    <p class="mt-[1.5mm] text-[14px] text-ink-muted">
                         "Software Engineer"
                     </p>
                 </div>
@@ -266,7 +266,7 @@ pub fn Page() -> impl IntoView {
             </header>
 
             <div class="flex flex-1">
-                <aside class="w-[68mm] shrink-0 bg-background-hover px-[7mm] py-[9mm]">
+                <aside class="w-[68mm] shrink-0 bg-surface-raised px-[7mm] py-[9mm]">
                     <SidebarSection title="Personal Details" children=personal_details />
                     <SidebarSection title="Programming" children=programming />
                     <SidebarSection title="Game Engines" children=game_engines />

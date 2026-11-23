@@ -21,8 +21,8 @@ const FOOTER: [Paragraph; 1] = [Paragraph::Text(&[
 pub fn Layout(children: impl IntoView) -> impl IntoView {
     view! {
         // TODO: split out header and footer into components
-        <div class="text-xs md:text-sm lg:text-base 2xl:text-lg bg-background-light text-ink">
-            <div class="flex sticky top-0 z-40 flex-row justify-between items-center w-full print:hidden h-fit border-b-1 border-line bg-background/85 backdrop-blur-sm">
+        <div class="text-xs md:text-sm lg:text-base 2xl:text-lg bg-surface text-ink">
+            <div class="flex sticky top-0 z-40 flex-row justify-between items-center w-full print:hidden h-fit border-b-1 border-line bg-surface-deep/85 backdrop-blur-sm">
                 <div class="flex flex-row items-center pl-3 gap-[0.75em] py-[0.25em] justify-left">
                     <Link href="/" class="nav-button">
                         <svg
@@ -73,9 +73,9 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
                 </div>
             </div>
 
-            <div class="flex flex-col min-h-screen bg-background-light">{children}</div>
+            <div class="flex flex-col min-h-screen bg-surface">{children}</div>
 
-            <div class="py-3 px-4 print:hidden bg-background text-ink-muted">
+            <div class="py-3 px-4 print:hidden bg-surface-deep text-ink-muted">
                 <Paragraphs paragraphs=&FOOTER class="text-center" />
             </div>
         </div>

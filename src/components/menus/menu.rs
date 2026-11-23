@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 use crate::components::NavButton;
 
-const MENU: &str = "rounded-default border border-line bg-background p-1 shadow-lg";
+const MENU: &str = "rounded-default border border-line bg-surface-deep p-1 shadow-lg";
 
 #[component]
 pub fn Menu(label: &'static str, children: Children) -> impl IntoView {

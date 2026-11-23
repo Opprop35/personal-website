@@ -77,11 +77,11 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
         <div class="block">
             <div class="flex flex-col items-center transition-transform duration-300 ease-nav has-[.link-nav:hover]:scale-[1.02]">
                 <a tabindex="-1" href=project.href class="flex focus-ring link-nav w-fit">
-                    <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-background-hover text-ink">
+                    <span class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-surface-raised text-ink">
                         {project.title}
                     </span>
                 </a>
-                <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-background has-[.link-nav:hover]:border-background-hover-ink/50">
+                <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-surface-deep has-[.link-nav:hover]:border-ink-muted/50">
                     <div class="px-4 pt-4 md:px-6 md:pt-6">
                         <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
                             <a href=project.href class="block lg:w-1/2 focus-ring link-nav">
@@ -137,7 +137,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
     view! {
         <Link
             href=skill.url()
-            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 focus-ring border-line bg-background hover:border-background-hover-ink/50"
+            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 focus-ring border-line bg-surface-deep hover:border-ink-muted/50"
             external=true
         >
             <img
@@ -158,7 +158,7 @@ fn OlderProjectRow(project: &'static Project) -> impl IntoView {
     view! {
         <Link
             href=project.href
-            class="flex flex-wrap gap-y-1 gap-x-3 items-baseline py-3 px-4 w-full border transition-colors duration-150 focus-ring border-line bg-background hover:border-background-hover-ink/50"
+            class="flex flex-wrap gap-y-1 gap-x-3 items-baseline py-3 px-4 w-full border transition-colors duration-150 focus-ring border-line bg-surface-deep hover:border-ink-muted/50"
         >
             <span class="font-semibold text-ink">{project.title}</span>
             <span class="text-ink-muted">{project.info.project_type.label()}</span>
@@ -197,16 +197,16 @@ pub fn Page() -> impl IntoView {
 
     view! {
         <div class="flex flex-col gap-10 w-full">
-            <div class="flex flex-col items-stretch md:flex-row bg-background-light">
+            <div class="flex flex-col items-stretch md:flex-row bg-surface">
                 <iframe
                     class="w-full md:order-last md:w-7/12 md:h-auto h-[72vh] max-h-[55vw] md:max-h-none"
                     src="https://www.youtube-nocookie.com/embed/vqVBLEHiiMU?autoplay=1&mute=1&loop=1&playlist=vqVBLEHiiMU"
                     allow="autoplay"
                     title="About me"
                 ></iframe>
-                <div class="py-8 px-6 w-full bg-gradient-to-b md:w-6/12 from-background-light to-background">
+                <div class="py-8 px-6 w-full bg-gradient-to-b md:w-6/12 from-surface to-surface-deep">
                     <h1 class="font-bold tracking-tight text-[2.25em] text-ink">"Jesse Stolk"</h1>
-                    <h2 class="mt-1 font-semibold text-[1.25em] text-background-hover-ink">
+                    <h2 class="mt-1 font-semibold text-[1.25em] text-ink-muted">
                         "Software Engineer"
                     </h2>
                     <div class="my-[1em] divider" />

@@ -206,10 +206,10 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
     view! {
         <div class=background_class style=background_style>
             <div class="flex flex-col py-10 px-4 mx-auto w-full max-w-6xl md:py-14 md:px-8">
-                <span class="self-center py-2.5 px-4 max-w-full font-semibold tracking-wide text-center border-t border-x border-line bg-background-hover text-ink rounded-t-nav">
+                <span class="self-center py-2.5 px-4 max-w-full font-semibold tracking-wide text-center border-t border-x border-line bg-surface-raised text-ink rounded-t-nav">
                     {title}
                 </span>
-                <div class="flex flex-col gap-8 p-4 bg-gradient-to-b border md:p-8 border-line from-background/95 to-background rounded-b-nav">
+                <div class="flex flex-col gap-8 p-4 bg-gradient-to-b border md:p-8 border-line from-surface-deep/95 to-surface-deep rounded-b-nav">
                     {hero_video}
                     <div class="flex flex-wrap gap-4 justify-center items-center">{badges}</div>
                     <div class="divider" />
