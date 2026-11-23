@@ -22,7 +22,7 @@ const OLDER_PROJECTS: [&Project; 4] = [
 
 const INTRODUCTION: [Paragraph; 3] = [
     Paragraph::Text(&[TextFragment::Text(
-        "My name is Jesse, I'm a software engineer who has been seriously programming for \
+        "My name is Jesse, I'm a software engineer who has been programming for \
          roughly nine years.",
     )]),
     Paragraph::Text(&[TextFragment::Text(
