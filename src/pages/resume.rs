@@ -277,7 +277,7 @@ pub fn Page() -> impl IntoView {
 
                 <main class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
                     <section>
-                        <h2 class="label-uppercase">"Projects"</h2>
+                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">"Projects"</h2>
                         <div class="mt-[2.5mm] mb-[6mm] divider" />
                         {projects}
                     </section>
@@ -288,7 +288,7 @@ pub fn Page() -> impl IntoView {
                     </p>
 
                     <section class="mt-auto pt-[4mm]">
-                        <h2 class="label-uppercase">"Education"</h2>
+                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">"Education"</h2>
                         <div class="mt-[2.5mm] mb-[6mm] divider" />
                         {education}
                     </section>
