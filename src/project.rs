@@ -140,13 +140,17 @@ pub enum Showcase {
     },
 }
 
-pub enum SectionBlock {
-    Heading(&'static str),
-    Section {
-        title: &'static str,
-        body: &'static [Paragraph],
-        showcase: Option<Showcase>,
-    },
+/// A titled content block on a project page, rendered as an `<article>`.
+pub struct Article {
+    pub title: &'static str,
+    pub body: &'static [Paragraph],
+    pub showcase: Option<Showcase>,
+}
+
+/// A division of a project page: a heading that groups related `Article`s.
+pub struct Chapter {
+    pub heading: &'static str,
+    pub articles: &'static [Article],
 }
 
 pub struct Link {
@@ -188,8 +192,8 @@ pub struct Project {
     pub info: Info,
     /// The description paragraphs, shown on both the card and the detail page.
     pub description: &'static [Paragraph],
-    /// The detailed content sections shown on the detail page.
-    pub sections: &'static [SectionBlock],
-    /// When set, shows an "Under Construction" banner in place of the sections.
+    /// The detailed chapters shown on the detail page.
+    pub chapters: &'static [Chapter],
+    /// When set, shows an "Under Construction" banner in place of the chapters.
     pub under_construction: bool,
 }

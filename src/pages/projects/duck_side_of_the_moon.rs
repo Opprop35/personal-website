@@ -3,7 +3,8 @@ use leptos::prelude::*;
 use crate::components::{Paragraph, TextFragment};
 use crate::pages::projects::ProjectPageView;
 use crate::project::{
-    Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType, SectionBlock, Showcase,
+    Article, Chapter, Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType,
+    Showcase,
 };
 use crate::skill::Skill;
 
@@ -75,132 +76,138 @@ pub const PROJECT: Project = Project {
         TextFragment::Text(" but left the project and company midway through development."),
     ]),
     ],
-    sections: &[
-        SectionBlock::Heading("Dialogue"),
-        SectionBlock::Section {
-            title: "Dialogue Trees",
-            body: &[
-                Paragraph::Text(&[
-                    TextFragment::Text(
-                        "In order to build this game's dialogue system I utilized Unreal Engine's \
-                         Instanced UObjects to build a tree of nested dialogue events. These trees \
-                         are built up of:",
-                    ),
-                ]),
-                Paragraph::List(&[
-                    "Flow Control (sequences, selectors, choices, etc.)",
-                    "Conditions (HasItems, IsQuestCompleted, etc.)",
-                    "Events (text, animation, tags/flags, etc.)",
-                ]),
-                Paragraph::Text(&[
-                    TextFragment::Text(
-                        "Flow Control will trigger different child Events based on the Conditions \
-                         those Events have. For example, the selector executes only the first event \
-                         for which all conditions are true.",
-                    ),
-                ]),
+    chapters: &[
+        Chapter {
+            heading: "Dialogue",
+            articles: &[
+                Article {
+                    title: "Dialogue Trees",
+                    body: &[
+                        Paragraph::Text(&[
+                            TextFragment::Text(
+                                "In order to build this game's dialogue system I utilized Unreal Engine's \
+                                 Instanced UObjects to build a tree of nested dialogue events. These trees \
+                                 are built up of:",
+                            ),
+                        ]),
+                        Paragraph::List(&[
+                            "Flow Control (sequences, selectors, choices, etc.)",
+                            "Conditions (HasItems, IsQuestCompleted, etc.)",
+                            "Events (text, animation, tags/flags, etc.)",
+                        ]),
+                        Paragraph::Text(&[
+                            TextFragment::Text(
+                                "Flow Control will trigger different child Events based on the Conditions \
+                                 those Events have. For example, the selector executes only the first event \
+                                 for which all conditions are true.",
+                            ),
+                        ]),
+                    ],
+                    showcase: Some(Showcase::Image {
+                        src: "dsotm-dialogue-tree.webp",
+                        alt: "Dialogue Tree",
+                    }),
+                },
+                Article {
+                    title: "Blueprintable Dialogue Triggers",
+                    body: &[Paragraph::Text(&[TextFragment::Text(
+                        "To give Designers even more flexibility when working with the system I allowed \
+                         them to create custom events as well. This could simply be done by inheriting \
+                         from a TriggerDialogueEvent as you can see in the video.",
+                    )])],
+                    showcase: Some(Showcase::Video("WeMdvLGzth8")),
+                },
+                Article {
+                    title: "Details Panel Customization",
+                    body: &[Paragraph::Text(&[TextFragment::Text(
+                        "To make building dialogue trees more user friendly I did some research into \
+                         Details Panel Customization. This allowed me to add color coding, create a more \
+                         compact layout, and add a special wrap button. In the video to the right you \
+                         can see how the tree becomes much more readable thanks to this feature.",
+                    )])],
+                    showcase: Some(Showcase::Video("GuhgFl8Wt-A")),
+                },
+                Article {
+                    title: "Typewriter Text Block",
+                    body: &[
+                        Paragraph::Text(&[
+                            TextFragment::Text(
+                                "I also implemented a text block that had several custom features such as:",
+                            ),
+                        ]),
+                        Paragraph::List(&[
+                            "Being able to print characters one-by-one while keeping consistent \
+                             text-wrapping.",
+                            "Allowing the creation of animated font materials by packing data in the \
+                             vertex color of each character.",
+                            "Easily changing text style, print interval, and animation duration when \
+                             writing dialogue lines.",
+                        ]),
+                    ],
+                    showcase: Some(Showcase::Video("O8jYwwE2SFA")),
+                },
             ],
-            showcase: Some(Showcase::Image {
-                src: "dsotm-dialogue-tree.webp",
-                alt: "Dialogue Tree",
-            }),
         },
-        SectionBlock::Section {
-            title: "Blueprintable Dialogue Triggers",
-            body: &[Paragraph::Text(&[TextFragment::Text(
-                "To give Designers even more flexibility when working with the system I allowed \
-                 them to create custom events as well. This could simply be done by inheriting \
-                 from a TriggerDialogueEvent as you can see in the video.",
-            )]),
+        Chapter {
+            heading: "Save Game",
+            articles: &[Article {
+                title: "Save Game System",
+                body: &[
+                    Paragraph::Text(&[
+                        TextFragment::Text(
+                            "I was also responsible for building the game's save game system. \
+                             Implementing features such as:",
+                        ),
+                    ]),
+                    Paragraph::List(&[
+                        "Saving Placed & Spawned Actors",
+                        "Saving Global Game State",
+                        "Managing Save Game Slots",
+                    ]),
+                    Paragraph::Text(&[
+                        TextFragment::Text(
+                            "I would've liked to build more robust validation as well but I left the \
+                             team before I could take that task on.",
+                        ),
+                    ]),
+                ],
+                showcase: Some(Showcase::Video("f0m2nBT5Vm4")),
+            }],
+        },
+        Chapter {
+            heading: "Inventory & Crafting",
+            articles: &[
+                Article {
+                    title: "Asset Definitions",
+                    body: &[Paragraph::Text(&[TextFragment::Text(
+                        "I used Unreal Engine's Asset Definitions to customize the look of certain types \
+                         of assets in the content browser. For example every Item asset displays the \
+                         same icon used in the in-game UI.",
+                    )])],
+                    showcase: Some(Showcase::Image {
+                        src: "dsotm-item-assets.webp",
+                        alt: "Item Assets",
+                    }),
+                },
+                Article {
+                    title: "Recipe Data Assets",
+                    body: &[Paragraph::Text(&[TextFragment::Text(
+                        "Here you can see what a recipe data asset looks like. You can see the icons also \
+                         show up in here allowing you to see at a glance what ingredients this recipe \
+                         requires.",
+                    )])],
+                    showcase: Some(Showcase::Image {
+                        src: "dsotm-recipe-asset.webp",
+                        alt: "Recipe Data Asset",
+                    }),
+                },
             ],
-            showcase: Some(Showcase::Video("WeMdvLGzth8")),
         },
-        SectionBlock::Section {
-            title: "Details Panel Customization",
-            body: &[Paragraph::Text(&[TextFragment::Text(
-                "To make building dialogue trees more user friendly I did some research into \
-                 Details Panel Customization. This allowed me to add color coding, create a more \
-                 compact layout, and add a special wrap button. In the video to the right you \
-                 can see how the tree becomes much more readable thanks to this feature.",
-            )]),
-            ],
-            showcase: Some(Showcase::Video("GuhgFl8Wt-A")),
-        },
-        SectionBlock::Section {
-            title: "Typewriter Text Block",
-            body: &[
-                Paragraph::Text(&[
-                    TextFragment::Text(
-                        "I also implemented a text block that had several custom features such as:",
-                    ),
-                ]),
-                Paragraph::List(&[
-                    "Being able to print characters one-by-one while keeping consistent \
-                     text-wrapping.",
-                    "Allowing the creation of animated font materials by packing data in the \
-                     vertex color of each character.",
-                    "Easily changing text style, print interval, and animation duration when \
-                     writing dialogue lines.",
-                ]),
-            ],
-            showcase: Some(Showcase::Video("O8jYwwE2SFA")),
-        },
-        SectionBlock::Heading("Save Game"),
-        SectionBlock::Section {
-            title: "Save Game System",
-            body: &[
-                Paragraph::Text(&[
-                    TextFragment::Text(
-                        "I was also responsible for building the game's save game system. \
-                         Implementing features such as:",
-                    ),
-                ]),
-                Paragraph::List(&[
-                    "Saving Placed & Spawned Actors",
-                    "Saving Global Game State",
-                    "Managing Save Game Slots",
-                ]),
-                Paragraph::Text(&[
-                    TextFragment::Text(
-                        "I would've liked to build more robust validation as well but I left the \
-                         team before I could take that task on.",
-                    ),
-                ]),
-            ],
-            showcase: Some(Showcase::Video("f0m2nBT5Vm4")),
-        },
-        SectionBlock::Heading("Inventory & Crafting"),
-        SectionBlock::Section {
-            title: "Asset Definitions",
-            body: &[Paragraph::Text(&[TextFragment::Text(
-                "I used Unreal Engine's Asset Definitions to customize the look of certain types \
-                 of assets in the content browser. For example every Item asset displays the \
-                 same icon used in the in-game UI.",
-            )]),
-            ],
-            showcase: Some(Showcase::Image {
-                src: "dsotm-item-assets.webp",
-                alt: "Item Assets",
-            }),
-        },
-        SectionBlock::Section {
-            title: "Recipe Data Assets",
-            body: &[Paragraph::Text(&[TextFragment::Text(
-                "Here you can see what a recipe data asset looks like. You can see the icons also \
-                 show up in here allowing you to see at a glance what ingredients this recipe \
-                 requires.",
-            )]),
-            ],
-            showcase: Some(Showcase::Image {
-                src: "dsotm-recipe-asset.webp",
-                alt: "Recipe Data Asset",
-            }),
-        },
-        SectionBlock::Heading("Quest System..."),
-        SectionBlock::Heading("Upgrade System..."),
-        SectionBlock::Heading("Technical Animation..."),
-        SectionBlock::Heading("UI Programming..."),
-        SectionBlock::Heading("And more..."),
+        Chapter { heading: "Quest System...", articles: &[] },
+        Chapter { heading: "Upgrade System...", articles: &[] },
+        Chapter { heading: "Technical Animation...", articles: &[] },
+        Chapter { heading: "UI Programming...", articles: &[] },
+        Chapter { heading: "And more...", articles: &[] },
     ],
     under_construction: false,
 };

@@ -51,7 +51,7 @@ pub const PROJECT: Project = Project {
              game design.",
         ),
     ])],
-    sections: &[],
+    chapters: &[],
     under_construction: true,
 };
 

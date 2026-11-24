@@ -39,7 +39,7 @@ pub const PROJECT: Project = Project {
          platformer set in a haunted mansion where you play as a sloth. During this project I \
          mostly focussed on level design and some implementation.",
     )])],
-    sections: &[],
+    chapters: &[],
     under_construction: false,
 };
 

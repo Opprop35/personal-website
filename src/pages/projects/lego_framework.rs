@@ -48,7 +48,7 @@ pub const PROJECT: Project = Project {
             " the framework's import pipeline to be more idiomatic, performant and flexible.",
         ),
     ])],
-    sections: &[],
+    chapters: &[],
     under_construction: true,
 };
 

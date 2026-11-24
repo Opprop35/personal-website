@@ -9,7 +9,7 @@ pub mod text_sized_image;
 pub mod toast;
 
 pub use fragments::{Paragraph, Paragraphs, TextFragment};
-pub use labeled::{Labeled, LabeledElement};
+pub use labeled::Labeled;
 pub use layout::Layout;
 pub use links::Link;
 pub use menus::projects_menu::ProjectsMenu;

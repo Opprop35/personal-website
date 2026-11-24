@@ -3,7 +3,7 @@ use leptos::prelude::*;
 use crate::components::{Paragraph, TextFragment};
 use crate::pages::projects::ProjectPageView;
 use crate::project::{
-    Date, Info, Month, Project, ProjectEndDate, ProjectType, SectionBlock, Showcase,
+    Article, Chapter, Date, Info, Month, Project, ProjectEndDate, ProjectType, Showcase,
 };
 use crate::skill::Skill;
 
@@ -38,16 +38,20 @@ pub const PROJECT: Project = Project {
              grid and define custom behaviours for this. It was designed with quick iteration \
              and flexibility in mind.",
         ),
-    ])],
-    sections: &[SectionBlock::Section {
-        title: "Custom Blueprint Behaviours",
-        body: &[Paragraph::Text(&[TextFragment::Text(
-            "I defined an interface in C++ that could be implemented through blueprints and \
-             allows you to define your own behaviours when dragging across the grid. By \
-             implementing this interface I created a blueprint that would automatically tile \
-             itself using a free tileset I found online.",
-        )])],
-        showcase: Some(Showcase::Video("-9xbKIwheJ8")),
+    ]),
+    ],
+    chapters: &[Chapter {
+        heading: "Features",
+        articles: &[Article {
+            title: "Custom Blueprint Behaviours",
+            body: &[Paragraph::Text(&[TextFragment::Text(
+                "I defined an interface in C++ that could be implemented through blueprints and \
+                 allows you to define your own behaviours when dragging across the grid. By \
+                 implementing this interface I created a blueprint that would automatically tile \
+                 itself using a free tileset I found online.",
+            )])],
+            showcase: Some(Showcase::Video("-9xbKIwheJ8")),
+        }],
     }],
     under_construction: false,
 };

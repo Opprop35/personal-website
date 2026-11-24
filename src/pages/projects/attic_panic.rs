@@ -3,7 +3,8 @@ use leptos::prelude::*;
 use crate::components::{Paragraph, TextFragment};
 use crate::pages::projects::ProjectPageView;
 use crate::project::{
-    Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType, SectionBlock, Showcase,
+    Article, Chapter, Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType,
+    Showcase,
 };
 use crate::skill::Skill;
 
@@ -65,44 +66,50 @@ pub const PROJECT: Project = Project {
              individual upgrades, and replication of upgrades between server & clients.",
         ),
     ]),
-],
-    sections: &[
-        SectionBlock::Heading("Upgrades"),
-        SectionBlock::Section {
-            title: "Upgrade Data",
-            body: &[Paragraph::Text(&[
-                TextFragment::Text(
-                    "While working on the game I redesigned & refactored the upgrade system in order \
-                     to create a smoother data-driven experience for designers. This way the upgrades \
-                     could be balanced & tweaked more easily throughout development. I defined Data \
-                     Assets in C++ which can be created in the content browser of Unreal and were \
-                     automatically detected and used by the game's systems. I also created a short \
-                     video for the team explaining how to create these.",
-                ),
-            ]),
+    ],
+    chapters: &[
+        Chapter {
+            heading: "Upgrades",
+            articles: &[
+                Article {
+                    title: "Upgrade Data",
+                    body: &[Paragraph::Text(&[
+                        TextFragment::Text(
+                            "While working on the game I redesigned & refactored the upgrade system \
+                             in order to create a smoother data-driven experience for designers. \
+                             This way the upgrades could be balanced & tweaked more easily \
+                             throughout development. I defined Data Assets in C++ which can be \
+                             created in the content browser of Unreal and were automatically \
+                             detected and used by the game's systems. I also created a short video \
+                             for the team explaining how to create these.",
+                        ),
+                    ]),
+                    ],
+                    showcase: Some(Showcase::Video("i1D-GloaSK4")),
+                },
+                Article {
+                    title: "Upgrade Functionality & Replication",
+                    body: &[Paragraph::Text(&[TextFragment::Text(
+                        "I worked on a lot of upgrades for the game and made sure those upgrades \
+                            would replicate properly between the different players.",
+                    )])],
+                    showcase: Some(Showcase::Video("UryKkAPVYIQ")),
+                },
+                Article {
+                    title: "Upgrade VFX Implementation",
+                    body: &[Paragraph::Text(&[TextFragment::Text(
+                        "I worked closely with one of the VFX artists to implement some of the VFX. \
+                         Here you can see such an example we worked on the mine laying animation, \
+                         explosion effect, and Disappear effect.",
+                    )])],
+                    showcase: Some(Showcase::Video("59EkYuxYBVM")),
+                },
             ],
-            showcase: Some(Showcase::Video("i1D-GloaSK4")),
         },
-        SectionBlock::Section {
-            title: "Upgrade Functionality & Replication",
-            body: &[Paragraph::Text(&[TextFragment::Text(
-                "I worked on a lot of upgrades for the game and made sure those upgrades \
-                    would replicate properly between the different players.",
-            )]),
-            ],
-            showcase: Some(Showcase::Video("UryKkAPVYIQ")),
+        Chapter {
+            heading: "And more...",
+            articles: &[],
         },
-        SectionBlock::Section {
-            title: "Upgrade VFX Implementation",
-            body: &[Paragraph::Text(&[TextFragment::Text(
-                "I worked closely with one of the VFX artists to implement some of the VFX. Here \
-                 you can see such an example we worked on the mine laying animation, explosion \
-                 effect, and Disappear effect.",
-            )]),
-            ],
-            showcase: Some(Showcase::Video("59EkYuxYBVM")),
-        },
-        SectionBlock::Heading("And more..."),
     ],
     under_construction: false,
 };

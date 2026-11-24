@@ -110,5 +110,5 @@ pub fn Section(
             }
         });
 
-    view! { <div class="flex flex-col">{line} {body}</div> }
+    view! { <section class="flex flex-col">{line} {body}</section> }
 }
