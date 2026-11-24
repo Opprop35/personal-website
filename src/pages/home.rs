@@ -195,9 +195,10 @@ pub fn Page() -> impl IntoView {
             <div class="flex flex-col items-stretch md:flex-row bg-surface">
                 <iframe
                     class="w-full md:order-last md:w-7/12 md:h-auto h-[72vh] max-h-[55vw] md:max-h-none"
-                    src="https://www.youtube-nocookie.com/embed/vqVBLEHiiMU?autoplay=1&mute=1&loop=1&playlist=vqVBLEHiiMU"
+                    src="https://www.youtube-nocookie.com/embed/vqVBLEHiiMU?autoplay=1&mute=1&loop=1&playlist=vqVBLEHiiMU&controls=0&rel=0"
                     allow="autoplay"
-                    title="About me"
+                    title="Introduction video"
+                    tabindex="-1"
                 ></iframe>
                 <div class="py-8 px-6 w-full bg-gradient-to-b md:w-6/12 from-surface to-surface-deep">
                     <h1 class="font-bold tracking-tight text-[2.25em] text-ink">"Jesse Stolk"</h1>

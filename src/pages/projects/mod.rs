@@ -18,8 +18,8 @@ fn showcase_view(showcase: Showcase) -> impl IntoView {
         Showcase::Video(code) => view! {
             <div class="relative aspect-video">
                 <iframe
-                    class="absolute inset-0 w-full h-full border border-line rounded-default"
-                    src=format!("https://www.youtube-nocookie.com/embed/{code}")
+                    class="absolute inset-0 w-full h-full ring-1 ring-line rounded-default"
+                    src=format!("https://www.youtube-nocookie.com/embed/{code}?rel=0")
                     allow="autoplay"
                     title="Project video"
                 ></iframe>
@@ -112,10 +112,11 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         view! {
             <div class="relative aspect-video">
                 <iframe
-                    class="absolute inset-0 w-full h-full border border-line rounded-default"
-                    src=format!("https://www.youtube-nocookie.com/embed/{code}")
+                    class="absolute inset-0 w-full h-full ring-1 ring-line rounded-default"
+                    src=format!("https://www.youtube-nocookie.com/embed/{code}?rel=0")
                     allow="autoplay"
-                    title=format!("Trailer for {title}")
+                    title=format!("Hero video for {title}")
+                    tabindex="-1"
                 ></iframe>
             </div>
         }
