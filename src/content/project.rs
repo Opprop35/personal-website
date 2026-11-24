@@ -183,5 +183,4 @@ pub struct Project {
     pub badges: &'static [Link],
     pub background: Option<&'static str>,
     pub chapters: &'static [Chapter],
-    pub under_construction: bool,
 }

@@ -122,5 +122,4 @@ pub const PROJECT: Project = Project {
             articles: &[],
         },
     ],
-    under_construction: false,
 };

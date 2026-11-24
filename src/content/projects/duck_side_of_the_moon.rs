@@ -243,5 +243,4 @@ pub const PROJECT: Project = Project {
         Chapter { heading: "UI Programming...", articles: &[] },
         Chapter { heading: "And more...", articles: &[] },
     ],
-    under_construction: false,
 };

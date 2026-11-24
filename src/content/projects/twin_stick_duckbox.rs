@@ -117,5 +117,4 @@ pub const PROJECT: Project = Project {
             },
         ],
     }],
-    under_construction: false,
 };

@@ -48,5 +48,4 @@ pub const PROJECT: Project = Project {
         ],
     },
     chapters: &[],
-    under_construction: true,
 };

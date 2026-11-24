@@ -51,18 +51,6 @@ pub fn Page(project: &'static Project) -> impl IntoView {
         .map(|chapter| view! { <ProjectChapter chapter=chapter /> })
         .collect_view();
 
-    let under_construction = project.under_construction.then(|| {
-        view! {
-            <div class="flex gap-4 justify-center items-center py-4">
-                <img src=image("wrench.svg") alt="Wrench" class="w-8 h-8 shrink-0" />
-                <span class="font-bold uppercase tracking-[0.2em] text-ink-muted">
-                    "Under Construction"
-                </span>
-                <img src=image("hammer.svg") alt="Hammer" class="w-8 h-8 shrink-0" />
-            </div>
-        }
-    });
-
     view! {
         <div class=background_class style=background_style>
             <div class="flex flex-col py-10 px-4 mx-auto w-full max-w-6xl md:py-14 md:px-8">
@@ -81,7 +69,7 @@ pub fn Page(project: &'static Project) -> impl IntoView {
                                 class="space-y-4 leading-relaxed text-ink"
                             />
                         </Labeled>
-                    </div> <div class="flex flex-col gap-10">{chapters}{under_construction}</div>
+                    </div> <div class="flex flex-col gap-10">{chapters}</div>
                 </article>
             </div>
         </div>

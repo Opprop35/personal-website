@@ -60,5 +60,4 @@ pub const PROJECT: Project = Project {
             showcase: Some(Showcase::Video("-9xbKIwheJ8")),
         }],
     }],
-    under_construction: false,
 };
