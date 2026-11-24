@@ -126,7 +126,7 @@ fn ExperienceHeader(source: ExperienceSource) -> AnyView {
 #[component]
 fn Experience(experience: ExperienceData) -> impl IntoView {
     view! {
-        <article class="last:mb-0 mb-[7mm]">
+        <article class="last:mb-0 mb-[7mm] break-inside-avoid">
             <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
                 <h3 class="font-semibold tracking-wide uppercase text-[15px]">
                     <ExperienceHeader source=experience.source />
@@ -241,7 +241,7 @@ pub fn Page() -> impl IntoView {
     };
 
     view! {
-        <article class="flex flex-col flex-1 mx-auto max-w-[210mm]">
+        <article class="flex flex-col flex-1 mx-auto max-w-[210mm] print:w-[210mm] print:min-h-[297mm] print:overflow-hidden print:bg-surface">
             <header class="flex items-center gap-[8mm] bg-surface-deep px-[12mm] py-[9mm]">
                 <img
                     src=image("personal-photo.webp")
@@ -282,7 +282,7 @@ pub fn Page() -> impl IntoView {
                 </aside>
 
                 <div class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
-                    <section>
+                    <section class="break-inside-avoid">
                         <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
                             "Projects"
                         </h2>
@@ -295,7 +295,7 @@ pub fn Page() -> impl IntoView {
                         </Link>
                     </p>
 
-                    <section class="pt-[6mm]">
+                    <section class="pt-[6mm] break-inside-avoid">
                         <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
                             "Education"
                         </h2>

@@ -28,7 +28,9 @@ pub fn App() -> impl IntoView {
 #[component]
 fn SiteRoutes() -> impl IntoView {
     let location = use_location();
-    viewport::apply_viewport(&location.pathname.get());
+    ImmediateEffect::new_scoped(move || {
+        viewport::apply_viewport(&location.pathname.get());
+    });
 
     view! {
         <Routes fallback=move || view! { <not_found::Page /> }>
