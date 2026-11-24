@@ -12,11 +12,13 @@ pub const PROJECT: Project = Project {
     href: "/duckside-of-the-moon-student",
     card_thumbnail: "dsotm-student-thumbnail.webp",
     main_contributions: &[
-        "Inventory & Crafting System",
-        "Mining & Item Pickups",
-        "Progression Design",
-        "Upgrade & Recipe Balancing",
-        "Sound Effects",
+        Paragraph::List(&[
+            "Inventory & Crafting System",
+            "Mining & Item Pickups",
+            "Progression Design",
+            "Upgrade & Recipe Balancing",
+            "Sound Effects",
+        ]),
     ],
     background: Some("dsotm-student-background.webp"),
     hero_video: Some("FSj0G0oDqdA"),

@@ -12,11 +12,13 @@ pub const PROJECT: Project = Project {
     href: "/duck-side-of-the-moon",
     card_thumbnail: "dsotm-thumbnail.webp",
     main_contributions: &[
-        "Dialogue System",
-        "Save Game System",
-        "Quest System",
-        "Inventory & Crafting System",
-        "Upgrade System",
+        Paragraph::List(&[
+            "Dialogue System",
+            "Save Game System",
+            "Quest System",
+            "Inventory & Crafting System",
+            "Upgrade System",
+        ]),
     ],
     background: Some("dsotm-background.webp"),
     hero_video: Some("jDcsH4LYuCo"),

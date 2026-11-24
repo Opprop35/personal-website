@@ -12,10 +12,12 @@ pub const PROJECT: Project = Project {
     href: "/twin-stick-duckbox",
     card_thumbnail: "tsj-thumbnail.webp",
     main_contributions: &[
-        "Enemy Spawn Event System",
-        "Chomper Enemy",
-        "Gauss Weapon",
-        "Debug & Cheat Menu",
+        Paragraph::List(&[
+            "Enemy Spawn Event System",
+            "Chomper Enemy",
+            "Gauss Weapon",
+            "Debug & Cheat Menu",
+        ]),
     ],
     background: Some("tsj-background.webp"),
     hero_video: Some("OAiE_f08wU0"),

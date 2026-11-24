@@ -12,10 +12,12 @@ pub const PROJECT: Project = Project {
     href: "/attic-panic",
     card_thumbnail: "attic-panic-thumbnail.webp",
     main_contributions: &[
-        "Upgrade System",
-        "Upgrade Design & Implementation",
-        "Upgrade & Gameplay Balancing",
-        "Sound Effects & Audio",
+        Paragraph::List(&[
+            "Upgrade System",
+            "Upgrade Design & Implementation",
+            "Upgrade & Gameplay Balancing",
+            "Sound Effects & Audio",
+        ]),
     ],
     background: Some("attic-panic-background.webp"),
     hero_video: Some("NjRhr-QN3SE"),

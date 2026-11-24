@@ -10,11 +10,13 @@ pub const PROJECT: Project = Project {
     href: "/radorian",
     card_thumbnail: "radorian-thumbnail.webp",
     main_contributions: &[
-        "Third person camera",
-        "3D sprite pipeline & tools",
-        "Custom shaders",
-        "Procedural Geometry",
-        "Dynamic gravity",
+        Paragraph::List(&[
+            "Third person camera",
+            "3D sprite pipeline & tools",
+            "Custom shaders",
+            "Procedural Geometry",
+            "Dynamic gravity",
+        ]),
     ],
     background: None,
     hero_video: Some("tbIsz63srjo"),

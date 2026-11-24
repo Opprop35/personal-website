@@ -9,7 +9,9 @@ pub const PROJECT: Project = Project {
     title: "Folivora's Fall",
     href: "/folivoras-fall",
     card_thumbnail: "ff-thumbnail.webp",
-    main_contributions: &["Camera System", "Puzzle Design", "Level Blockout"],
+    main_contributions: &[
+        Paragraph::List(&["Camera System", "Puzzle Design", "Level Blockout"]),
+    ],
     background: Some("ff-background.webp"),
     hero_video: Some("0EdXbR93AfQ"),
     badges: &[Link {

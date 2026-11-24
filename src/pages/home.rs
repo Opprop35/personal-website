@@ -47,15 +47,6 @@ const INTRODUCTION: [Paragraph; 3] = [
 
 #[component]
 fn ProjectCard(project: &'static Project) -> impl IntoView {
-    let contributions = project
-        .main_contributions
-        .iter()
-        .copied()
-        .map(|item| {
-            view! { <li>{item}</li> }
-        })
-        .collect_view();
-
     let skills = project
         .info
         .skills
@@ -94,16 +85,11 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                             <div class="flex flex-col gap-6 lg:w-1/2">
                                 <div>
                                     <h3 class="mb-2 label-uppercase">"Summary"</h3>
-                                    <Paragraphs
-                                        paragraphs=project.description
-                                        class="space-y-4 leading-relaxed text-ink"
-                                    />
+                                    <Paragraphs paragraphs=project.description />
                                 </div>
                                 <div>
                                     <h3 class="mb-2 label-uppercase">"Main Contributions"</h3>
-                                    <ul class="pl-5 space-y-1 list-disc marker:text-ink-muted">
-                                        {contributions}
-                                    </ul>
+                                    <Paragraphs paragraphs=project.main_contributions />
                                 </div>
                             </div>
                         </div>

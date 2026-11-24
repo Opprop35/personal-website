@@ -11,9 +11,11 @@ pub const PROJECT: Project = Project {
     href: "/lego-framework",
     card_thumbnail: "lego-thumbnail.webp",
     main_contributions: &[
-        "Brick Snapping Logic & Tooling",
-        "Connection Point Based Transform Gizmo",
-        "Import Pipeline Redesign",
+        Paragraph::List(&[
+            "Brick Snapping Logic & Tooling",
+            "Connection Point Based Transform Gizmo",
+            "Import Pipeline Redesign",
+        ]),
     ],
     background: Some("lego-background.webp"),
     hero_video: Some("7J7J0zm5xFc"),
