@@ -1,13 +1,13 @@
 use leptos::prelude::*;
 
 use crate::components::Link;
-use crate::project::Project;
+use crate::content::project::Project;
 
 #[component]
 pub fn OlderProjectRow(project: &'static Project) -> impl IntoView {
     view! {
         <Link
-            href=project.href
+            href=project.slug
             class="flex flex-wrap gap-y-1 gap-x-3 items-baseline py-3 px-4 w-full border transition-colors duration-150 focus-ring border-line bg-surface-deep hover:border-ink-muted/50"
         >
             <span class="font-semibold text-ink">{project.title}</span>

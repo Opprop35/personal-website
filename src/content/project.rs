@@ -171,7 +171,8 @@ pub struct Info {
 
 pub struct Project {
     pub title: &'static str,
-    pub href: &'static str,
+    // TODO: Rename to url_name
+    pub slug: &'static str,
     pub card_thumbnail: &'static str,
 
     pub description: TextParagraph,

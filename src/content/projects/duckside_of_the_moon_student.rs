@@ -1,8 +1,5 @@
-use leptos::prelude::*;
-
 use crate::components::{ListParagraph, Paragraph, TextFragment, TextParagraph};
-use crate::pages::projects::ProjectPage;
-use crate::project::{
+use crate::content::project::{
     Article, Chapter, Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType,
     Showcase,
 };
@@ -10,7 +7,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Duckside of the Moon (Student)",
-    href: "/duckside-of-the-moon-student",
+    slug: "/duckside-of-the-moon-student",
     card_thumbnail: "dsotm-student-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &[
@@ -356,9 +353,3 @@ pub const PROJECT: Project = Project {
     ],
     under_construction: false,
 };
-
-#[component]
-pub fn Page() -> impl IntoView {
-    document().set_title("Jesse Stolk - Duckside Of The Moon (Student)");
-    view! { <ProjectPage data=&PROJECT /> }
-}

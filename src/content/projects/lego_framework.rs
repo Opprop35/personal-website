@@ -1,14 +1,11 @@
-use leptos::prelude::*;
-
 use crate::components::{ListParagraph, TextFragment, TextParagraph};
+use crate::content::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::organization::Organization;
-use crate::pages::projects::ProjectPage;
-use crate::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "LEGO® Framework",
-    href: "/lego-framework",
+    slug: "/lego-framework",
     card_thumbnail: "lego-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &[
@@ -40,22 +37,16 @@ pub const PROJECT: Project = Project {
             TextFragment::Text("At "),
             TextFragment::organization(Organization::TheLegoGroup),
             TextFragment::Text(
-            " I worked on a general purpose LEGO framework for Unreal Engine. \
+                " I worked on a general purpose LEGO framework for Unreal Engine. \
             The LEGO® Brick Editor was a key deliverable. I mainly contributed to the Brick \
             building UX, Bug fixes, Automated Tests, and ",
             ),
             TextFragment::StrongText("redesigned"),
             TextFragment::Text(
-            " the framework's import pipeline to be more idiomatic, performant and flexible.",
+                " the framework's import pipeline to be more idiomatic, performant and flexible.",
             ),
         ],
     },
     chapters: &[],
     under_construction: true,
 };
-
-#[component]
-pub fn Page() -> impl IntoView {
-    document().set_title("Jesse Stolk - LegoFramework");
-    view! { <ProjectPage data=&PROJECT /> }
-}

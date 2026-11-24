@@ -1,28 +1,26 @@
 use leptos::prelude::*;
 
-use crate::components::{
-    OlderProjectRow, Paragraph, Paragraphs, ProjectCard, Section, SkillCard, TextFragment,
-    TextParagraph,
+use crate::{
+    components::{
+        OlderProjectRow, Paragraph, Paragraphs, ProjectCard, Section, SkillCard, TextFragment,
+        TextParagraph,
+    },
+    content::projects::ProjectId,
+    skill::Skill,
 };
-use crate::pages::projects::{
-    attic_panic, duck_side_of_the_moon, duckside_of_the_moon_student, folivoras_fall,
-    lego_framework, level_editor_plugin, radorian, twin_stick_duckbox,
-};
-use crate::project::Project;
-use crate::skill::Skill;
 
-const PROJECTS: [&Project; 4] = [
-    &lego_framework::PROJECT,
-    &duck_side_of_the_moon::PROJECT,
-    &attic_panic::PROJECT,
-    &radorian::PROJECT,
+const PROJECTS: [ProjectId; 4] = [
+    ProjectId::LegoFramework,
+    ProjectId::DuckSideOfTheMoon,
+    ProjectId::AtticPanic,
+    ProjectId::Radorian,
 ];
 
-const OLDER_PROJECTS: [&Project; 4] = [
-    &duckside_of_the_moon_student::PROJECT,
-    &level_editor_plugin::PROJECT,
-    &twin_stick_duckbox::PROJECT,
-    &folivoras_fall::PROJECT,
+const OLDER_PROJECTS: [ProjectId; 4] = [
+    ProjectId::DucksideOfTheMoonStudent,
+    ProjectId::LevelEditorPlugin,
+    ProjectId::TwinStickDuckbox,
+    ProjectId::FolivorasFall,
 ];
 
 const INTRODUCTION: [Paragraph; 3] = [
@@ -64,7 +62,7 @@ pub fn Page() -> impl IntoView {
         .iter()
         .copied()
         .map(|project| {
-            view! { <ProjectCard project=project /> }
+            view! { <ProjectCard project=project.project() /> }
         })
         .collect_view();
 
@@ -72,7 +70,7 @@ pub fn Page() -> impl IntoView {
         .iter()
         .copied()
         .map(|project| {
-            view! { <OlderProjectRow project=project /> }
+            view! { <OlderProjectRow project=project.project() /> }
         })
         .collect_view();
 

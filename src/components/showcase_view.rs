@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
-use crate::project::Showcase;
-use crate::IMAGE_DIR;
+use crate::assets::image;
+use crate::content::project::Showcase;
 
 #[component]
 pub fn ShowcaseView(showcase: Showcase) -> impl IntoView {
@@ -19,7 +19,7 @@ pub fn ShowcaseView(showcase: Showcase) -> impl IntoView {
         .into_any(),
         Showcase::Image { src, alt } => view! {
             <img
-                src=format!("{IMAGE_DIR}/{src}")
+                src=image(src)
                 alt=alt
                 class="object-cover w-full border border-line rounded-default"
             />

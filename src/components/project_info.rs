@@ -1,8 +1,8 @@
 use leptos::prelude::*;
 
+use crate::assets::image;
 use crate::components::{Labeled, Link, TextSizedImage};
-use crate::project::Info;
-use crate::IMAGE_DIR;
+use crate::content::project::Info;
 
 fn info_row(label: &'static str, value: impl IntoView) -> impl IntoView {
     view! {
@@ -20,7 +20,7 @@ pub fn ProjectInfo(info: &'static Info) -> impl IntoView {
             view! {
                 <Link href=skill.url() class="image-link" external=true>
                     <TextSizedImage
-                        image=format!("{IMAGE_DIR}/{}", skill.image())
+                        image=image(skill.image())
                         alt=skill.alt()
                     />
                 </Link>
@@ -33,7 +33,7 @@ pub fn ProjectInfo(info: &'static Info) -> impl IntoView {
         .map(|social| {
             view! {
                 <Link href=social.url class="image-link" external=true>
-                    <TextSizedImage image=format!("{IMAGE_DIR}/{}", social.image) alt=social.alt />
+                    <TextSizedImage image=image(social.image) alt=social.alt />
                 </Link>
             }
         })

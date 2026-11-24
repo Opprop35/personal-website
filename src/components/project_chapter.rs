@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::{Paragraphs, ProjectArticle, Section};
-use crate::project::Chapter;
+use crate::content::project::Chapter;
 
 #[component]
 pub fn ProjectChapter(chapter: &'static Chapter) -> impl IntoView {

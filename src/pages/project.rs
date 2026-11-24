@@ -1,33 +1,25 @@
 use leptos::prelude::*;
 
+use crate::assets::image;
 use crate::components::{Labeled, Link, ProjectChapter, ProjectInfo, Text};
-use crate::project::Project;
-use crate::IMAGE_DIR;
-
-pub mod attic_panic;
-pub mod duck_side_of_the_moon;
-pub mod duckside_of_the_moon_student;
-pub mod folivoras_fall;
-pub mod lego_framework;
-pub mod level_editor_plugin;
-pub mod radorian;
-pub mod twin_stick_duckbox;
+use crate::content::project::Project;
 
 #[component]
-pub fn ProjectPage(data: &'static Project) -> impl IntoView {
-    let title = data.title;
+pub fn Page(project: &'static Project) -> impl IntoView {
+    let title = project.title;
+    document().set_title(&format!("Jesse Stolk - {}", title));
 
-    let background_class = if data.background.is_some() {
+    let background_class = if project.background.is_some() {
         "bg-fixed bg-cover bg-center bg-no-repeat"
     } else {
         ""
     };
-    let background_style = data
+    let background_style = project
         .background
-        .map(|src| format!("background-image:url({IMAGE_DIR}/{src})"))
+        .map(|src| format!("background-image:url({})", image(src)))
         .unwrap_or_default();
 
-    let hero_video = data.hero_video.map(|code| {
+    let hero_video = project.hero_video.map(|code| {
         view! {
             <div class="relative aspect-video">
                 <iframe
@@ -41,36 +33,32 @@ pub fn ProjectPage(data: &'static Project) -> impl IntoView {
         }
     });
 
-    let badges = data
+    let badges = project
         .badges
         .iter()
         .map(|badge| {
             view! {
                 <Link href=badge.url class="image-link" external=true>
-                    <img
-                        src=format!("{IMAGE_DIR}/{}", badge.image)
-                        alt=badge.alt
-                        class="w-auto h-12 md:h-16"
-                    />
+                    <img src=image(badge.image) alt=badge.alt class="w-auto h-12 md:h-16" />
                 </Link>
             }
         })
         .collect_view();
 
-    let chapters = data
+    let chapters = project
         .chapters
         .iter()
         .map(|chapter| view! { <ProjectChapter chapter=chapter /> })
         .collect_view();
 
-    let under_construction = data.under_construction.then(|| {
+    let under_construction = project.under_construction.then(|| {
         view! {
             <div class="flex gap-4 justify-center items-center py-4">
-                <img src="public/images/wrench.svg" alt="Wrench" class="w-8 h-8 shrink-0" />
+                <img src=image("wrench.svg") alt="Wrench" class="w-8 h-8 shrink-0" />
                 <span class="font-bold uppercase tracking-[0.2em] text-ink-muted">
                     "Under Construction"
                 </span>
-                <img src="public/images/hammer.svg" alt="Hammer" class="w-8 h-8 shrink-0" />
+                <img src=image("hammer.svg") alt="Hammer" class="w-8 h-8 shrink-0" />
             </div>
         }
     });
@@ -86,10 +74,10 @@ pub fn ProjectPage(data: &'static Project) -> impl IntoView {
                     <div class="flex flex-wrap gap-4 justify-center items-center">{badges}</div>
                     <div class="divider" />
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
-                        <ProjectInfo info=&data.info />
+                        <ProjectInfo info=&project.info />
                         <Labeled title="Description" class="w-full min-w-0 lg:w-7/12">
                             <Text
-                                text=data.description
+                                text=project.description
                                 class="space-y-4 leading-relaxed text-ink"
                             />
                         </Labeled>

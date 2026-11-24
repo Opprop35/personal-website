@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::{Labeled, ShowcaseView};
-use crate::project::Showcase;
+use crate::content::project::Showcase;
 
 #[component]
 pub fn ProjectArticle(

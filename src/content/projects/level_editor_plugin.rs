@@ -1,15 +1,12 @@
-use leptos::prelude::*;
-
 use crate::components::{ListParagraph, Paragraph, TextFragment, TextParagraph};
-use crate::pages::projects::ProjectPage;
-use crate::project::{
+use crate::content::project::{
     Article, Chapter, Date, Info, Month, Project, ProjectEndDate, ProjectType, Showcase,
 };
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Level Editor Plugin",
-    href: "/level-editor-plugin",
+    slug: "/level-editor-plugin",
     card_thumbnail: "level-editor-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &[
@@ -65,9 +62,3 @@ pub const PROJECT: Project = Project {
     }],
     under_construction: false,
 };
-
-#[component]
-pub fn Page() -> impl IntoView {
-    document().set_title("Jesse Stolk - Level Editor Plugin");
-    view! { <ProjectPage data=&PROJECT /> }
-}

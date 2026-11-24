@@ -1,8 +1,8 @@
 use leptos::prelude::*;
 
+use crate::assets::image;
 use crate::components::Link;
 use crate::skill::Skill;
-use crate::IMAGE_DIR;
 
 #[component]
 pub fn SkillCard(skill: Skill) -> impl IntoView {
@@ -20,7 +20,7 @@ pub fn SkillCard(skill: Skill) -> impl IntoView {
             external=true
         >
             <img
-                src=format!("{IMAGE_DIR}/{}", skill.image())
+                src=image(skill.image())
                 alt=skill.alt()
                 class="object-contain w-10 h-10 shrink-0"
             />

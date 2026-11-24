@@ -1,13 +1,10 @@
-use leptos::prelude::*;
-
 use crate::components::{ListParagraph, TextFragment, TextParagraph};
-use crate::pages::projects::ProjectPage;
-use crate::project::{Date, Genre, Info, Month, Project, ProjectEndDate, ProjectType};
+use crate::content::project::{Date, Genre, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Radorian",
-    href: "/radorian",
+    slug: "/radorian",
     card_thumbnail: "radorian-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &[
@@ -56,9 +53,3 @@ pub const PROJECT: Project = Project {
     chapters: &[],
     under_construction: true,
 };
-
-#[component]
-pub fn Page() -> impl IntoView {
-    document().set_title("Jesse Stolk - Radorian");
-    view! { <ProjectPage data=&PROJECT /> }
-}

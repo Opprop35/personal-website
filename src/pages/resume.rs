@@ -1,10 +1,10 @@
 use leptos::prelude::*;
 
+use crate::assets::image;
 use crate::components::{Link, ListParagraph, Paragraph, Paragraphs, TextFragment, TextParagraph};
 use crate::locale::resume_label;
 use crate::organization::Organization;
 use crate::skill::Skill;
-use crate::IMAGE_DIR;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 enum ExperienceSource {
@@ -160,7 +160,7 @@ fn skill_items(skills: &[Skill]) -> impl IntoView {
         .map(|skill| {
             let title = skill.title();
             let url = skill.url();
-            let image = format!("{IMAGE_DIR}/{}", skill.image());
+            let image = image(skill.image());
             let alt = skill.alt();
             view! {
                 <li>
@@ -252,7 +252,7 @@ pub fn Page() -> impl IntoView {
         <article class="flex flex-col flex-1 mx-auto max-w-[210mm]">
             <header class="flex items-center gap-[8mm] bg-surface-deep px-[12mm] py-[9mm]">
                 <img
-                    src="public/images/personal-photo.webp"
+                    src=image("personal-photo.webp")
                     alt="Portrait of Jesse Stolk"
                     class="object-cover h-[38mm] w-[38mm] shrink-0 rounded-[2mm]"
                 />
