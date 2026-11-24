@@ -249,7 +249,7 @@ pub fn Page() -> impl IntoView {
     };
 
     view! {
-        <div class="flex flex-col flex-1 mx-auto w-full max-w-[210mm] bg-surface">
+        <article class="flex flex-col flex-1 mx-auto max-w-[210mm]">
             <header class="flex items-center gap-[8mm] bg-surface-deep px-[12mm] py-[9mm]">
                 <img
                     src="public/images/personal-photo.webp"
@@ -291,7 +291,7 @@ pub fn Page() -> impl IntoView {
                     <SidebarSection title="Hobbies" children=hobbies />
                 </aside>
 
-                <main class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
+                <div class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
                     <section>
                         <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">"Projects"</h2>
                         <div class="mt-[2.5mm] mb-[6mm] divider" />
@@ -308,8 +308,8 @@ pub fn Page() -> impl IntoView {
                         <div class="mt-[2.5mm] mb-[6mm] divider" />
                         {education}
                     </section>
-                </main>
+                </div>
             </div>
-        </div>
+        </article>
     }
 }

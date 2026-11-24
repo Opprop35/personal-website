@@ -188,7 +188,7 @@ pub fn Page() -> impl IntoView {
         .collect_view();
 
     view! {
-        <div class="flex flex-col gap-10 w-full">
+        <div class="flex flex-col gap-10">
             <div class="flex flex-col items-stretch md:flex-row bg-surface">
                 <iframe
                     class="w-full md:order-last md:w-7/12 md:h-auto h-[72vh] max-h-[55vw] md:max-h-none"
