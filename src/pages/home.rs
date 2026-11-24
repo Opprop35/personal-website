@@ -4,23 +4,26 @@ use crate::components::{
     Labeled, Link, List, Paragraph, Paragraphs, Section, Text, TextFragment, TextParagraph,
     TextSizedImage,
 };
-use crate::pages::projects;
+use crate::pages::projects::{
+    attic_panic, duck_side_of_the_moon, duckside_of_the_moon_student, folivoras_fall,
+    lego_framework, level_editor_plugin, radorian, twin_stick_duckbox,
+};
 use crate::project::Project;
 use crate::skill::Skill;
 use crate::IMAGE_DIR;
 
 const PROJECTS: [&Project; 4] = [
-    &projects::lego_framework::PROJECT,
-    &projects::duck_side_of_the_moon::PROJECT,
-    &projects::attic_panic::PROJECT,
-    &projects::radorian::PROJECT,
+    &lego_framework::PROJECT,
+    &duck_side_of_the_moon::PROJECT,
+    &attic_panic::PROJECT,
+    &radorian::PROJECT,
 ];
 
 const OLDER_PROJECTS: [&Project; 4] = [
-    &projects::duckside_of_the_moon_student::PROJECT,
-    &projects::level_editor_plugin::PROJECT,
-    &projects::twin_stick_duckbox::PROJECT,
-    &projects::folivoras_fall::PROJECT,
+    &duckside_of_the_moon_student::PROJECT,
+    &level_editor_plugin::PROJECT,
+    &twin_stick_duckbox::PROJECT,
+    &folivoras_fall::PROJECT,
 ];
 
 const INTRODUCTION: [Paragraph; 3] = [
