@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::IMAGE_DIR;
-use crate::components::{Link, Paragraphs, Section, TextSizedImage};
+use crate::components::{Labeled, LabeledElement, Link, Paragraphs, Section, TextSizedImage};
 use crate::project::{Project, SectionBlock, Showcase};
 
 pub mod attic_panic;
@@ -46,36 +46,88 @@ fn SectionBody(
     let showcase = showcase.map(showcase_view);
     view! {
         <div class="flex flex-col gap-6 md:flex-row md:gap-8 md:items-start">
-            <article class="w-full min-w-0 md:w-5/12">
-                <h4 class="pb-1 font-semibold text-ink">{title}</h4>
-                <div class="leading-relaxed text-ink">{children()}</div>
-            </article>
+            <Labeled
+                title=title
+                element=LabeledElement::Article
+                class="w-full min-w-0 md:w-5/12"
+            >
+                {children()}
+            </Labeled>
             <div class="w-full min-w-0 md:w-7/12">{showcase}</div>
         </div>
     }
 }
 
-fn section_view(block: &'static SectionBlock) -> impl IntoView {
-    match block {
-        SectionBlock::Heading(heading) => {
-            let heading = *heading;
-            view! { <Section title=heading /> }.into_any()
+/// A chapter of the detail page: an optional heading followed by its content blocks.
+struct Chapter {
+    heading: Option<&'static str>,
+    blocks: &'static [SectionBlock],
+}
+
+/// Group the flat section block list into chapters: each heading collects the
+/// consecutive sections after it. Sections before any heading form a
+/// heading-less chapter.
+fn group_chapters(blocks: &'static [SectionBlock]) -> Vec<Chapter> {
+    let mut chapters = Vec::new();
+    let mut i = 0;
+    while i < blocks.len() {
+        let heading = if let SectionBlock::Heading(text) = &blocks[i] {
+            i += 1;
+            Some(*text)
+        } else {
+            None
+        };
+        let start = i;
+        while i < blocks.len() && matches!(&blocks[i], SectionBlock::Section { .. }) {
+            i += 1;
         }
-        SectionBlock::Section {
-            title,
-            body,
-            showcase,
-        } => {
+        chapters.push(Chapter { heading, blocks: &blocks[start..i] });
+    }
+    chapters
+}
+
+fn chapter_view(heading: Option<&'static str>, blocks: &'static [SectionBlock]) -> impl IntoView {
+    // The chapter's articles, separated by horizontal dividers.
+    let mut articles: Vec<AnyView> = Vec::new();
+    for block in blocks {
+        if let SectionBlock::Section { title, body, showcase } = block {
+            if !articles.is_empty() {
+                articles.push(view! { <div class="divider" /> }.into_any());
+            }
             let title = *title;
             let body = *body;
             let showcase = *showcase;
-            view! {
-                <SectionBody title=title showcase=showcase>
-                    <Paragraphs paragraphs=body class="space-y-4" />
-                </SectionBody>
-            }
-            .into_any()
+            articles.push(
+                view! {
+                    <SectionBody title=title showcase=showcase>
+                        <Paragraphs
+                            paragraphs=body
+                            class="space-y-4 leading-relaxed text-ink"
+                        />
+                    </SectionBody>
+                }
+                .into_any(),
+            );
         }
+    }
+
+    match heading {
+        // A heading with no content is just a plain divider.
+        Some(heading) if articles.is_empty() => {
+            view! { <Section title=heading /> }.into_any()
+        }
+        Some(heading) => view! {
+            <section>
+                <Section title=heading collapsible=true open=true>
+                    <div class="flex flex-col gap-10">{articles}</div>
+                </Section>
+            </section>
+        }
+        .into_any(),
+        None => view! {
+            <section class="flex flex-col gap-10">{articles}</section>
+        }
+        .into_any(),
     }
 }
 
@@ -187,7 +239,10 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         {socials_row}
     };
 
-    let sections = data.sections.iter().map(section_view).collect_view();
+    let sections = group_chapters(data.sections)
+        .iter()
+        .map(|chapter| chapter_view(chapter.heading, chapter.blocks))
+        .collect_view();
 
     let under_construction = data.under_construction.then(|| {
         view! {
@@ -209,27 +264,33 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                 <span class="self-center py-2.5 px-4 max-w-full font-semibold tracking-wide text-center border-t border-x border-line bg-surface-raised text-ink rounded-t-nav">
                     {title}
                 </span>
-                <div class="flex flex-col gap-8 p-4 bg-gradient-to-b border md:p-8 border-line from-surface-deep/95 to-surface-deep rounded-b-nav">
+                <article class="flex flex-col gap-8 p-4 bg-gradient-to-b border md:p-8 border-line from-surface-deep/95 to-surface-deep rounded-b-nav">
                     {hero_video}
                     <div class="flex flex-wrap gap-4 justify-center items-center">{badges}</div>
                     <div class="divider" />
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
-                        <div class="w-full min-w-0 lg:w-5/12">
-                            <h3 class="mb-3 label-uppercase">"Project Info"</h3>
+                        <Labeled
+                            title="Project Info"
+                            element=LabeledElement::Section
+                            class="w-full min-w-0 lg:w-5/12"
+                        >
                             <div class="grid grid-cols-[max-content_1fr] gap-y-1 sm:gap-y-2 gap-x-5 items-center text-ink">
                                 {info_rows}
                             </div>
-                        </div>
-                        <div class="w-full min-w-0 lg:w-7/12">
-                            <h3 class="mb-3 label-uppercase">"Description"</h3>
+                        </Labeled>
+                        <Labeled
+                            title="Description"
+                            element=LabeledElement::Section
+                            class="w-full min-w-0 lg:w-7/12"
+                        >
                             <Paragraphs
                                 paragraphs=data.description
                                 class="space-y-4 leading-relaxed text-ink"
                             />
-                        </div>
+                        </Labeled>
                     </div> {has_more_content.then(|| view! { <div class="divider" /> })}
                     <div class="flex flex-col gap-10">{sections}{under_construction}</div>
-                </div>
+                </article>
             </div>
         </div>
     }

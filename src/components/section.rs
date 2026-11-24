@@ -4,9 +4,10 @@ use leptos::prelude::*;
 pub fn Section(
     title: &'static str,
     #[prop(optional)] collapsible: bool,
+    #[prop(optional)] open: bool,
     #[prop(optional)] children: Option<Children>,
 ) -> impl IntoView {
-    let open = RwSignal::new(false);
+    let open = RwSignal::new(open);
 
     let chevron = if collapsible {
         Some(

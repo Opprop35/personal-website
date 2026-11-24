@@ -1,6 +1,8 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, Paragraph, Paragraphs, Section, TextFragment, TextSizedImage};
+use crate::components::{
+    Labeled, LabeledElement, Link, Paragraph, Paragraphs, Section, TextFragment, TextSizedImage,
+};
 use crate::pages::projects;
 use crate::project::Project;
 use crate::skill::Skill;
@@ -83,14 +85,15 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
                                 />
                             </a>
                             <div class="flex flex-col gap-6 lg:w-1/2">
-                                <div>
-                                    <h3 class="mb-2 label-uppercase">"Summary"</h3>
+                                <Labeled title="Summary" element=LabeledElement::Section>
                                     <Paragraphs paragraphs=project.description />
-                                </div>
-                                <div>
-                                    <h3 class="mb-2 label-uppercase">"Main Contributions"</h3>
+                                </Labeled>
+                                <Labeled
+                                    title="Main Contributions"
+                                    element=LabeledElement::Section
+                                >
                                     <Paragraphs paragraphs=project.main_contributions />
-                                </div>
+                                </Labeled>
                             </div>
                         </div>
                     </div>

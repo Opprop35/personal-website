@@ -1,4 +1,5 @@
 pub mod fragments;
+pub mod labeled;
 pub mod layout;
 pub mod links;
 pub mod menus;
@@ -8,6 +9,7 @@ pub mod text_sized_image;
 pub mod toast;
 
 pub use fragments::{Paragraph, Paragraphs, TextFragment};
+pub use labeled::{Labeled, LabeledElement};
 pub use layout::Layout;
 pub use links::Link;
 pub use menus::projects_menu::ProjectsMenu;

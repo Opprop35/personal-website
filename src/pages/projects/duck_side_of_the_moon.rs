@@ -169,7 +169,7 @@ pub const PROJECT: Project = Project {
             ],
             showcase: Some(Showcase::Video("f0m2nBT5Vm4")),
         },
-        SectionBlock::Heading("Inventory & Crafting System"),
+        SectionBlock::Heading("Inventory & Crafting"),
         SectionBlock::Section {
             title: "Asset Definitions",
             body: &[Paragraph::Text(&[TextFragment::Text(
