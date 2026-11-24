@@ -241,7 +241,7 @@ pub fn Page() -> impl IntoView {
     };
 
     view! {
-        <article class="flex flex-col flex-1 mx-auto max-w-[210mm] print:w-[210mm] print:min-h-[297mm] print:overflow-hidden print:bg-surface">
+        <article class="flex flex-col flex-1 mx-auto max-w-[210mm] ring-1 ring-line print:w-[210mm] print:min-h-[297mm] print:overflow-hidden print:bg-surface print:ring-0">
             <header class="flex items-center gap-[8mm] bg-surface-deep px-[12mm] py-[9mm]">
                 <img
                     src=image("personal-photo.webp")
