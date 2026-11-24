@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 use crate::components::{ListParagraph, TextFragment, TextParagraph};
 use crate::organization::Organization;
-use crate::pages::projects::ProjectPageView;
+use crate::pages::projects::ProjectPage;
 use crate::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
@@ -57,5 +57,5 @@ pub const PROJECT: Project = Project {
 #[component]
 pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - LegoFramework");
-    view! { <ProjectPageView data=&PROJECT /> }
+    view! { <ProjectPage data=&PROJECT /> }
 }

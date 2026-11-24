@@ -1,8 +1,8 @@
 use leptos::prelude::*;
 
 use crate::components::{
-    Labeled, Link, List, Paragraph, Paragraphs, Section, Text, TextFragment, TextParagraph,
-    TextSizedImage,
+    OlderProjectRow, Paragraph, Paragraphs, ProjectCard, Section, SkillCard, TextFragment,
+    TextParagraph,
 };
 use crate::pages::projects::{
     attic_panic, duck_side_of_the_moon, duckside_of_the_moon_student, folivoras_fall,
@@ -10,7 +10,6 @@ use crate::pages::projects::{
 };
 use crate::project::Project;
 use crate::skill::Skill;
-use crate::IMAGE_DIR;
 
 const PROJECTS: [&Project; 4] = [
     &lego_framework::PROJECT,
@@ -56,111 +55,6 @@ const INTRODUCTION: [Paragraph; 3] = [
         ],
     }),
 ];
-
-#[component]
-fn ProjectCard(project: &'static Project) -> impl IntoView {
-    let skills = project
-        .info
-        .skills
-        .iter()
-        .copied()
-        .map(|skill| {
-            view! {
-                <Link href=skill.url() class="image-link" external=true>
-                    <TextSizedImage
-                        image=format!("{IMAGE_DIR}/{}", skill.image())
-                        alt=skill.alt()
-                    />
-                </Link>
-            }
-        })
-        .collect_view();
-
-    view! {
-        <article class="flex flex-col items-center transition-transform duration-300 ease-nav has-[.link-nav:hover]:scale-[1.02]">
-            <header>
-                <a tabindex="-1" href=project.href class="flex focus-ring link-nav w-fit">
-                    <h1 class="py-1.5 px-4 max-w-full font-semibold tracking-wide border-t w-fit rounded-t-nav border-x border-line bg-surface-raised text-ink">
-                        {project.title}
-                    </h1>
-                </a>
-            </header>
-            <div class="flex flex-col w-full border transition-colors duration-300 rounded-b-nav border-line bg-surface-deep has-[.link-nav:hover]:border-ink-muted/50">
-                <div class="px-4 pt-4 md:px-6 md:pt-6">
-                    <div class="flex flex-col gap-5 lg:flex-row lg:gap-8">
-                        <a href=project.href class="block lg:w-1/2 focus-ring link-nav">
-                            <img
-                                src=format!("{IMAGE_DIR}/{}", project.card_thumbnail)
-                                alt=format!("{} project image", project.title)
-                                class="object-cover w-full border opacity-90 transition-opacity duration-300 has-[.link-nav:hover]:opacity-100 rounded-default border-line"
-                            />
-                        </a>
-                        <div class="flex flex-col gap-6 lg:w-1/2">
-                            <Labeled title="Summary">
-                                <Text text=project.description />
-                            </Labeled>
-                            <Labeled title="Main Contributions">
-                                <List list=project.main_contributions />
-                            </Labeled>
-                        </div>
-                    </div>
-                </div>
-                <footer class="flex flex-wrap gap-3 items-center px-4 pt-4 pb-4 mt-5 w-full border-t md:px-6 md:pb-6 border-line">
-                    <span class="flex flex-wrap gap-2 items-center">{skills}</span>
-                    <a
-                        href=project.href
-                        class="inline-flex items-center py-1.5 px-3 ml-auto font-semibold tracking-wide uppercase link-nav text-[0.875em] text-ink bg-button"
-                    >
-                        "Read More"
-                    </a>
-                    <span class="text-ink-muted">{project.info.end_date.label()}</span>
-                </footer>
-            </div>
-        </article>
-    }
-}
-
-#[component]
-fn SkillCard(skill: Skill) -> impl IntoView {
-    let year_text = if skill.years() <= 1.0 {
-        "year"
-    } else {
-        "years"
-    };
-    let experience_text = format!("{} {} of experience", skill.years(), year_text);
-
-    view! {
-        <Link
-            href=skill.url()
-            class="flex gap-3 items-center p-4 w-full border transition-colors duration-150 focus-ring border-line bg-surface-deep hover:border-ink-muted/50"
-            external=true
-        >
-            <img
-                src=format!("{IMAGE_DIR}/{}", skill.image())
-                alt=skill.alt()
-                class="object-contain w-10 h-10 shrink-0"
-            />
-            <div class="min-w-0">
-                <h3 class="font-semibold text-ink">{skill.title()}</h3>
-                <p class="text-ink-muted">{experience_text}</p>
-            </div>
-        </Link>
-    }
-}
-
-#[component]
-fn OlderProjectRow(project: &'static Project) -> impl IntoView {
-    view! {
-        <Link
-            href=project.href
-            class="flex flex-wrap gap-y-1 gap-x-3 items-baseline py-3 px-4 w-full border transition-colors duration-150 focus-ring border-line bg-surface-deep hover:border-ink-muted/50"
-        >
-            <span class="font-semibold text-ink">{project.title}</span>
-            <span class="text-ink-muted">{project.info.project_type.label()}</span>
-            <span class="ml-auto text-ink-muted">{project.info.end_date.label()}</span>
-        </Link>
-    }
-}
 
 #[component]
 pub fn Page() -> impl IntoView {

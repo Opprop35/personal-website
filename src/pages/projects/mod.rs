@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
-use crate::components::{Labeled, Link, Paragraphs, Section, Text, TextSizedImage};
-use crate::project::{Chapter, Project, Showcase};
+use crate::components::{Labeled, Link, ProjectChapter, ProjectInfo, Text};
+use crate::project::Project;
 use crate::IMAGE_DIR;
 
 pub mod attic_panic;
@@ -13,89 +13,8 @@ pub mod level_editor_plugin;
 pub mod radorian;
 pub mod twin_stick_duckbox;
 
-fn showcase_view(showcase: Showcase) -> impl IntoView {
-    match showcase {
-        Showcase::Video(code) => view! {
-            <div class="relative aspect-video">
-                <iframe
-                    class="absolute inset-0 w-full h-full ring-1 ring-line rounded-default"
-                    src=format!("https://www.youtube-nocookie.com/embed/{code}?rel=0")
-                    allow="autoplay"
-                    title="Project video"
-                ></iframe>
-            </div>
-        }
-        .into_any(),
-        Showcase::Image { src, alt } => view! {
-            <img
-                src=format!("{IMAGE_DIR}/{src}")
-                alt=alt
-                class="object-cover w-full border border-line rounded-default"
-            />
-        }
-        .into_any(),
-    }
-}
-
 #[component]
-fn ProjectArticle(
-    title: &'static str,
-    showcase: Option<Showcase>,
-    children: Children,
-) -> impl IntoView {
-    let showcase = showcase.map(showcase_view);
-    view! {
-        <article class="flex flex-col gap-6 md:flex-row md:gap-8 md:items-start">
-            <Labeled title=title class="w-full min-w-0 md:w-5/12">
-                {children()}
-            </Labeled>
-            <figure class="w-full min-w-0 md:w-7/12">{showcase}</figure>
-        </article>
-    }
-}
-
-#[component]
-fn ProjectChapter(chapter: &'static Chapter) -> impl IntoView {
-    let mut articles: Vec<AnyView> = Vec::new();
-    for article in chapter.articles {
-        if !articles.is_empty() {
-            articles.push(view! { <div class="divider" /> }.into_any());
-        }
-        articles.push(
-            view! {
-                <ProjectArticle title=article.title showcase=article.showcase>
-                    <Paragraphs
-                        paragraphs=article.body
-                        class="space-y-4 leading-relaxed text-ink"
-                    />
-                </ProjectArticle>
-            }
-            .into_any(),
-        );
-    }
-
-    if articles.is_empty() {
-        return view! { <Section title=chapter.heading /> }.into_any();
-    }
-
-    view! {
-        <Section title=chapter.heading collapsible=true open=true>
-            <div class="flex flex-col gap-10">{articles}</div>
-        </Section>
-    }
-    .into_any()
-}
-
-#[component]
-fn InfoRow(label: &'static str, children: Children) -> impl IntoView {
-    view! {
-        <span class="text-ink-muted">{label}":"</span>
-        <span class="min-w-0">{children()}</span>
-    }
-}
-
-#[component]
-pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
+pub fn ProjectPage(data: &'static Project) -> impl IntoView {
     let title = data.title;
 
     let background_class = if data.background.is_some() {
@@ -138,63 +57,6 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
         })
         .collect_view();
 
-    let info = &data.info;
-    let skills = info
-        .skills
-        .iter()
-        .map(|skill| {
-            view! {
-                <Link href=skill.url() class="image-link" external=true>
-                    <TextSizedImage
-                        image=format!("{IMAGE_DIR}/{}", skill.image())
-                        alt=skill.alt()
-                    />
-                </Link>
-            }
-        })
-        .collect_view();
-    let socials = info
-        .socials
-        .iter()
-        .map(|social| {
-            view! {
-                <Link href=social.url class="image-link" external=true>
-                    <TextSizedImage image=format!("{IMAGE_DIR}/{}", social.image) alt=social.alt />
-                </Link>
-            }
-        })
-        .collect_view();
-    let socials_row = (!info.socials.is_empty()).then(|| {
-        view! {
-            <InfoRow label="Socials">
-                <span class="inline-flex gap-2 items-center">{socials}</span>
-            </InfoRow>
-        }
-    });
-
-    let genres_row = info.genres.map(|genres| {
-        let genres = genres
-            .iter()
-            .map(|genre| genre.label())
-            .collect::<Vec<_>>()
-            .join(", ");
-        view! { <InfoRow label="Genres">{genres}</InfoRow> }
-    });
-
-    let info_rows = view! {
-        <InfoRow label="Role">{info.role}</InfoRow>
-        {genres_row}
-        <InfoRow label="Type">{info.project_type.label()}</InfoRow>
-        <InfoRow label="Skills Applied">
-            <span class="inline-flex gap-2 items-center">{skills}</span>
-        </InfoRow>
-        <InfoRow label="Platforms">{info.platforms}</InfoRow>
-        <InfoRow label="Team Size">{info.team_size}</InfoRow>
-        <InfoRow label="Duration">{info.duration}</InfoRow>
-        <InfoRow label="End Date">{info.end_date.label()}</InfoRow>
-        {socials_row}
-    };
-
     let chapters = data
         .chapters
         .iter()
@@ -224,11 +86,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     <div class="flex flex-wrap gap-4 justify-center items-center">{badges}</div>
                     <div class="divider" />
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
-                        <Labeled title="Project Info" class="w-full min-w-0 lg:w-5/12">
-                            <div class="grid gap-y-1 gap-x-5 items-center sm:gap-y-2 grid-cols-[max-content_1fr] text-ink">
-                                {info_rows}
-                            </div>
-                        </Labeled>
+                        <ProjectInfo info=&data.info />
                         <Labeled title="Description" class="w-full min-w-0 lg:w-7/12">
                             <Text
                                 text=data.description

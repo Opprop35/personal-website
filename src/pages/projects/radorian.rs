@@ -1,7 +1,7 @@
 use leptos::prelude::*;
 
 use crate::components::{ListParagraph, TextFragment, TextParagraph};
-use crate::pages::projects::ProjectPageView;
+use crate::pages::projects::ProjectPage;
 use crate::project::{Date, Genre, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
 
@@ -60,5 +60,5 @@ pub const PROJECT: Project = Project {
 #[component]
 pub fn Page() -> impl IntoView {
     document().set_title("Jesse Stolk - Radorian");
-    view! { <ProjectPageView data=&PROJECT /> }
+    view! { <ProjectPage data=&PROJECT /> }
 }
