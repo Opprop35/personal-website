@@ -52,7 +52,7 @@
   @apply font-semibold uppercase text-[0.875em] tracking-[0.16em] text-ink-muted;
 }
 
-@utility link-muted {
+@utility text-link {
   @apply text-accent hover:underline focus-ring;
 }
 

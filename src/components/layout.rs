@@ -1,21 +1,27 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, Paragraph, Paragraphs, ProjectsMenu, TextFragment};
+use crate::components::{
+    Link, Paragraph, Paragraphs, ProjectsMenu, TextFragment, TextParagraph,
+};
 use crate::locale::resume_label;
 
 // TODO: Leptos and Tailwind can be skills as well.
-const FOOTER: [Paragraph; 1] = [Paragraph::Text(&[
-    TextFragment::Text("Website made using "),
-    TextFragment::Link {
-        url: "https://leptos.dev/",
-        label: "Leptos",
-    },
-    TextFragment::Text(" & "),
-    TextFragment::Link {
-        url: "https://tailwindcss.com/",
-        label: "Tailwind",
-    },
-])];
+const FOOTER: [Paragraph; 1] = [
+    Paragraph::Text(TextParagraph {
+        fragments: &[
+            TextFragment::Text("Website made using "),
+            TextFragment::Link {
+                url: "https://leptos.dev/",
+                label: "Leptos",
+            },
+            TextFragment::Text(" & "),
+            TextFragment::Link {
+                url: "https://tailwindcss.com/",
+                label: "Tailwind",
+            },
+        ],
+    }),
+];
 
 #[component]
 pub fn Layout(children: impl IntoView) -> impl IntoView {
@@ -75,9 +81,9 @@ pub fn Layout(children: impl IntoView) -> impl IntoView {
 
             <div class="flex flex-col min-h-screen bg-surface">{children}</div>
 
-            <div class="py-3 px-4 print:hidden bg-surface-deep text-ink-muted">
+            <footer class="py-3 px-4 print:hidden bg-surface-deep text-ink-muted">
                 <Paragraphs paragraphs=&FOOTER class="text-center" />
-            </div>
+            </footer>
         </div>
     }
 }

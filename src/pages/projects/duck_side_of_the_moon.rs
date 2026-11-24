@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Paragraph, TextFragment};
+use crate::components::{ListParagraph, Paragraph, TextFragment, TextParagraph};
 use crate::pages::projects::ProjectPageView;
 use crate::project::{
     Article, Chapter, Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType,
@@ -12,15 +12,15 @@ pub const PROJECT: Project = Project {
     title: "Duck Side of the Moon",
     href: "/duck-side-of-the-moon",
     card_thumbnail: "dsotm-thumbnail.webp",
-    main_contributions: &[
-        Paragraph::List(&[
+    main_contributions: ListParagraph {
+        items: &[
             "Dialogue System",
             "Save Game System",
             "Quest System",
             "Inventory & Crafting System",
             "Upgrade System",
-        ]),
-    ],
+        ],
+    },
     background: Some("dsotm-background.webp"),
     hero_video: Some("jDcsH4LYuCo"),
     badges: &[Link {
@@ -59,23 +59,24 @@ pub const PROJECT: Project = Project {
             },
         ],
     },
-    description: &[Paragraph::Text(&[
-        TextFragment::Text(
+    description: TextParagraph {
+        fragments: &[
+            TextFragment::Text(
             "A remake of the original student project. This time it's a cozy adventure game. I \
-             was the main ",
-        ),
-        TextFragment::StrongText("systems & tools programmer"),
-        TextFragment::Text(
+            was the main ",
+            ),
+            TextFragment::StrongText("systems & tools programmer"),
+            TextFragment::Text(
             " for the project and built its core systems using a combination of C++ and \
-             Blueprints. I also helped establish the indie company ",
-        ),
-        TextFragment::Link {
+            Blueprints. I also helped establish the indie company ",
+            ),
+            TextFragment::Link {
             url: "https://starbrewgames.com/",
             label: "Starbrew Games",
-        },
-        TextFragment::Text(" but left the project and company midway through development."),
-    ]),
-    ],
+            },
+            TextFragment::Text(" but left the project and company midway through development."),
+        ],
+    },
     chapters: &[
         Chapter {
             heading: "Dialogue",
@@ -83,25 +84,31 @@ pub const PROJECT: Project = Project {
                 Article {
                     title: "Dialogue Trees",
                     body: &[
-                        Paragraph::Text(&[
-                            TextFragment::Text(
+                                                Paragraph::Text(TextParagraph {
+                            fragments: &[
+                                TextFragment::Text(
                                 "In order to build this game's dialogue system I utilized Unreal Engine's \
-                                 Instanced UObjects to build a tree of nested dialogue events. These trees \
-                                 are built up of:",
-                            ),
-                        ]),
-                        Paragraph::List(&[
-                            "Flow Control (sequences, selectors, choices, etc.)",
-                            "Conditions (HasItems, IsQuestCompleted, etc.)",
-                            "Events (text, animation, tags/flags, etc.)",
-                        ]),
-                        Paragraph::Text(&[
-                            TextFragment::Text(
+                                Instanced UObjects to build a tree of nested dialogue events. These trees \
+                                are built up of:",
+                                ),
+                            ],
+                        }),
+                                                Paragraph::List(ListParagraph {
+                            items: &[
+                                "Flow Control (sequences, selectors, choices, etc.)",
+                                "Conditions (HasItems, IsQuestCompleted, etc.)",
+                                "Events (text, animation, tags/flags, etc.)",
+                            ],
+                        }),
+                                                Paragraph::Text(TextParagraph {
+                            fragments: &[
+                                TextFragment::Text(
                                 "Flow Control will trigger different child Events based on the Conditions \
-                                 those Events have. For example, the selector executes only the first event \
-                                 for which all conditions are true.",
-                            ),
-                        ]),
+                                those Events have. For example, the selector executes only the first event \
+                                for which all conditions are true.",
+                                ),
+                            ],
+                        }),
                     ],
                     showcase: Some(Showcase::Image {
                         src: "dsotm-dialogue-tree.webp",
@@ -110,39 +117,53 @@ pub const PROJECT: Project = Project {
                 },
                 Article {
                     title: "Blueprintable Dialogue Triggers",
-                    body: &[Paragraph::Text(&[TextFragment::Text(
-                        "To give Designers even more flexibility when working with the system I allowed \
-                         them to create custom events as well. This could simply be done by inheriting \
-                         from a TriggerDialogueEvent as you can see in the video.",
-                    )])],
+                    body: &[                    Paragraph::Text(TextParagraph {
+                        fragments: &[
+                            TextFragment::Text(
+                            "To give Designers even more flexibility when working with the system I allowed \
+                            them to create custom events as well. This could simply be done by inheriting \
+                            from a TriggerDialogueEvent as you can see in the video.",
+                            )
+                        ],
+                    }),
+                    ],
                     showcase: Some(Showcase::Video("WeMdvLGzth8")),
                 },
                 Article {
                     title: "Details Panel Customization",
-                    body: &[Paragraph::Text(&[TextFragment::Text(
-                        "To make building dialogue trees more user friendly I did some research into \
-                         Details Panel Customization. This allowed me to add color coding, create a more \
-                         compact layout, and add a special wrap button. In the video to the right you \
-                         can see how the tree becomes much more readable thanks to this feature.",
-                    )])],
+                    body: &[                    Paragraph::Text(TextParagraph {
+                        fragments: &[
+                            TextFragment::Text(
+                            "To make building dialogue trees more user friendly I did some research into \
+                            Details Panel Customization. This allowed me to add color coding, create a more \
+                            compact layout, and add a special wrap button. In the video to the right you \
+                            can see how the tree becomes much more readable thanks to this feature.",
+                            )
+                        ],
+                    }),
+                    ],
                     showcase: Some(Showcase::Video("GuhgFl8Wt-A")),
                 },
                 Article {
                     title: "Typewriter Text Block",
                     body: &[
-                        Paragraph::Text(&[
-                            TextFragment::Text(
+                                                Paragraph::Text(TextParagraph {
+                            fragments: &[
+                                TextFragment::Text(
                                 "I also implemented a text block that had several custom features such as:",
-                            ),
-                        ]),
-                        Paragraph::List(&[
-                            "Being able to print characters one-by-one while keeping consistent \
-                             text-wrapping.",
-                            "Allowing the creation of animated font materials by packing data in the \
-                             vertex color of each character.",
-                            "Easily changing text style, print interval, and animation duration when \
-                             writing dialogue lines.",
-                        ]),
+                                ),
+                            ],
+                        }),
+                                                Paragraph::List(ListParagraph {
+                            items: &[
+                                "Being able to print characters one-by-one while keeping consistent \
+                                text-wrapping.",
+                                "Allowing the creation of animated font materials by packing data in the \
+                                vertex color of each character.",
+                                "Easily changing text style, print interval, and animation duration when \
+                                writing dialogue lines.",
+                            ],
+                        }),
                     ],
                     showcase: Some(Showcase::Video("O8jYwwE2SFA")),
                 },
@@ -153,23 +174,29 @@ pub const PROJECT: Project = Project {
             articles: &[Article {
                 title: "Save Game System",
                 body: &[
-                    Paragraph::Text(&[
-                        TextFragment::Text(
+                                        Paragraph::Text(TextParagraph {
+                        fragments: &[
+                            TextFragment::Text(
                             "I was also responsible for building the game's save game system. \
-                             Implementing features such as:",
-                        ),
-                    ]),
-                    Paragraph::List(&[
-                        "Saving Placed & Spawned Actors",
-                        "Saving Global Game State",
-                        "Managing Save Game Slots",
-                    ]),
-                    Paragraph::Text(&[
-                        TextFragment::Text(
+                            Implementing features such as:",
+                            ),
+                        ],
+                    }),
+                                        Paragraph::List(ListParagraph {
+                        items: &[
+                            "Saving Placed & Spawned Actors",
+                            "Saving Global Game State",
+                            "Managing Save Game Slots",
+                        ],
+                    }),
+                                        Paragraph::Text(TextParagraph {
+                        fragments: &[
+                            TextFragment::Text(
                             "I would've liked to build more robust validation as well but I left the \
-                             team before I could take that task on.",
-                        ),
-                    ]),
+                            team before I could take that task on.",
+                            ),
+                        ],
+                    }),
                 ],
                 showcase: Some(Showcase::Video("f0m2nBT5Vm4")),
             }],
@@ -179,11 +206,16 @@ pub const PROJECT: Project = Project {
             articles: &[
                 Article {
                     title: "Asset Definitions",
-                    body: &[Paragraph::Text(&[TextFragment::Text(
-                        "I used Unreal Engine's Asset Definitions to customize the look of certain types \
-                         of assets in the content browser. For example every Item asset displays the \
-                         same icon used in the in-game UI.",
-                    )])],
+                    body: &[                    Paragraph::Text(TextParagraph {
+                        fragments: &[
+                            TextFragment::Text(
+                            "I used Unreal Engine's Asset Definitions to customize the look of certain types \
+                            of assets in the content browser. For example every Item asset displays the \
+                            same icon used in the in-game UI.",
+                            )
+                        ],
+                    }),
+                    ],
                     showcase: Some(Showcase::Image {
                         src: "dsotm-item-assets.webp",
                         alt: "Item Assets",
@@ -191,11 +223,16 @@ pub const PROJECT: Project = Project {
                 },
                 Article {
                     title: "Recipe Data Assets",
-                    body: &[Paragraph::Text(&[TextFragment::Text(
-                        "Here you can see what a recipe data asset looks like. You can see the icons also \
-                         show up in here allowing you to see at a glance what ingredients this recipe \
-                         requires.",
-                    )])],
+                    body: &[                    Paragraph::Text(TextParagraph {
+                        fragments: &[
+                            TextFragment::Text(
+                            "Here you can see what a recipe data asset looks like. You can see the icons also \
+                            show up in here allowing you to see at a glance what ingredients this recipe \
+                            requires.",
+                            )
+                        ],
+                    }),
+                    ],
                     showcase: Some(Showcase::Image {
                         src: "dsotm-recipe-asset.webp",
                         alt: "Recipe Data Asset",

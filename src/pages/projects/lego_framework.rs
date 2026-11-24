@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Paragraph, TextFragment};
+use crate::components::{ListParagraph, TextFragment, TextParagraph};
 use crate::organization::Organization;
 use crate::pages::projects::ProjectPageView;
 use crate::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
@@ -10,13 +10,13 @@ pub const PROJECT: Project = Project {
     title: "LEGO® Framework",
     href: "/lego-framework",
     card_thumbnail: "lego-thumbnail.webp",
-    main_contributions: &[
-        Paragraph::List(&[
+    main_contributions: ListParagraph {
+        items: &[
             "Brick Snapping Logic & Tooling",
             "Connection Point Based Transform Gizmo",
             "Import Pipeline Redesign",
-        ]),
-    ],
+        ],
+    },
     background: Some("lego-background.webp"),
     hero_video: Some("7J7J0zm5xFc"),
     badges: &[],
@@ -35,19 +35,21 @@ pub const PROJECT: Project = Project {
         skills: &[Skill::Unreal, Skill::Cpp, Skill::Git, Skill::Perforce],
         socials: &[],
     },
-    description: &[Paragraph::Text(&[
-        TextFragment::Text("At "),
-        TextFragment::organization(Organization::TheLegoGroup),
-        TextFragment::Text(
+    description: TextParagraph {
+        fragments: &[
+            TextFragment::Text("At "),
+            TextFragment::organization(Organization::TheLegoGroup),
+            TextFragment::Text(
             " I worked on a general purpose LEGO framework for Unreal Engine. \
-             The LEGO® Brick Editor was a key deliverable. I mainly contributed to the Brick \
-             building UX, Bug fixes, Automated Tests, and ",
-        ),
-        TextFragment::StrongText("redesigned"),
-        TextFragment::Text(
+            The LEGO® Brick Editor was a key deliverable. I mainly contributed to the Brick \
+            building UX, Bug fixes, Automated Tests, and ",
+            ),
+            TextFragment::StrongText("redesigned"),
+            TextFragment::Text(
             " the framework's import pipeline to be more idiomatic, performant and flexible.",
-        ),
-    ])],
+            ),
+        ],
+    },
     chapters: &[],
     under_construction: true,
 };

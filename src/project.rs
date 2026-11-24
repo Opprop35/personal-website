@@ -1,4 +1,4 @@
-use crate::components::Paragraph;
+use crate::components::{ListParagraph, Paragraph, TextParagraph};
 use crate::skill::Skill;
 
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
@@ -140,14 +140,12 @@ pub enum Showcase {
     },
 }
 
-/// A titled content block on a project page, rendered as an `<article>`.
 pub struct Article {
     pub title: &'static str,
     pub body: &'static [Paragraph],
     pub showcase: Option<Showcase>,
 }
 
-/// A division of a project page: a heading that groups related `Article`s.
 pub struct Chapter {
     pub heading: &'static str,
     pub articles: &'static [Article],
@@ -171,29 +169,18 @@ pub struct Info {
     pub socials: &'static [Link],
 }
 
-/// A project, shown as a card on the home page and in full detail on its own page.
 pub struct Project {
-    /// The title shown on both the card and the detail page.
     pub title: &'static str,
-    /// The route the detail page is served from.
     pub href: &'static str,
-    /// The card thumbnail, a file name within `public/images`.
     pub card_thumbnail: &'static str,
-    /// Short bullet points of contributions shown on the card.
-    pub main_contributions: &'static [Paragraph],
 
-    /// The detail page background image, a file name within `public/images`.
-    pub background: Option<&'static str>,
-    /// The detail page hero trailer (a YouTube video id).
-    pub hero_video: Option<&'static str>,
-    /// Store & competition badges shown on the detail page.
-    pub badges: &'static [Link],
-    /// The structured project-info block (role, skills, end date, socials, ...).
+    pub description: TextParagraph,
+    pub main_contributions: ListParagraph,
     pub info: Info,
-    /// The description paragraphs, shown on both the card and the detail page.
-    pub description: &'static [Paragraph],
-    /// The detailed chapters shown on the detail page.
+
+    pub hero_video: Option<&'static str>,
+    pub badges: &'static [Link],
+    pub background: Option<&'static str>,
     pub chapters: &'static [Chapter],
-    /// When set, shows an "Under Construction" banner in place of the chapters.
     pub under_construction: bool,
 }

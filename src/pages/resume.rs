@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Link, Paragraph, Paragraphs, TextFragment};
+use crate::components::{Link, ListParagraph, Paragraph, Paragraphs, TextFragment, TextParagraph};
 use crate::locale::resume_label;
 use crate::organization::Organization;
 use crate::skill::Skill;
@@ -41,44 +41,60 @@ const PROJECTS: [ExperienceData; 3] = [
         source: ExperienceSource::Organization(Organization::TheLegoGroup),
         subtitle: "LEGO® Brick Editor | Tools Programmer",
         period: "November 2024 – July 2026",
-        details: Some(&[Paragraph::List(&[
-            "Brick Snapping Logic & Tooling",
-            "Import Pipeline Redesign",
-            "Connection Point Based Gizmo",
-        ])]),
+        details: Some(&[
+            Paragraph::List(ListParagraph {
+                items: &[
+                    "Brick Snapping Logic & Tooling",
+                    "Import Pipeline Redesign",
+                    "Connection Point Based Gizmo",
+                ],
+            }),
+        ]),
     },
     ExperienceData {
         source: ExperienceSource::Organization(Organization::StarbrewGames),
         subtitle: "Duckside of the Moon | Game Developer",
         period: "June 2023 – June 2024",
-        details: Some(&[Paragraph::List(&[
-            "Dialogue, Quest, Crafting, & Upgrade Systems",
-            "Save Game System",
-            "Technical Animation",
-            "UI Programming",
-        ])]),
+        details: Some(&[
+            Paragraph::List(ListParagraph {
+                items: &[
+                    "Dialogue, Quest, Crafting, & Upgrade Systems",
+                    "Save Game System",
+                    "Technical Animation",
+                    "UI Programming",
+                ],
+            }),
+        ]),
     },
     ExperienceData {
         source: ExperienceSource::Personal,
         subtitle: "Various projects | Game Developer",
         period: "April 2021 – Present",
-        details: Some(&[Paragraph::List(&[
-            "Asset Pipelines & Tools",
-            "Procedural Geometry",
-            "Online Multiplayer",
-            "Shader Programming",
-            "Third Person Camera",
-        ])]),
+        details: Some(&[
+            Paragraph::List(ListParagraph {
+                items: &[
+                    "Asset Pipelines & Tools",
+                    "Procedural Geometry",
+                    "Online Multiplayer",
+                    "Shader Programming",
+                    "Third Person Camera",
+                ],
+            }),
+        ]),
     },
 ];
 
-const SOCRATES_NOTE: [Paragraph; 1] = [Paragraph::Text(&[
-    TextFragment::Link {
-        url: "https://www.socrateshonours.org/lid-worden/toelatingscriteria",
-        label: "Socrates",
-    },
-    TextFragment::MutedText(" (Top 10% of students)"),
-])];
+const SOCRATES_NOTE: [Paragraph; 1] = [
+    Paragraph::Text(TextParagraph {
+        fragments: &[
+            TextFragment::Link {
+                url: "https://www.socrateshonours.org/lid-worden/toelatingscriteria",
+                label: "Socrates",
+            },
+            TextFragment::MutedText(" (Top 10% of students)"),
+        ],
+    }),
+];
 
 const EDUCATION: [ExperienceData; 3] = [
     ExperienceData {
@@ -200,12 +216,12 @@ pub fn Page() -> impl IntoView {
 
     let personal_details = view! {
         <li>
-            <Link href="https://jessestolk.com" class="link-muted" external=true>
+            <Link href="https://jessestolk.com" class="text-link" external=true>
                 "jessestolk.com"
             </Link>
         </li>
         <li>
-            <a href="mailto:jeus.stolk@gmail.com" class="link-muted break-all">
+            <a href="mailto:jeus.stolk@gmail.com" class="text-link break-all">
                 "jeus.stolk@gmail.com"
             </a>
         </li>
@@ -282,7 +298,7 @@ pub fn Page() -> impl IntoView {
                         {projects}
                     </section>
                     <p class="mt-[5mm] text-[13px]">
-                        <Link href="https://jessestolk.com" class="link-muted" external=true>
+                        <Link href="https://jessestolk.com" class="text-link" external=true>
                             "See jessestolk.com for more info…"
                         </Link>
                     </p>

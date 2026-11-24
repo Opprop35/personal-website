@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Paragraph, TextFragment};
+use crate::components::{ListParagraph, TextFragment, TextParagraph};
 use crate::pages::projects::ProjectPageView;
 use crate::project::{Date, Genre, Info, Month, Project, ProjectEndDate, ProjectType};
 use crate::skill::Skill;
@@ -9,15 +9,15 @@ pub const PROJECT: Project = Project {
     title: "Radorian",
     href: "/radorian",
     card_thumbnail: "radorian-thumbnail.webp",
-    main_contributions: &[
-        Paragraph::List(&[
+    main_contributions: ListParagraph {
+        items: &[
             "Third person camera",
             "3D sprite pipeline & tools",
             "Custom shaders",
             "Procedural Geometry",
             "Dynamic gravity",
-        ]),
-    ],
+        ],
+    },
     background: None,
     hero_video: Some("tbIsz63srjo"),
     badges: &[],
@@ -42,15 +42,17 @@ pub const PROJECT: Project = Project {
         ],
         socials: &[],
     },
-    description: &[Paragraph::Text(&[
-        TextFragment::Text("A "),
-        TextFragment::StrongText("personal project"),
-        TextFragment::Text(
+    description: TextParagraph {
+        fragments: &[
+            TextFragment::Text("A "),
+            TextFragment::StrongText("personal project"),
+            TextFragment::Text(
             " I used to work on in my spare time at university. It's a third person game with an \
-             experimental art style. I made everything myself from code to art to sound to \
-             game design.",
-        ),
-    ])],
+            experimental art style. I made everything myself from code to art to sound to \
+            game design.",
+            ),
+        ],
+    },
     chapters: &[],
     under_construction: true,
 };

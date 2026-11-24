@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Labeled, Link, Paragraphs, Section, TextSizedImage};
+use crate::components::{Labeled, Link, Paragraphs, Section, Text, TextSizedImage};
 use crate::project::{Chapter, Project, Showcase};
 use crate::IMAGE_DIR;
 
@@ -229,8 +229,8 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                             </div>
                         </Labeled>
                         <Labeled title="Description" class="w-full min-w-0 lg:w-7/12">
-                            <Paragraphs
-                                paragraphs=data.description
+                            <Text
+                                text=data.description
                                 class="space-y-4 leading-relaxed text-ink"
                             />
                         </Labeled>

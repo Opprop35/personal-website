@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{Paragraph, TextFragment};
+use crate::components::{ListParagraph, Paragraph, TextFragment, TextParagraph};
 use crate::pages::projects::ProjectPageView;
 use crate::project::{
     Article, Chapter, Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType,
@@ -12,14 +12,14 @@ pub const PROJECT: Project = Project {
     title: "Attic Panic",
     href: "/attic-panic",
     card_thumbnail: "attic-panic-thumbnail.webp",
-    main_contributions: &[
-        Paragraph::List(&[
+    main_contributions: ListParagraph {
+        items: &[
             "Upgrade System",
             "Upgrade Design & Implementation",
             "Upgrade & Gameplay Balancing",
             "Sound Effects & Audio",
-        ]),
-    ],
+        ],
+    },
     background: Some("attic-panic-background.webp"),
     hero_video: Some("NjRhr-QN3SE"),
     badges: &[Link {
@@ -58,51 +58,65 @@ pub const PROJECT: Project = Project {
             },
         ],
     },
-    description: &[Paragraph::Text(&[
-        TextFragment::Text("A year long student project. Attic Panic is an "),
-        TextFragment::StrongText("online multiplayer"),
-        TextFragment::Text(
-            " top-down shooter with rogue-like elements. I mainly worked on the upgrade system, \
-             individual upgrades, and replication of upgrades between server & clients.",
-        ),
-    ]),
-    ],
+    description: TextParagraph {
+        fragments: &[
+                TextFragment::Text("A year long student project. Attic Panic is an "),
+                TextFragment::StrongText("online multiplayer"),
+                TextFragment::Text(
+                " top-down shooter with rogue-like elements. I mainly worked on the upgrade system, \
+                individual upgrades, and replication of upgrades between server & clients.",
+                ),
+        ],
+    },
     chapters: &[
         Chapter {
             heading: "Upgrades",
             articles: &[
                 Article {
                     title: "Upgrade Data",
-                    body: &[Paragraph::Text(&[
-                        TextFragment::Text(
-                            "While working on the game I redesigned & refactored the upgrade system \
-                             in order to create a smoother data-driven experience for designers. \
-                             This way the upgrades could be balanced & tweaked more easily \
-                             throughout development. I defined Data Assets in C++ which can be \
-                             created in the content browser of Unreal and were automatically \
-                             detected and used by the game's systems. I also created a short video \
-                             for the team explaining how to create these.",
-                        ),
-                    ]),
+                    body: &[
+                        Paragraph::Text(TextParagraph {
+                            fragments: &[
+                                TextFragment::Text(
+                                "While working on the game I redesigned & refactored the upgrade system \
+                                in order to create a smoother data-driven experience for designers. \
+                                This way the upgrades could be balanced & tweaked more easily \
+                                throughout development. I defined Data Assets in C++ which can be \
+                                created in the content browser of Unreal and were automatically \
+                                detected and used by the game's systems. I also created a short video \
+                                for the team explaining how to create these.",
+                                ),
+                            ],
+                        }),
                     ],
                     showcase: Some(Showcase::Video("i1D-GloaSK4")),
                 },
                 Article {
                     title: "Upgrade Functionality & Replication",
-                    body: &[Paragraph::Text(&[TextFragment::Text(
-                        "I worked on a lot of upgrades for the game and made sure those upgrades \
-                            would replicate properly between the different players.",
-                    )])],
-                    showcase: Some(Showcase::Video("UryKkAPVYIQ")),
+                    body: &[
+                        Paragraph::Text(TextParagraph {
+                            fragments: &[
+                                TextFragment::Text(
+                                "I worked on a lot of upgrades for the game and made sure those upgrades \
+                                would replicate properly between the different players.",
+                                )
+                            ],
+                        }),
+                    ],   showcase: Some(Showcase::Video("UryKkAPVYIQ")),
                 },
                 Article {
                     title: "Upgrade VFX Implementation",
-                    body: &[Paragraph::Text(&[TextFragment::Text(
-                        "I worked closely with one of the VFX artists to implement some of the VFX. \
-                         Here you can see such an example we worked on the mine laying animation, \
-                         explosion effect, and Disappear effect.",
-                    )])],
-                    showcase: Some(Showcase::Video("59EkYuxYBVM")),
+                    body: &[
+                        Paragraph::Text(TextParagraph {
+                            fragments: &[
+                                TextFragment::Text(
+                                "I worked closely with one of the VFX artists to implement some of the VFX. \
+                                Here you can see such an example we worked on the mine laying animation, \
+                                explosion effect, and Disappear effect.",
+                                )
+                            ],
+                        }),
+                    ],   showcase: Some(Showcase::Video("59EkYuxYBVM")),
                 },
             ],
         },

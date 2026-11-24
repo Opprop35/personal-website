@@ -1,5 +1,6 @@
 use leptos::prelude::*;
 
+use crate::components::text::Text;
 use crate::components::Link;
 use crate::organization::Organization;
 use crate::skill::Skill;
@@ -31,10 +32,22 @@ impl TextFragment {
     }
 }
 
+/// A paragraph of rich text fragments.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct TextParagraph {
+    pub fragments: &'static [TextFragment],
+}
+
+/// A paragraph of a bulleted list of short items.
+#[derive(Debug, Clone, Copy, PartialEq, Eq)]
+pub struct ListParagraph {
+    pub items: &'static [&'static str],
+}
+
 #[derive(Debug, Clone, Copy, PartialEq, Eq)]
 pub enum Paragraph {
-    Text(&'static [TextFragment]),
-    List(&'static [&'static str]),
+    Text(TextParagraph),
+    List(ListParagraph),
 }
 
 #[component]
@@ -59,7 +72,7 @@ pub fn TextFragments(fragments: &'static [TextFragment]) -> impl IntoView {
                 let url = *url;
                 let label = *label;
                 view! {
-                    <Link href=url class="link-muted" external=true>
+                    <Link href=url class="text-link" external=true>
                         {label}
                     </Link>
                 }
@@ -78,25 +91,26 @@ pub fn Paragraphs(
     let blocks = paragraphs
         .iter()
         .map(|paragraph| match paragraph {
-            Paragraph::Text(fragments) => {
-                let fragments = *fragments;
-                view! {
-                    <p>
-                        <TextFragments fragments=fragments />
-                    </p>
-                }
-                .into_any()
+            Paragraph::Text(text) => {
+                let text = *text;
+                view! { <Text text=text /> }.into_any()
             }
-            Paragraph::List(items) => {
-                let items = *items;
-                view! {
-                    <ul class="pl-5 list-disc marker:text-ink-muted">
-                        {items.iter().copied().map(|item| view! { <li>{item}</li> }).collect_view()}
-                    </ul>
-                }
-                .into_any()
+            Paragraph::List(list) => {
+                let list = *list;
+                view! { <List list=list /> }.into_any()
             }
         })
         .collect_view();
     view! { <div class=classes>{blocks}</div> }
+}
+
+/// A bulleted list of short items.
+#[component]
+pub fn List(list: ListParagraph) -> impl IntoView {
+    let ListParagraph { items } = list;
+    view! {
+        <ul class="pl-5 list-disc marker:text-ink-muted">
+            {items.iter().copied().map(|item| view! { <li>{item}</li> }).collect_view()}
+        </ul>
+    }
 }
