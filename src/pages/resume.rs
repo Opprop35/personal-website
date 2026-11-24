@@ -41,60 +41,52 @@ const PROJECTS: [ExperienceData; 3] = [
         source: ExperienceSource::Organization(Organization::TheLegoGroup),
         subtitle: "LEGO® Brick Editor | Tools Programmer",
         period: "November 2024 – July 2026",
-        details: Some(&[
-            Paragraph::List(ListParagraph {
-                items: &[
-                    "Brick Snapping Logic & Tooling",
-                    "Import Pipeline Redesign",
-                    "Connection Point Based Gizmo",
-                ],
-            }),
-        ]),
+        details: Some(&[Paragraph::List(ListParagraph {
+            items: &[
+                "Brick Snapping Logic & Tooling",
+                "Import Pipeline Redesign",
+                "Connection Point Based Gizmo",
+            ],
+        })]),
     },
     ExperienceData {
         source: ExperienceSource::Organization(Organization::StarbrewGames),
         subtitle: "Duckside of the Moon | Game Developer",
         period: "June 2023 – June 2024",
-        details: Some(&[
-            Paragraph::List(ListParagraph {
-                items: &[
-                    "Dialogue, Quest, Crafting, & Upgrade Systems",
-                    "Save Game System",
-                    "Technical Animation",
-                    "UI Programming",
-                ],
-            }),
-        ]),
+        details: Some(&[Paragraph::List(ListParagraph {
+            items: &[
+                "Dialogue, Quest, Crafting, & Upgrade Systems",
+                "Save Game System",
+                "Technical Animation",
+                "UI Programming",
+            ],
+        })]),
     },
     ExperienceData {
         source: ExperienceSource::Personal,
         subtitle: "Various projects | Game Developer",
         period: "April 2021 – Present",
-        details: Some(&[
-            Paragraph::List(ListParagraph {
-                items: &[
-                    "Asset Pipelines & Tools",
-                    "Procedural Geometry",
-                    "Online Multiplayer",
-                    "Shader Programming",
-                    "Third Person Camera",
-                ],
-            }),
-        ]),
+        details: Some(&[Paragraph::List(ListParagraph {
+            items: &[
+                "Asset Pipelines & Tools",
+                "Procedural Geometry",
+                "Online Multiplayer",
+                "Shader Programming",
+                "Third Person Camera",
+            ],
+        })]),
     },
 ];
 
-const SOCRATES_NOTE: [Paragraph; 1] = [
-    Paragraph::Text(TextParagraph {
-        fragments: &[
-            TextFragment::Link {
-                url: "https://www.socrateshonours.org/lid-worden/toelatingscriteria",
-                label: "Socrates",
-            },
-            TextFragment::MutedText(" (Top 10% of students)"),
-        ],
-    }),
-];
+const SOCRATES_NOTE: [Paragraph; 1] = [Paragraph::Text(TextParagraph {
+    fragments: &[
+        TextFragment::Link {
+            url: "https://www.socrateshonours.org/lid-worden/toelatingscriteria",
+            label: "Socrates",
+        },
+        TextFragment::MutedText(" (Top 10% of students)"),
+    ],
+})];
 
 const EDUCATION: [ExperienceData; 3] = [
     ExperienceData {
@@ -221,7 +213,7 @@ pub fn Page() -> impl IntoView {
             </Link>
         </li>
         <li>
-            <a href="mailto:jeus.stolk@gmail.com" class="text-link break-all">
+            <a href="mailto:jeus.stolk@gmail.com" class="break-all text-link">
                 "jeus.stolk@gmail.com"
             </a>
         </li>
@@ -258,9 +250,7 @@ pub fn Page() -> impl IntoView {
                 />
                 <div class="flex-1 min-w-0">
                     <h1 class="font-bold text-[26px] tracking-[0.06em]">"JESSE STOLK"</h1>
-                    <p class="mt-[1.5mm] text-[14px] text-ink-muted">
-                        "Software Engineer"
-                    </p>
+                    <p class="mt-[1.5mm] text-[14px] text-ink-muted">"Software Engineer"</p>
                 </div>
                 <button
                     class="inline-flex gap-2 items-center py-2 px-3 print:hidden text-[12px] bg-button"
@@ -293,7 +283,9 @@ pub fn Page() -> impl IntoView {
 
                 <div class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
                     <section>
-                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">"Projects"</h2>
+                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
+                            "Projects"
+                        </h2>
                         <div class="mt-[2.5mm] mb-[6mm] divider" />
                         {projects}
                     </section>
@@ -303,8 +295,10 @@ pub fn Page() -> impl IntoView {
                         </Link>
                     </p>
 
-                    <section class="mt-auto pt-[4mm]">
-                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">"Education"</h2>
+                    <section class="pt-[6mm]">
+                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
+                            "Education"
+                        </h2>
                         <div class="mt-[2.5mm] mb-[6mm] divider" />
                         {education}
                     </section>
