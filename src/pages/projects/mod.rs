@@ -216,7 +216,7 @@ pub fn ProjectPageView(data: &'static Project) -> impl IntoView {
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <div class="w-full min-w-0 lg:w-5/12">
                             <h3 class="mb-3 label-uppercase">"Project Info"</h3>
-                            <div class="grid grid-cols-1 gap-y-1 sm:gap-y-2 sm:gap-x-5 sm:items-center text-ink sm:grid-cols-[max-content_1fr]">
+                            <div class="grid grid-cols-[max-content_1fr] gap-y-1 sm:gap-y-2 gap-x-5 items-center text-ink">
                                 {info_rows}
                             </div>
                         </div>

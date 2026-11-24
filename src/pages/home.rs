@@ -126,13 +126,12 @@ fn ProjectCard(project: &'static Project) -> impl IntoView {
 
 #[component]
 fn SkillCard(skill: Skill) -> impl IntoView {
-    let years_text = if skill.years() < 1.0 {
-        "Less than a Year of experience".to_string()
-    } else if skill.years() == 1.0 {
-        "1 Year of experience".to_string()
+    let year_text = if skill.years() <= 1.0 {
+        "year"
     } else {
-        format!("{} Years of experience", skill.years())
+        "years"
     };
+    let experience_text = format!("{} {} of experience", skill.years(), year_text);
 
     view! {
         <Link
@@ -147,7 +146,7 @@ fn SkillCard(skill: Skill) -> impl IntoView {
             />
             <div class="min-w-0">
                 <h3 class="font-semibold text-ink">{skill.title()}</h3>
-                <p class="text-ink-muted">{years_text}</p>
+                <p class="text-ink-muted">{experience_text}</p>
             </div>
         </Link>
     }
@@ -230,7 +229,7 @@ pub fn Page() -> impl IntoView {
             </Section>
 
             <Section title="Software Skills">
-                <div class="grid grid-cols-1 gap-4 px-4 pb-14 mx-auto w-full max-w-6xl sm:grid-cols-2 lg:grid-cols-5 lg:px-0">
+                <div class="grid grid-cols-2 gap-4 px-4 pb-14 mx-auto w-full max-w-6xl sm:grid-cols-3 md:grid-cols-4">
                     {skills}
                 </div>
             </Section>
