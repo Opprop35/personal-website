@@ -6,7 +6,6 @@ mod locale;
 mod organization;
 mod pages;
 mod skill;
-mod viewport;
 
 use leptos::mount::mount_to_body;
 
