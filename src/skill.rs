@@ -3,6 +3,7 @@ pub enum Skill {
     Rust,
     Cpp,
     CSharp,
+    Leptos,
     LazyVim,
     Git,
     Perforce,
@@ -12,10 +13,11 @@ pub enum Skill {
     Godot,
     Aseprite,
     Blender,
+    Tailwind,
 }
 
 impl Skill {
-    pub const ALL: [Self; 12] = [
+    pub const ALL: [Self; 14] = [
         Self::Rust,
         Self::Cpp,
         Self::CSharp,
@@ -28,6 +30,8 @@ impl Skill {
         Self::Godot,
         Self::Aseprite,
         Self::Blender,
+        Self::Leptos,
+        Self::Tailwind,
     ];
 
     pub const fn title(self) -> &'static str {
@@ -35,6 +39,8 @@ impl Skill {
             Self::Rust => "Rust",
             Self::Cpp => "C++",
             Self::CSharp => "C#",
+            Self::Leptos => "Leptos",
+            Self::Tailwind => "Tailwind",
             Self::LazyVim => "LazyVim",
             Self::Git => "Git",
             Self::Perforce => "Perforce",
@@ -52,6 +58,8 @@ impl Skill {
             Self::Rust => "rust-logo.svg",
             Self::Cpp => "cpp-logo.svg",
             Self::CSharp => "c-sharp.svg",
+            Self::Leptos => "leptos-logo.svg",
+            Self::Tailwind => "tailwind-logo.svg",
             Self::LazyVim => "lazyvim.svg",
             Self::Git => "Git-logo.svg",
             Self::Perforce => "perforce.svg",
@@ -69,6 +77,8 @@ impl Skill {
             Self::Rust => "Rust logo",
             Self::Cpp => "C++ logo",
             Self::CSharp => "C# logo",
+            Self::Leptos => "Leptos logo",
+            Self::Tailwind => "Tailwind logo",
             Self::LazyVim => "LazyVim logo",
             Self::Git => "Git logo",
             Self::Perforce => "Perforce logo",
@@ -86,6 +96,8 @@ impl Skill {
             Self::Rust => "https://www.rust-lang.org",
             Self::Cpp => "https://isocpp.org",
             Self::CSharp => "https://dotnet.microsoft.com/en-us/languages/csharp",
+            Self::Leptos => "https://leptos.dev",
+            Self::Tailwind => "https://tailwindcss.com",
             Self::LazyVim => "https://www.lazyvim.org",
             Self::Git => "https://git-scm.com",
             Self::Perforce => "https://www.perforce.com",
@@ -103,6 +115,8 @@ impl Skill {
             Self::Rust => 1.5,
             Self::Cpp => 4.0,
             Self::CSharp => 4.0,
+            Self::Leptos => 0.1,
+            Self::Tailwind => 0.5,
             Self::LazyVim => 1.0,
             Self::Git => 8.0,
             Self::Perforce => 5.0,
