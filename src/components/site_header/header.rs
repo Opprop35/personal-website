@@ -1,6 +1,6 @@
 use leptos::prelude::*;
 
-use crate::components::{PersonalLinks, SiteNavigation};
+use crate::components::site_header::{PersonalLinks, SiteNavigation};
 
 #[component]
 pub fn SiteHeader() -> impl IntoView {
