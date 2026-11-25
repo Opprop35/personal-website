@@ -3,7 +3,7 @@ pub mod labeled;
 pub mod layout;
 pub mod links;
 pub mod menus;
-pub mod nav;
+pub mod nav_button;
 pub mod older_project_row;
 pub mod personal_links;
 pub mod project_article;
@@ -20,14 +20,12 @@ pub mod text;
 pub mod text_sized_image;
 pub mod toast;
 
-pub use fragments::{
-    List, ListParagraph, Paragraph, Paragraphs, TextFragment, TextParagraph,
-};
+pub use fragments::{List, ListParagraph, Paragraph, Paragraphs, TextFragment, TextParagraph};
 pub use labeled::Labeled;
 pub use layout::Layout;
 pub use links::Link;
 pub use menus::projects_menu::ProjectsMenu;
-pub use nav::NavButton;
+pub use nav_button::NavButton;
 pub use older_project_row::OlderProjectRow;
 pub use personal_links::PersonalLinks;
 pub use project_article::ProjectArticle;
