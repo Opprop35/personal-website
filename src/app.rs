@@ -23,9 +23,8 @@ pub fn App() -> impl IntoView {
     };
 
     view! {
-        // TODO: Should Toasts live here inside the body?
-        <Toasts />
         <Layout children=routes />
+        <Toasts />
     }
 }
 
