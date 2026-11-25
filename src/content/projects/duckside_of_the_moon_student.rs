@@ -7,7 +7,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Duckside of the Moon (Student)",
-    slug: "/duckside-of-the-moon-student",
+    slug: "duckside-of-the-moon-student",
     card_thumbnail: "dsotm-student-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &[

@@ -171,7 +171,6 @@ pub struct Info {
 
 pub struct Project {
     pub title: &'static str,
-    // TODO: Rename to url_name
     pub slug: &'static str,
     pub card_thumbnail: &'static str,
 
@@ -183,4 +182,10 @@ pub struct Project {
     pub badges: &'static [Link],
     pub background: Option<&'static str>,
     pub chapters: &'static [Chapter],
+}
+
+impl Project {
+    pub fn path(&self) -> String {
+        format!("/{slug}", slug = self.slug)
+    }
 }

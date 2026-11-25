@@ -4,7 +4,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Folivora's Fall",
-    slug: "/folivoras-fall",
+    slug: "folivoras-fall",
     card_thumbnail: "ff-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &["Camera System", "Puzzle Design", "Level Blockout"],

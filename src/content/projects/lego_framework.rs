@@ -5,7 +5,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "LEGO® Framework",
-    slug: "/lego-framework",
+    slug: "lego-framework",
     card_thumbnail: "lego-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &[

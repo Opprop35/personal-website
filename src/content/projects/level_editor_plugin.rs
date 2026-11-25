@@ -6,7 +6,7 @@ use crate::skill::Skill;
 
 pub const PROJECT: Project = Project {
     title: "Level Editor Plugin",
-    slug: "/level-editor-plugin",
+    slug: "level-editor-plugin",
     card_thumbnail: "level-editor-thumbnail.webp",
     main_contributions: ListParagraph {
         items: &[
