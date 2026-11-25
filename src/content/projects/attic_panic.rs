@@ -15,7 +15,7 @@ pub const PROJECT: models::Project = models::Project {
     background: Some("attic-panic-background.webp"),
     hero_video: Some("NjRhr-QN3SE"),
     badges: &[models::ImageLink {
-        image: "Steam-banner.svg",
+        image: "steam-banner.svg",
         alt: "Available On Steam",
         url: "https://store.steampowered.com/app/2168760/Attic_Panic/",
     }],

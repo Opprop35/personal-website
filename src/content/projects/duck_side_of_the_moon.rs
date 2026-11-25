@@ -16,7 +16,7 @@ pub const PROJECT: models::Project = models::Project {
     background: Some("dsotm-background.webp"),
     hero_video: Some("jDcsH4LYuCo"),
     badges: &[models::ImageLink {
-        image: "Steam-banner.svg",
+        image: "steam-banner.svg",
         alt: "Available On Steam",
         url: "https://store.steampowered.com/app/2959770/Duck_Side_of_the_Moon/",
     }],
