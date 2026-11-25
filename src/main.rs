@@ -3,9 +3,8 @@ mod assets;
 mod components;
 mod content;
 mod locale;
-mod organization;
+mod models;
 mod pages;
-mod skill;
 
 use leptos::mount::mount_to_body;
 

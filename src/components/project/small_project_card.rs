@@ -1,9 +1,9 @@
 use leptos::prelude::*;
 
-use crate::content::project::Project;
+use crate::models;
 
 #[component]
-pub fn OlderProjectRow(project: &'static Project) -> impl IntoView {
+pub fn SmallProjectCard(project: &'static models::Project) -> impl IntoView {
     view! {
         <a
             href=project.path()

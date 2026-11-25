@@ -1,11 +1,11 @@
 use leptos::prelude::*;
 
 use crate::assets::image;
-use crate::components::{Labeled, Link, ProjectChapter, ProjectInfo, Text};
-use crate::content::project::Project;
+use crate::components::{Labeled, Link, ProjectChapter, ProjectInfo, TextParagraph};
+use crate::models;
 
 #[component]
-pub fn Page(project: &'static Project) -> impl IntoView {
+pub fn Page(project: &'static models::Project) -> impl IntoView {
     let title = project.title;
     document().set_title(&format!("Jesse Stolk - {}", title));
 
@@ -64,7 +64,7 @@ pub fn Page(project: &'static Project) -> impl IntoView {
                     <div class="flex flex-col gap-8 lg:flex-row lg:items-start">
                         <ProjectInfo info=&project.info />
                         <Labeled title="Description" class="w-full min-w-0 lg:w-7/12">
-                            <Text
+                            <TextParagraph
                                 text=project.description
                                 class="space-y-4 leading-relaxed text-ink"
                             />

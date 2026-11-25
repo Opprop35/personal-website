@@ -1,15 +1,10 @@
-use crate::components::{ListParagraph, Paragraph, TextFragment, TextParagraph};
-use crate::content::project::{
-    Article, Chapter, Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType,
-    Showcase,
-};
-use crate::skill::Skill;
+use crate::models;
 
-pub const PROJECT: Project = Project {
+pub const PROJECT: models::Project = models::Project {
     title: "Attic Panic",
     slug: "attic-panic",
     card_thumbnail: "attic-panic-thumbnail.webp",
-    main_contributions: ListParagraph {
+    main_contributions: models::ListParagraph {
         items: &[
             "Upgrade System",
             "Upgrade Design & Implementation",
@@ -19,62 +14,62 @@ pub const PROJECT: Project = Project {
     },
     background: Some("attic-panic-background.webp"),
     hero_video: Some("NjRhr-QN3SE"),
-    badges: &[Link {
+    badges: &[models::ImageLink {
         image: "Steam-banner.svg",
         alt: "Available On Steam",
         url: "https://store.steampowered.com/app/2168760/Attic_Panic/",
     }],
-    info: Info {
+    info: models::Info {
         role: "Technical Designer",
-        genres: Some(&[Genre::Multiplayer, Genre::Arcade, Genre::Roguelike]),
-        project_type: ProjectType::StudentGame,
+        genres: Some(&[models::Genre::Multiplayer, models::Genre::Arcade, models::Genre::Roguelike]),
+        project_type: models::ProjectType::StudentGame,
         platforms: "PC",
         team_size: "~24",
         duration: "8 Months",
-        end_date: ProjectEndDate::Ended(Date {
+        end_date: models::ProjectEndDate::Ended(models::Date {
             day: 12,
-            month: Month::June,
+            month: models::Month::June,
             year: 2023,
         }),
-        skills: &[Skill::Unreal, Skill::Cpp, Skill::Perforce],
+        skills: &[models::Skill::Unreal, models::Skill::Cpp, models::Skill::Perforce],
         socials: &[
-            Link {
+            models::ImageLink {
                 image: "twitter.svg",
                 alt: "Twitter",
                 url: "https://www.twitter.com/AtticPanicGame",
             },
-            Link {
+            models::ImageLink {
                 image: "instagram.svg",
                 alt: "Instagram",
                 url: "https://www.instagram.com/atticpanicgame/",
             },
-            Link {
+            models::ImageLink {
                 image: "tiktok.svg",
                 alt: "TikTok",
                 url: "https://www.tiktok.com/@atticpanic",
             },
         ],
     },
-    description: TextParagraph {
+    description: models::TextParagraph {
         fragments: &[
-                TextFragment::Text("A year long student project. Attic Panic is an "),
-                TextFragment::StrongText("online multiplayer"),
-                TextFragment::Text(
+                models::TextFragment::Text("A year long student project. Attic Panic is an "),
+                models::TextFragment::StrongText("online multiplayer"),
+                models::TextFragment::Text(
                 " top-down shooter with rogue-like elements. I mainly worked on the upgrade system, \
                 individual upgrades, and replication of upgrades between server & clients.",
                 ),
         ],
     },
     chapters: &[
-        Chapter {
+        models::Chapter {
             heading: "Upgrades",
             articles: &[
-                Article {
+                models::Article {
                     title: "Upgrade Data",
                     body: &[
-                        Paragraph::Text(TextParagraph {
+                        models::Paragraph::Text(models::TextParagraph {
                             fragments: &[
-                                TextFragment::Text(
+                                models::TextFragment::Text(
                                 "While working on the game I redesigned & refactored the upgrade system \
                                 in order to create a smoother data-driven experience for designers. \
                                 This way the upgrades could be balanced & tweaked more easily \
@@ -86,38 +81,38 @@ pub const PROJECT: Project = Project {
                             ],
                         }),
                     ],
-                    showcase: Some(Showcase::Video("i1D-GloaSK4")),
+                    showcase: models::Showcase::Video("i1D-GloaSK4"),
                 },
-                Article {
+                models::Article {
                     title: "Upgrade Functionality & Replication",
                     body: &[
-                        Paragraph::Text(TextParagraph {
+                        models::Paragraph::Text(models::TextParagraph {
                             fragments: &[
-                                TextFragment::Text(
+                                models::TextFragment::Text(
                                 "I worked on a lot of upgrades for the game and made sure those upgrades \
                                 would replicate properly between the different players.",
                                 )
                             ],
                         }),
-                    ],   showcase: Some(Showcase::Video("UryKkAPVYIQ")),
+                    ],   showcase: models::Showcase::Video("UryKkAPVYIQ"),
                 },
-                Article {
+                models::Article {
                     title: "Upgrade VFX Implementation",
                     body: &[
-                        Paragraph::Text(TextParagraph {
+                        models::Paragraph::Text(models::TextParagraph {
                             fragments: &[
-                                TextFragment::Text(
+                                models::TextFragment::Text(
                                 "I worked closely with one of the VFX artists to implement some of the VFX. \
                                 Here you can see such an example we worked on the mine laying animation, \
                                 explosion effect, and Disappear effect.",
                                 )
                             ],
                         }),
-                    ],   showcase: Some(Showcase::Video("59EkYuxYBVM")),
+                    ],   showcase: models::Showcase::Video("59EkYuxYBVM"),
                 },
             ],
         },
-        Chapter {
+        models::Chapter {
             heading: "And more...",
             articles: &[],
         },

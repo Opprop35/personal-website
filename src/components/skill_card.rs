@@ -2,10 +2,10 @@ use leptos::prelude::*;
 
 use crate::assets::image;
 use crate::components::Link;
-use crate::skill::Skill;
+use crate::models;
 
 #[component]
-pub fn SkillCard(skill: Skill) -> impl IntoView {
+pub fn SkillCard(skill: models::Skill) -> impl IntoView {
     let year_text = if skill.years() <= 1.0 {
         "year"
     } else {

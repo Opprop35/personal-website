@@ -2,8 +2,6 @@ use leptos::prelude::*;
 
 use crate::components::NavButton;
 
-const MENU: &str = "rounded-default border border-line bg-surface-deep p-1 shadow-lg";
-
 #[component]
 pub fn Menu(label: &'static str, children: Children) -> impl IntoView {
     let open = RwSignal::new(false);
@@ -27,7 +25,7 @@ pub fn Menu(label: &'static str, children: Children) -> impl IntoView {
                         "invisible opacity-0"
                     };
                     format!(
-                        "absolute left-0 top-full z-50 min-w-56 transition-[opacity,visibility] duration-200 {MENU} {state}"
+                        "absolute left-0 top-full z-50 min-w-56 transition-[opacity,visibility] duration-200 rounded-default border border-line bg-surface-deep p-1 shadow-lg {state}"
                     )
                 }
                 role="menu"

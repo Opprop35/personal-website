@@ -1,15 +1,10 @@
-use crate::components::{ListParagraph, Paragraph, TextFragment, TextParagraph};
-use crate::content::project::{
-    Article, Chapter, Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType,
-    Showcase,
-};
-use crate::skill::Skill;
+use crate::models;
 
-pub const PROJECT: Project = Project {
+pub const PROJECT: models::Project = models::Project {
     title: "Twin-Stick Duckbox",
     slug: "twin-stick-duckbox",
     card_thumbnail: "tsj-thumbnail.webp",
-    main_contributions: ListParagraph {
+    main_contributions: models::ListParagraph {
         items: &[
             "Enemy Spawn Event System",
             "Chomper Enemy",
@@ -19,101 +14,83 @@ pub const PROJECT: Project = Project {
     },
     background: Some("tsj-background.webp"),
     hero_video: Some("OAiE_f08wU0"),
-    badges: &[Link {
+    badges: &[models::ImageLink {
         image: "available-on-itch-black.svg",
         alt: "Available On Itch",
         url: "https://jcrombag.itch.io/twin-stick-duckbox",
     }],
-    info: Info {
+    info: models::Info {
         role: "Technical Designer",
-        genres: Some(&[Genre::Action, Genre::Arcade, Genre::TwinStickShooter]),
-        project_type: ProjectType::StudentGame,
+        genres: Some(&[models::Genre::Action, models::Genre::Arcade, models::Genre::TwinStickShooter]),
+        project_type: models::ProjectType::StudentGame,
         platforms: "PC",
         team_size: "5",
         duration: "7 weeks",
-        end_date: ProjectEndDate::Ended(Date {
+        end_date: models::ProjectEndDate::Ended(models::Date {
             day: 3,
-            month: Month::November,
+            month: models::Month::November,
             year: 2021,
         }),
-        skills: &[Skill::Godot, Skill::Perforce],
+        skills: &[models::Skill::Godot, models::Skill::Perforce],
         socials: &[],
     },
-    description: TextParagraph {
-        fragments: &[
-            TextFragment::Text(
+    description: models::TextParagraph {
+        fragments: &[models::TextFragment::Text(
             "A simple project in which we were tasked to design, implement, and polish an additional \
             enemy and weapon. I also spent time developing a spawn event system and various other \
             tools for my team.",
-            )
-        ],
+        )],
     },
-    chapters: &[Chapter {
+    chapters: &[models::Chapter {
         heading: "Features",
         articles: &[
-            Article {
+            models::Article {
                 title: "Gauss Gun",
-                body: &[
-                    Paragraph::Text(TextParagraph {
-                        fragments: &[
-                        TextFragment::Text(
+                body: &[models::Paragraph::Text(models::TextParagraph {
+                    fragments: &[models::TextFragment::Text(
                         "The Gauss Gun shoots a big laser that deals continuous damage at a certain \
                         interval. It shoots a hidden projectile that uses the same base logic as other \
                         projectiles (so that it can be affected by the black hole and other base \
                         gameplay mechanics). Every damage interval the projectile reconstructs a \
                         collision polygon that deals damage to the enemies.",
-                        )
-                        ],
-                    }),
-                ],
-                showcase: Some(Showcase::Video("VTDdvvMzu94")),
+                    )],
+                })],
+                showcase: models::Showcase::Video("VTDdvvMzu94"),
             },
-            Article {
+            models::Article {
                 title: "Chomper Enemy",
-                body: &[
-                    Paragraph::Text(TextParagraph {
-                        fragments: &[
-                        TextFragment::Text(
+                body: &[models::Paragraph::Text(models::TextParagraph {
+                    fragments: &[models::TextFragment::Text(
                         "The Chomper will eat your bullets if you simply attack it from the front. If it \
                         eats three it will regurgitate them into a powerful laser which uses the same \
                         logic as the Gauss Gun.",
-                        )
-                        ],
-                    }),
-                ],
-                showcase: Some(Showcase::Video("dfV3BEkgjfw")),
+                    )],
+                })],
+                showcase: models::Showcase::Video("dfV3BEkgjfw"),
             },
-            Article {
+            models::Article {
                 title: "Debug/Cheat Menu",
-                body: &[
-                    Paragraph::Text(TextParagraph {
-                        fragments: &[
-                        TextFragment::Text(
+                body: &[models::Paragraph::Text(models::TextParagraph {
+                    fragments: &[models::TextFragment::Text(
                         "A simple cheat menu that allows you to do various things like change your \
                         weapon, spawn enemies, and toggle godmode.",
-                        )
-                        ],
-                    }),
-                ],
-                showcase: Some(Showcase::Video("andzCulJ4nI")),
+                    )],
+                })],
+                showcase: models::Showcase::Video("andzCulJ4nI"),
             },
-            Article {
+            models::Article {
                 title: "Spawn Event System",
-                body: &[
-                    Paragraph::Text(TextParagraph {
-                        fragments: &[
-                        TextFragment::Text(
+                body: &[models::Paragraph::Text(models::TextParagraph {
+                    fragments: &[models::TextFragment::Text(
                         "I developed a system which could create more interesting spawning behaviour for \
                         enemies and control/limit the amount of enemies on screen. In the video below \
                         you can see it starts with spawning swarmers in random positions, then it \
                         spawns a lot of them from the corner, then a black hole, then a chomper etc. \
                         These behaviours were completely data driven and could be tweaked in various \
                         ways with preconditions, spawn interval, event weight, etc.",
-                        )
-                        ],
-                    }),
-                ],
-                showcase: Some(Showcase::Video("OAiE_f08wU0")),
+                    )],
+                })],
+                showcase: models::Showcase::Video("OAiE_f08wU0"),
             },
         ],
     }],

@@ -1,38 +1,36 @@
-use crate::components::{ListParagraph, TextFragment, TextParagraph};
-use crate::content::project::{Date, Genre, Info, Link, Month, Project, ProjectEndDate, ProjectType};
-use crate::skill::Skill;
+use crate::models;
 
-pub const PROJECT: Project = Project {
+pub const PROJECT: models::Project = models::Project {
     title: "Folivora's Fall",
     slug: "folivoras-fall",
     card_thumbnail: "ff-thumbnail.webp",
-    main_contributions: ListParagraph {
+    main_contributions: models::ListParagraph {
         items: &["Camera System", "Puzzle Design", "Level Blockout"],
     },
     background: Some("ff-background.webp"),
     hero_video: Some("0EdXbR93AfQ"),
-    badges: &[Link {
+    badges: &[models::ImageLink {
         image: "available-on-itch-black.svg",
         alt: "Available On Itch",
         url: "https://buas.itch.io/folivorasfall",
     }],
-    info: Info {
+    info: models::Info {
         role: "Level Designer",
-        genres: Some(&[Genre::Platformer, Genre::Puzzle, Genre::Stealth]),
-        project_type: ProjectType::StudentGame,
+        genres: Some(&[models::Genre::Platformer, models::Genre::Puzzle, models::Genre::Stealth]),
+        project_type: models::ProjectType::StudentGame,
         platforms: "PC",
         team_size: "11",
         duration: "8 weeks",
-        end_date: ProjectEndDate::Ended(Date {
+        end_date: models::ProjectEndDate::Ended(models::Date {
             day: 7,
-            month: Month::July,
+            month: models::Month::July,
             year: 2021,
         }),
-        skills: &[Skill::Unreal, Skill::Perforce],
+        skills: &[models::Skill::Unreal, models::Skill::Perforce],
         socials: &[],
     },
-    description: TextParagraph {
-        fragments: &[TextFragment::Text(
+    description: models::TextParagraph {
+        fragments: &[models::TextFragment::Text(
             "The first big team project I worked on as a student. Folivora's Fall is a stealth \
             platformer set in a haunted mansion where you play as a sloth. During this project I \
             mostly focussed on level design and some implementation.",

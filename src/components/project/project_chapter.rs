@@ -1,10 +1,11 @@
 use leptos::prelude::*;
 
-use crate::components::{Paragraphs, ProjectArticle, Section};
-use crate::content::project::Chapter;
+use crate::components::{Paragraphs, Section};
+use crate::components::project::ProjectArticle;
+use crate::models;
 
 #[component]
-pub fn ProjectChapter(chapter: &'static Chapter) -> impl IntoView {
+pub fn ProjectChapter(chapter: &'static models::Chapter) -> impl IntoView {
     let mut articles: Vec<AnyView> = Vec::new();
     for article in chapter.articles {
         if !articles.is_empty() {

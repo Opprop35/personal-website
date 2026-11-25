@@ -1,11 +1,11 @@
 use leptos::prelude::*;
 
 use crate::assets::image;
-use crate::components::{Labeled, Link, List, Text, TextSizedImage};
-use crate::content::project::Project;
+use crate::components::{Labeled, Link, ListParagraph, TextParagraph, TextSizedImage};
+use crate::models;
 
 #[component]
-pub fn ProjectCard(project: &'static Project) -> impl IntoView {
+pub fn ProjectCard(project: &'static models::Project) -> impl IntoView {
     let skills = project
         .info
         .skills
@@ -41,10 +41,10 @@ pub fn ProjectCard(project: &'static Project) -> impl IntoView {
                         </a>
                         <div class="flex flex-col gap-6 lg:w-1/2">
                             <Labeled title="Summary">
-                                <Text text=project.description />
+                                <TextParagraph text=project.description />
                             </Labeled>
                             <Labeled title="Main Contributions">
-                                <List list=project.main_contributions />
+                                <ListParagraph list=project.main_contributions />
                             </Labeled>
                         </div>
                     </div>

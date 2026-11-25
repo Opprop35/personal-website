@@ -1,63 +1,54 @@
-use crate::components::{ListParagraph, Paragraph, TextFragment, TextParagraph};
-use crate::content::project::{
-    Article, Chapter, Date, Info, Month, Project, ProjectEndDate, ProjectType, Showcase,
-};
-use crate::skill::Skill;
+use crate::models;
 
-pub const PROJECT: Project = Project {
+pub const PROJECT: models::Project = models::Project {
     title: "Level Editor Plugin",
     slug: "level-editor-plugin",
     card_thumbnail: "level-editor-thumbnail.webp",
-    main_contributions: ListParagraph {
-        items: &[
-            "Tool Programming", "Tool Design"
-        ],
+    main_contributions: models::ListParagraph {
+        items: &["Tool Programming", "Tool Design"],
     },
     background: Some("level-editor-background.webp"),
     hero_video: Some("tEBmK5gDUyk"),
     badges: &[],
-    info: Info {
+    info: models::Info {
         role: "Tool Programmer",
         genres: None,
-        project_type: ProjectType::PluginsAndTooling,
+        project_type: models::ProjectType::PluginsAndTooling,
         platforms: "PC",
         team_size: "Solo",
         duration: "7 weeks",
-        end_date: ProjectEndDate::Ended(Date {
+        end_date: models::ProjectEndDate::Ended(models::Date {
             day: 21,
-            month: Month::October,
+            month: models::Month::October,
             year: 2022,
         }),
-        skills: &[Skill::Unreal, Skill::Cpp, Skill::Perforce],
+        skills: &[models::Skill::Unreal, models::Skill::Cpp, models::Skill::Perforce],
         socials: &[],
     },
-    description: TextParagraph {
+    description: models::TextParagraph {
         fragments: &[
-            TextFragment::Text("An Unreal Engine "),
-            TextFragment::StrongText("editor plugin"),
-            TextFragment::Text(
-            " I made in order to get more familiar with C++. The plugin allows you to draw on a \
+            models::TextFragment::Text("An Unreal Engine "),
+            models::TextFragment::StrongText("editor plugin"),
+            models::TextFragment::Text(
+                " I made in order to get more familiar with C++. The plugin allows you to draw on a \
             grid and define custom behaviours for this. It was designed with quick iteration \
             and flexibility in mind.",
             ),
         ],
     },
-    chapters: &[Chapter {
+    chapters: &[models::Chapter {
         heading: "Features",
-        articles: &[Article {
+        articles: &[models::Article {
             title: "Custom Blueprint Behaviours",
-            body: &[            Paragraph::Text(TextParagraph {
-                fragments: &[
-                    TextFragment::Text(
+            body: &[models::Paragraph::Text(models::TextParagraph {
+                fragments: &[models::TextFragment::Text(
                     "I defined an interface in C++ that could be implemented through blueprints and \
                     allows you to define your own behaviours when dragging across the grid. By \
                     implementing this interface I created a blueprint that would automatically tile \
                     itself using a free tileset I found online.",
-                    )
-                ],
-            }),
-            ],
-            showcase: Some(Showcase::Video("-9xbKIwheJ8")),
+                )],
+            })],
+            showcase: models::Showcase::Video("-9xbKIwheJ8"),
         }],
     }],
 };

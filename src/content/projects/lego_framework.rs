@@ -1,13 +1,10 @@
-use crate::components::{ListParagraph, TextFragment, TextParagraph};
-use crate::content::project::{Date, Info, Month, Project, ProjectEndDate, ProjectType};
-use crate::organization::Organization;
-use crate::skill::Skill;
+use crate::models;
 
-pub const PROJECT: Project = Project {
+pub const PROJECT: models::Project = models::Project {
     title: "LEGO® Framework",
     slug: "lego-framework",
     card_thumbnail: "lego-thumbnail.webp",
-    main_contributions: ListParagraph {
+    main_contributions: models::ListParagraph {
         items: &[
             "Brick Snapping Logic & Tooling",
             "Connection Point Based Transform Gizmo",
@@ -17,32 +14,32 @@ pub const PROJECT: Project = Project {
     background: Some("lego-background.webp"),
     hero_video: Some("7J7J0zm5xFc"),
     badges: &[],
-    info: Info {
+    info: models::Info {
         role: "Tools Programmer",
         genres: None,
-        project_type: ProjectType::PluginsAndTooling,
+        project_type: models::ProjectType::PluginsAndTooling,
         platforms: "PC",
         team_size: "~5",
         duration: "2 Years",
-        end_date: ProjectEndDate::Ended(Date {
+        end_date: models::ProjectEndDate::Ended(models::Date {
             day: 1,
-            month: Month::August,
+            month: models::Month::August,
             year: 2026,
         }),
-        skills: &[Skill::Unreal, Skill::Cpp, Skill::Git, Skill::Perforce],
+        skills: &[models::Skill::Unreal, models::Skill::Cpp, models::Skill::Git, models::Skill::Perforce],
         socials: &[],
     },
-    description: TextParagraph {
+    description: models::TextParagraph {
         fragments: &[
-            TextFragment::Text("At "),
-            TextFragment::organization(Organization::TheLegoGroup),
-            TextFragment::Text(
+            models::TextFragment::Text("At "),
+            models::TextFragment::organization(models::Organization::TheLegoGroup),
+            models::TextFragment::Text(
                 " I worked on a general purpose LEGO framework for Unreal Engine. \
             The LEGO® Brick Editor was a key deliverable. I mainly contributed to the Brick \
             building UX, Bug fixes, Automated Tests, and ",
             ),
-            TextFragment::StrongText("redesigned"),
-            TextFragment::Text(
+            models::TextFragment::StrongText("redesigned"),
+            models::TextFragment::Text(
                 " the framework's import pipeline to be more idiomatic, performant and flexible.",
             ),
         ],

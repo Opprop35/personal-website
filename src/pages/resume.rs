@@ -1,191 +1,20 @@
 use leptos::prelude::*;
 
 use crate::assets::image;
-use crate::components::{Link, ListParagraph, Paragraph, Paragraphs, TextFragment, TextParagraph};
+use crate::components::{Experience, Link, SidebarSection, SkillItem};
+use crate::content::resume::{EDUCATION, PROJECTS};
 use crate::locale::resume_label;
-use crate::organization::Organization;
-use crate::skill::Skill;
+use crate::models;
 
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-enum ExperienceSource {
-    Organization(Organization),
-    Personal,
-}
-
-impl ExperienceSource {
-    fn name(self) -> &'static str {
-        match self {
-            Self::Organization(organization) => organization.title(),
-            Self::Personal => "Personal Projects",
-        }
-    }
-
-    fn url(self) -> Option<&'static str> {
-        match self {
-            Self::Organization(organization) => Some(organization.url()),
-            Self::Personal => None,
-        }
-    }
-}
-
-#[derive(Debug, Clone, Copy, PartialEq, Eq)]
-struct ExperienceData {
-    source: ExperienceSource,
-    subtitle: &'static str,
-    period: &'static str,
-    details: Option<&'static [Paragraph]>,
-}
-
-const PROJECTS: [ExperienceData; 3] = [
-    ExperienceData {
-        source: ExperienceSource::Organization(Organization::TheLegoGroup),
-        subtitle: "LEGO® Brick Editor | Tools Programmer",
-        period: "November 2024 – July 2026",
-        details: Some(&[Paragraph::List(ListParagraph {
-            items: &[
-                "Brick Snapping Logic & Tooling",
-                "Import Pipeline Redesign",
-                "Connection Point Based Gizmo",
-            ],
-        })]),
-    },
-    ExperienceData {
-        source: ExperienceSource::Organization(Organization::StarbrewGames),
-        subtitle: "Duckside of the Moon | Game Developer",
-        period: "June 2023 – June 2024",
-        details: Some(&[Paragraph::List(ListParagraph {
-            items: &[
-                "Dialogue, Quest, Crafting, & Upgrade Systems",
-                "Save Game System",
-                "Technical Animation",
-                "UI Programming",
-            ],
-        })]),
-    },
-    ExperienceData {
-        source: ExperienceSource::Personal,
-        subtitle: "Various projects | Game Developer",
-        period: "April 2021 – Present",
-        details: Some(&[Paragraph::List(ListParagraph {
-            items: &[
-                "Asset Pipelines & Tools",
-                "Procedural Geometry",
-                "Online Multiplayer",
-                "Shader Programming",
-                "Third Person Camera",
-            ],
-        })]),
-    },
-];
-
-const SOCRATES_NOTE: [Paragraph; 1] = [Paragraph::Text(TextParagraph {
-    fragments: &[
-        TextFragment::Link {
-            url: "https://www.socrateshonours.org/lid-worden/toelatingscriteria",
-            label: "Socrates",
-        },
-        TextFragment::MutedText(" (Top 10% of students)"),
-    ],
-})];
-
-const EDUCATION: [ExperienceData; 3] = [
-    ExperienceData {
-        source: ExperienceSource::Organization(Organization::BredaUniversityOfAppliedSciences),
-        subtitle: "Creative Media and Game Technologies",
-        period: "Sep 2020 – Jul 2024",
-        details: None,
-    },
-    ExperienceData {
-        source: ExperienceSource::Organization(Organization::TuDelft),
-        subtitle: "Computer Science",
-        period: "Sep 2018 – Nov 2019",
-        details: None,
-    },
-    ExperienceData {
-        source: ExperienceSource::Organization(Organization::IswGasthuislaan),
-        subtitle: "Pre-University Education (VWO)",
-        period: "Sep 2012 – Jun 2018",
-        details: Some(&SOCRATES_NOTE),
-    },
-];
-
-#[component]
-fn ExperienceHeader(source: ExperienceSource) -> AnyView {
-    let name = source.name();
-    if let Some(url) = source.url() {
-        return view! {
-            <Link href=url class="hover:underline focus-ring" external=true>
-                {name}
-            </Link>
-        }
-        .into_any();
-    }
-    view! { <span>{name}</span> }.into_any()
-}
-
-#[component]
-fn Experience(experience: ExperienceData) -> impl IntoView {
-    view! {
-        <article class="last:mb-0 mb-[7mm] break-inside-avoid">
-            <div class="flex flex-wrap gap-x-3 justify-between items-baseline">
-                <h3 class="font-semibold tracking-wide uppercase text-[15px]">
-                    <ExperienceHeader source=experience.source />
-                </h3>
-                <span class="text-[12px] text-ink-muted">{experience.period}</span>
-            </div>
-            <p class="mt-[1mm] text-[13px] text-ink-muted">{experience.subtitle}</p>
-            {experience
-                .details
-                .map(|details| {
-                    view! {
-                        <Paragraphs paragraphs=details class="space-y-3 leading-snug text-[12px]" />
-                    }
-                })}
-        </article>
-    }
-}
-
-fn skill_items(skills: &[Skill]) -> impl IntoView {
+fn skill_items(skills: &[models::Skill]) -> impl IntoView {
     skills
         .iter()
         .copied()
-        .map(|skill| {
-            let title = skill.title();
-            let url = skill.url();
-            let image = image(skill.image());
-            let alt = skill.alt();
-            view! {
-                <li>
-                    <Link
-                        href=url
-                        class="inline-flex items-center hover:underline focus-ring gap-[1.5mm]"
-                        external=true
-                    >
-                        <img
-                            src=image
-                            alt=alt
-                            class="object-contain h-[1.5em] w-[1.5em] shrink-0"
-                        />
-                        {title}
-                    </Link>
-                </li>
-            }
-        })
+        .map(|skill| view! { <SkillItem skill=skill /> })
         .collect_view()
 }
 
-#[component]
-fn SidebarSection(title: &'static str, children: impl IntoView) -> impl IntoView {
-    view! {
-        <section class="last:mb-0 mb-[7mm]">
-            <h2 class="font-semibold uppercase mb-[3mm] text-[11px] tracking-[0.16em] text-ink-muted">
-                {title}
-            </h2>
-            <ul class="leading-snug space-y-[2.5mm] text-[13px] text-ink">{children}</ul>
-        </section>
-    }
-}
-
+// TODO: Create a full data model for resume so that it's easy to edit the content or create multiple versions.
 #[component]
 pub fn Page() -> impl IntoView {
     document().set_title(&format!("Jesse Stolk - {}", resume_label()));
@@ -221,11 +50,19 @@ pub fn Page() -> impl IntoView {
         <li>"Netherlands, Delft"</li>
     };
 
-    let programming = skill_items(&[Skill::Rust, Skill::Cpp, Skill::CSharp]);
+    let programming = skill_items(&[
+        models::Skill::Rust,
+        models::Skill::Cpp,
+        models::Skill::CSharp,
+    ]);
 
-    let game_engines = skill_items(&[Skill::Bevy, Skill::Unreal, Skill::Godot]);
+    let game_engines = skill_items(&[
+        models::Skill::Bevy,
+        models::Skill::Unreal,
+        models::Skill::Godot,
+    ]);
 
-    let version_control = skill_items(&[Skill::Git, Skill::Perforce]);
+    let version_control = skill_items(&[models::Skill::Git, models::Skill::Perforce]);
 
     let languages = view! {
         <li>"English: Fluent"</li>
@@ -241,70 +78,70 @@ pub fn Page() -> impl IntoView {
     };
 
     view! {
-        <div class="flex-1 min-h-0 flex overflow-x-auto overscroll-x-contain print:overflow-visible">
-            <article class="flex flex-col shrink-0 w-[210mm] mx-auto ring-1 ring-line print:min-h-[297mm] print:overflow-hidden print:bg-surface print:ring-0">
-            <header class="flex items-center gap-[8mm] bg-surface-deep px-[12mm] py-[9mm]">
-                <img
-                    src=image("personal-photo.webp")
-                    alt="Portrait of Jesse Stolk"
-                    class="object-cover h-[38mm] w-[38mm] shrink-0 rounded-[2mm]"
-                />
-                <div class="flex-1 min-w-0">
-                    <h1 class="font-bold text-[26px] tracking-[0.06em]">"JESSE STOLK"</h1>
-                    <p class="mt-[1.5mm] text-[14px] text-ink-muted">"Software Engineer"</p>
-                </div>
-                <button
-                    class="inline-flex gap-2 items-center py-2 px-3 print:hidden text-[12px] bg-button"
-                    on:click=|_| {
-                        window().print().ok();
-                    }
-                >
-                    <svg
-                        viewBox="0 0 24 24"
-                        fill="currentColor"
-                        class="h-[1.1rem] w-[1.1rem]"
-                        role="img"
-                        aria-hidden="true"
+        <div class="flex overflow-x-auto overscroll-x-contain flex-1 min-h-0 print:overflow-visible">
+            <article class="flex flex-col mx-auto ring-1 shrink-0 w-[210mm] ring-line print:min-h-[297mm] print:overflow-hidden print:bg-surface print:ring-0">
+                <header class="flex items-center gap-[8mm] bg-surface-deep px-[12mm] py-[9mm]">
+                    <img
+                        src=image("personal-photo.webp")
+                        alt="Portrait of Jesse Stolk"
+                        class="object-cover h-[38mm] w-[38mm] shrink-0 rounded-[2mm]"
+                    />
+                    <div class="flex-1 min-w-0">
+                        <h1 class="font-bold text-[26px] tracking-[0.06em]">"JESSE STOLK"</h1>
+                        <p class="mt-[1.5mm] text-[14px] text-ink-muted">"Software Engineer"</p>
+                    </div>
+                    <button
+                        class="inline-flex gap-2 items-center py-2 px-3 print:hidden text-[12px] bg-button"
+                        on:click=|_| {
+                            window().print().ok();
+                        }
                     >
-                        <path d="M12 16 6 10h4V4h4v6h4l-6 6zm-7 4v-2h14v2H5z" />
-                    </svg>
-                    "Download PDF"
-                </button>
-            </header>
+                        <svg
+                            viewBox="0 0 24 24"
+                            fill="currentColor"
+                            class="h-[1.1rem] w-[1.1rem]"
+                            role="img"
+                            aria-hidden="true"
+                        >
+                            <path d="M12 16 6 10h4V4h4v6h4l-6 6zm-7 4v-2h14v2H5z" />
+                        </svg>
+                        "Download PDF"
+                    </button>
+                </header>
 
-            <div class="flex flex-1">
-                <aside class="w-[68mm] shrink-0 bg-surface-raised px-[7mm] py-[9mm]">
-                    <SidebarSection title="Personal Details" children=personal_details />
-                    <SidebarSection title="Programming" children=programming />
-                    <SidebarSection title="Game Engines" children=game_engines />
-                    <SidebarSection title="Version Control" children=version_control />
-                    <SidebarSection title="Languages" children=languages />
-                    <SidebarSection title="Hobbies" children=hobbies />
-                </aside>
+                <div class="flex flex-1">
+                    <aside class="w-[68mm] shrink-0 bg-surface-raised px-[7mm] py-[9mm]">
+                        <SidebarSection title="Personal Details" children=personal_details />
+                        <SidebarSection title="Programming" children=programming />
+                        <SidebarSection title="Game Engines" children=game_engines />
+                        <SidebarSection title="Version Control" children=version_control />
+                        <SidebarSection title="Languages" children=languages />
+                        <SidebarSection title="Hobbies" children=hobbies />
+                    </aside>
 
-                <div class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
-                    <section class="break-inside-avoid">
-                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
-                            "Projects"
-                        </h2>
-                        <div class="mt-[2.5mm] mb-[6mm] divider" />
-                        {projects}
-                    </section>
-                    <p class="mt-[5mm] text-[13px]">
-                        <Link href="https://jessestolk.com" class="text-link" external=true>
-                            "See jessestolk.com for more info…"
-                        </Link>
-                    </p>
+                    <div class="flex flex-col flex-1 min-w-0 px-[9mm] py-[8mm]">
+                        <section class="break-inside-avoid">
+                            <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
+                                "Projects"
+                            </h2>
+                            <div class="mt-[2.5mm] mb-[6mm] divider" />
+                            {projects}
+                        </section>
+                        <p class="mt-[5mm] text-[13px]">
+                            <Link href="https://jessestolk.com" class="text-link" external=true>
+                                "See jessestolk.com for more info…"
+                            </Link>
+                        </p>
 
-                    <section class="pt-[6mm] break-inside-avoid">
-                        <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
-                            "Education"
-                        </h2>
-                        <div class="mt-[2.5mm] mb-[6mm] divider" />
-                        {education}
-                    </section>
+                        <section class="pt-[6mm] break-inside-avoid">
+                            <h2 class="font-semibold uppercase text-[16px] tracking-[0.16em] text-ink-muted">
+                                "Education"
+                            </h2>
+                            <div class="mt-[2.5mm] mb-[6mm] divider" />
+                            {education}
+                        </section>
+                    </div>
                 </div>
-            </div>
             </article>
         </div>
     }

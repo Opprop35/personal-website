@@ -1,18 +1,16 @@
 use leptos::prelude::*;
 
-use crate::components::{Paragraph, Paragraphs, TextFragment, TextParagraph};
-use crate::skill::Skill;
+use crate::components::Paragraphs;
+use crate::models;
 
-const FOOTER: [Paragraph; 1] = [
-    Paragraph::Text(TextParagraph {
-        fragments: &[
-            TextFragment::Text("Website made using "),
-            TextFragment::skill(Skill::Leptos),
-            TextFragment::Text(" & "),
-            TextFragment::skill(Skill::Tailwind),
-        ],
-    }),
-];
+const FOOTER: [models::Paragraph; 1] = [models::Paragraph::Text(models::TextParagraph {
+    fragments: &[
+        models::TextFragment::Text("Website made using "),
+        models::TextFragment::skill(models::Skill::Leptos),
+        models::TextFragment::Text(" & "),
+        models::TextFragment::skill(models::Skill::Tailwind),
+    ],
+})];
 
 #[component]
 pub fn SiteFooter() -> impl IntoView {

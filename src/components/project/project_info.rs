@@ -2,7 +2,7 @@ use leptos::prelude::*;
 
 use crate::assets::image;
 use crate::components::{Labeled, Link, TextSizedImage};
-use crate::content::project::Info;
+use crate::models;
 
 fn info_row(label: &'static str, value: impl IntoView) -> impl IntoView {
     view! {
@@ -12,7 +12,7 @@ fn info_row(label: &'static str, value: impl IntoView) -> impl IntoView {
 }
 
 #[component]
-pub fn ProjectInfo(info: &'static Info) -> impl IntoView {
+pub fn ProjectInfo(info: &'static models::Info) -> impl IntoView {
     let skills = info
         .skills
         .iter()

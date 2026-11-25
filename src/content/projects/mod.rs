@@ -1,4 +1,4 @@
-use crate::content::project::Project;
+use crate::models;
 
 pub mod attic_panic;
 pub mod duck_side_of_the_moon;
@@ -33,7 +33,7 @@ impl ProjectId {
         Self::FolivorasFall,
     ];
 
-    pub const fn project(self) -> &'static Project {
+    pub const fn project(self) -> &'static models::Project {
         match self {
             Self::LegoFramework => &lego_framework::PROJECT,
             Self::DuckSideOfTheMoon => &duck_side_of_the_moon::PROJECT,

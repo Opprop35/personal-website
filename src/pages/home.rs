@@ -1,12 +1,9 @@
 use leptos::prelude::*;
 
 use crate::{
-    components::{
-        OlderProjectRow, Paragraph, Paragraphs, ProjectCard, Section, SkillCard, TextFragment,
-        TextParagraph,
-    },
+    components::{Paragraphs, ProjectCard, Section, SkillCard, SmallProjectCard},
     content::projects::ProjectId,
-    skill::Skill,
+    models,
 };
 
 const PROJECTS: [ProjectId; 4] = [
@@ -23,31 +20,31 @@ const OLDER_PROJECTS: [ProjectId; 4] = [
     ProjectId::FolivorasFall,
 ];
 
-const INTRODUCTION: [Paragraph; 3] = [
-    Paragraph::Text(TextParagraph {
-        fragments: &[TextFragment::Text(
+const INTRODUCTION: [models::Paragraph; 3] = [
+    models::Paragraph::Text(models::TextParagraph {
+        fragments: &[models::TextFragment::Text(
             "My name is Jesse, I'm a software engineer who has been programming for \
              roughly nine years.",
         )],
     }),
-    Paragraph::Text(TextParagraph {
-        fragments: &[TextFragment::Text(
+    models::Paragraph::Text(models::TextParagraph {
+        fragments: &[models::TextFragment::Text(
             "I spent most of my career on games, game tooling, and learning game engine \
              architecture. Having said that, recently I'm interested in exploring other areas of \
              software engineering such as research software engineering and cyber security.",
         )],
     }),
-    Paragraph::Text(TextParagraph {
+    models::Paragraph::Text(models::TextParagraph {
         fragments: &[
-            TextFragment::Text("My favourite tools at the moment are "),
-            TextFragment::skill(Skill::Rust),
-            TextFragment::Text(", "),
-            TextFragment::skill(Skill::Bevy),
-            TextFragment::Text(", "),
-            TextFragment::skill(Skill::ArchLinux),
-            TextFragment::Text(", and "),
-            TextFragment::skill(Skill::LazyVim),
-            TextFragment::Text(
+            models::TextFragment::Text("My favourite tools at the moment are "),
+            models::TextFragment::skill(models::Skill::Rust),
+            models::TextFragment::Text(", "),
+            models::TextFragment::skill(models::Skill::Bevy),
+            models::TextFragment::Text(", "),
+            models::TextFragment::skill(models::Skill::ArchLinux),
+            models::TextFragment::Text(", and "),
+            models::TextFragment::skill(models::Skill::LazyVim),
+            models::TextFragment::Text(
                 ", but I'm experienced in various other Languages, Game Engines and IDEs as well.",
             ),
         ],
@@ -70,11 +67,11 @@ pub fn Page() -> impl IntoView {
         .iter()
         .copied()
         .map(|project| {
-            view! { <OlderProjectRow project=project.project() /> }
+            view! { <SmallProjectCard project=project.project() /> }
         })
         .collect_view();
 
-    let skills = Skill::ALL
+    let skills = models::Skill::ALL
         .iter()
         .copied()
         .map(|skill| {
