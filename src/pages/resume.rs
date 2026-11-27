@@ -17,7 +17,7 @@ fn skill_items(skills: &[models::Skill]) -> impl IntoView {
 // TODO: Create a full data model for resume so that it's easy to edit the content or create multiple versions.
 #[component]
 pub fn Page() -> impl IntoView {
-    document().set_title(&format!("Jesse Stolk - {}", resume_label()));
+    document().set_title(&format!("Jesse_Stolk-Software_Engineer-{}", resume_label()));
 
     let projects = PROJECTS
         .iter()
@@ -114,7 +114,11 @@ pub fn Page() -> impl IntoView {
                     <aside class="w-[68mm] shrink-0 bg-surface-raised px-[7mm] py-[9mm]">
                         <SidebarSection title="Personal Details" children=personal_details />
                         <SidebarSection title="Programming" inline=true children=programming />
-                        <SidebarSection title="Version Control" inline=true children=version_control />
+                        <SidebarSection
+                            title="Version Control"
+                            inline=true
+                            children=version_control
+                        />
                         <SidebarSection title="Dev Environment" inline=true children=tools />
                         <SidebarSection title="Game Engines" inline=true children=game_engines />
                         <SidebarSection title="Languages" children=languages />
