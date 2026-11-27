@@ -56,13 +56,15 @@ pub fn Page() -> impl IntoView {
         models::Skill::CSharp,
     ]);
 
+    let version_control = skill_items(&[models::Skill::Git, models::Skill::Perforce]);
+
+    let tools = skill_items(&[models::Skill::ArchLinux, models::Skill::LazyVim]);
+
     let game_engines = skill_items(&[
         models::Skill::Bevy,
         models::Skill::Unreal,
         models::Skill::Godot,
     ]);
-
-    let version_control = skill_items(&[models::Skill::Git, models::Skill::Perforce]);
 
     let languages = view! {
         <li>"English: Fluent"</li>
@@ -73,7 +75,6 @@ pub fn Page() -> impl IntoView {
         <li>"EGYM"</li>
         <li>"Yoga"</li>
         <li>"Running"</li>
-        <li>"Game Development"</li>
         <li>"Board Games"</li>
     };
 
@@ -112,9 +113,10 @@ pub fn Page() -> impl IntoView {
                 <div class="flex flex-1">
                     <aside class="w-[68mm] shrink-0 bg-surface-raised px-[7mm] py-[9mm]">
                         <SidebarSection title="Personal Details" children=personal_details />
-                        <SidebarSection title="Programming" children=programming />
-                        <SidebarSection title="Game Engines" children=game_engines />
-                        <SidebarSection title="Version Control" children=version_control />
+                        <SidebarSection title="Programming" inline=true children=programming />
+                        <SidebarSection title="Version Control" inline=true children=version_control />
+                        <SidebarSection title="Dev Environment" inline=true children=tools />
+                        <SidebarSection title="Game Engines" inline=true children=game_engines />
                         <SidebarSection title="Languages" children=languages />
                         <SidebarSection title="Hobbies" children=hobbies />
                     </aside>
